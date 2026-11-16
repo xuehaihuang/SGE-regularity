@@ -1,0 +1,803 @@
+\documentclass[10pt]{amsart}
+
+\usepackage[english]{babel}
+\usepackage{amssymb}
+\usepackage[leqno]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+\usepackage{chemarrow}
+\usepackage[norelsize]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{placeins}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{alg}[theorem]{Algorithm}
+
+\newcommand{\dx}{\,{\rm d}x}
+\newcommand{\dd}{\,{\rm d}}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\mcal}{\mathcal}
+
+\DeclareMathOperator*{\img}{img}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\curl}{\operatorname{curl}}
+\renewcommand{\div}{\operatorname{div}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\tr}{\operatorname{tr}}
+\DeclareMathOperator*{\rot}{rot}
+\DeclareMathOperator*{\var}{Var}
+\newcommand{\dev}{\operatorname{dev}}
+\newcommand{\sym}{\operatorname{sym}}
+\newcommand{\skw}{\operatorname{skw}}
+\newcommand{\spn}{\operatorname{spn}}
+\newcommand{\mspn}{\operatorname{mspn}}
+\newcommand{\mskw}{\operatorname{mskw}}
+\newcommand{\vskw}{\operatorname{vskw}}
+\newcommand{\vspn}{\operatorname{vspn}}
+\newcommand{\hess}{\operatorname{hess}}
+
+\numberwithin{equation}{section}
+
+\begin{document}
+
+\title[regularity of strain gradient elasticity]
+{A uniform regularity of the strain gradient elasticity model on polytopes}
+
+% \author{Xuehai Huang}
+% \address{School of Mathematics, Shanghai University of Finance and Economics,
+% Shanghai 200433, China}
+% \email{huang.xuehai@sufe.edu.cn}
+
+% \author{Xinyue Zhao}
+% \address{School of Mathematics, Shanghai University of Finance and Economics,
+% Shanghai 200433, China}
+% \email{zhaoxinyue20210921@163.com}
+
+% \thanks{The first author was supported by the National Natural Science
+% Foundation of China Project 12671432.}
+
+
+\begin{abstract}
+A uniform regularity of the strain gradient elasticity model on polytopes is derived under reasonable assumptions.
+\end{abstract}
+
+% \keywords{
+% weakly symmetric and traceless tensors, tangential--normal finite
+% elements, Brinkman equations, distributional mixed finite element methods
+% }
+
+% \subjclass[2020]{65N30, 65N12, 65N22, 76D07, 76S05}
+
+\maketitle
+
+\section{Introduction}
+Let $\Omega\subset \mathbb{R}^d$ ($d\geq2$) be a polytope. Consider the following strain gradient elasticity (SGE) model: 
+\begin{equation}
+\begin{cases}\label{eq:straingradproblem}
+-\div\big((\boldsymbol I-\iota^2\Delta)\boldsymbol\sigma(\boldsymbol u)\big)=\boldsymbol f & \textrm{ in }  \Omega,\\
+\boldsymbol u=\partial_{\boldsymbol n}\boldsymbol u=\boldsymbol0 & \textrm{ on } \partial\Omega,
+\end{cases}
+\end{equation}
+where $\boldsymbol n$ is the unit outward normal to $\partial\Omega$, $\boldsymbol u=(u_1, \ldots, u_d)^{\intercal}$ is the displacement field, $\boldsymbol f$ is the applied force, $\boldsymbol\sigma(\boldsymbol u)=2\mu\boldsymbol\varepsilon(\boldsymbol u)+\lambda(\div\boldsymbol u)\boldsymbol I$, and $\boldsymbol\varepsilon(\boldsymbol u)=(\varepsilon_{ij}(\boldsymbol u))_{d\times d}$ is the strain tensor field with
+$
+\varepsilon_{ij}(\boldsymbol u)=1/2(\partial_i u_j+\partial_ju_i).
+$
+Here $\lambda$ and $\mu$ are the Lam\'e constants, and $\boldsymbol I$ is the identity tensor field. The resulting stress field is given by $\tilde{\boldsymbol\sigma}(\boldsymbol u)=(\boldsymbol I-\iota^2\Delta)\boldsymbol\sigma(\boldsymbol u)$, where $\iota\in (0,1)$ denotes the size parameter of the material under discussion.
+
+In this paper, we establish the following regularity estimate for problem~\eqref{eq:straingradproblem}:
+\begin{equation}\label{intro:straingradregularity}	
+\begin{aligned}	
+&|\boldsymbol u-\boldsymbol u_0|_{1} +\iota\|\boldsymbol u\|_2  + \iota^{2}\|\boldsymbol u\|_{3}\\
+&\qquad+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 + \lambda\iota|\div\boldsymbol u|_1 + \lambda\iota^2\|\div\boldsymbol u\|_2 
+\ \lesssim\ \iota^{1/2}\|\boldsymbol f\|_0,
+\end{aligned}
+\end{equation}
+under Assumptions~\ref{RegularityAssumption0}--\ref{RegularityAssumption2}, via a standard perturbation argument.
+The estimate~\eqref{intro:straingradregularity} was proved for smooth domains in~\cite{LiaoMingXu2023}, and we built up the regularity \eqref{intro:straingradregularity} for polytopes in \cite{ChenHuangHuang2023}.
+
+A key ingredient in the proof of Lemma~3.7 in~\cite{ChenHuangHuang2023} is the following div-surjectivity statement:
+\[
+\div\big( H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)
+= H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega),
+\]
+which is used there without proof and is not obvious. Indeed, the analogous surjectivity at one lower order fails:
+\[
+\div\big( H^2(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)\big)
+\neq H^1(\Omega)\cap L_0^2(\Omega).
+\]
+As pointed out in~\cite[Theorem~3.1]{ArnoldScottVogelius1988}, the space
+$\div\big( H^2(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)\big)$
+is a proper closed subspace of $H^1(\Omega)\cap L_0^2(\Omega)$. In this paper, we prove in Lemma~\ref{lem:main} that the div-surjectivity
+\[
+\div\big( H^3(\Omega;\mathbb R^2)\cap H_0^2(\Omega;\mathbb R^2)\big)
+= H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)
+\]
+indeed holds at least in two dimensions.
+
+
+For later uses, we introduce some notation.
+Given a bounded domain $D\subset \mathbb{R}^{d}$
+and integers $m,k\geq0$, denote by $H^m(D)$ the standard Sobolev space on $D$
+with norm $\|\cdot\|_{m,D}$ and semi-norm $|\cdot|_{m,D}$, and $H_0^m(D)$ the closure of $C_0^{\infty}(D)$ with respect to $\|\cdot\|_{m,D}$. We abbreviate $\|\cdot\|_{m,\Omega}$ and $|\cdot|_{m,\Omega}$ as $\|\cdot\|_{m}$ and $|\cdot|_{m}$ respectively for $D=\Omega$.
+The notation $(\cdot,\,\cdot)_{D}$ symbolizes the standard $L^2$ inner product on $D$, and the subscript will be omitted when $D=\Omega$.
+% Let $\mathbb{P}_{k}(D)$ be the set of all polynomials on $D$ with the total degree up to $k$. 
+Set  $H^m(D; \mathbb R^d) :=H^m(D)\otimes\mathbb R^d$, $H_0^m(D; \mathbb R^d) :=H_0^m(D)\otimes\mathbb R^d$.
+%  and $\mathbb{P}_k(D; \mathbb R^s) :=\mathbb{P}_k(D)\otimes\mathbb R^s$. 
+Let $L^2_0(D)$ be the space of functions in $L^2(D)$ with vanishing integral average values.
+%   \begin{align*}
+% & H^m(D; \mathbb R^s) = \{\boldsymbol v=(v_1,v_2,\cdots,v_s)^T| v_i\in H^m(D),1\leq i \leq s \}, \\
+% & H^m_0(D; \mathbb R^s) = \{\boldsymbol v\in H^m(D; \mathbb R^s)| \boldsymbol v = \frac {\partial\boldsymbol v}{\partial \boldsymbol n} = \cdots = \frac {\partial^{m-1}\boldsymbol v}{\partial \boldsymbol n^{m-1}}=0 \text{ on } \partial D \}, \\
+% & \mathbb{P}_k(D; \mathbb R^s) = \{\boldsymbol v= [v_1,v_2,\cdots,v_s]^T| v_i\in \mathbb{P}_k(D),1\leq i \leq s \}, \\
+% &L^2_0(D) = \{p\in L^2(D) | \int_{D} p {\rm d}x=0 \}.
+% \end{align*}
+
+For a scalar function $w$ and a vector valued function $\boldsymbol v = (v_1,v_2)^{\intercal}$ in two dimensions, introduce two usual differential operations
+$\curl w = (\partial_2 w, - \partial_1 w)^{\intercal}$. 
+% and $\mathbb Rot \boldsymbol v = \partial_1 v_2 - \partial_2 v_1.$
+
+% In the rest of this subsection, we present some basic inequalities for later theoretical analysis.
+As usual, we use $\lesssim$ to represent $\leq C$, where $C$ may be a generic positive constant independent of %the mesh size $h$, 
+the material parameter $\iota$ and the Lam\'e coefficient $\lambda$. And $a\eqsim b$ indicates $a\lesssim b\lesssim a$. 
+% Assume $\Omega$ is a star-shaped domain \cite{Brenner2008FEMtheory}.
+% We have the multiplicative trace inequality in the form \cite[Theorem 1.5.1.10]{Grisvard1985}
+% \begin{equation}\label{eq:multiplicativetraceineqty}
+% \|v\|_{\partial D}^2 \lesssim \|v\|_{0,D} \|v\|_{1,D} \quad\forall~v\in H^1(D),
+% \end{equation}
+% which implies readily the scaled trace inequality %\cite[(2.18)]{BrennerSung2018}:
+% \begin{equation}\label{eq:traceineqty}
+% \|v\|_{0,\partial D}\lesssim h_D^{-1/2}\|v\|_{0,D} + h_D^{1/2}|v|_{1,D} \quad\forall~v\in H^1(D).
+% \end{equation}
+
+% \begin{equation}\label{eq:korninequalityH2}
+% ( 1-1/\sqrt{2})\left(|\boldsymbol v|_1^2 + |\boldsymbol v|_2^2\mathbb Right)\lesssim \|\boldsymbol\varepsilon(\boldsymbol v)\|_{0}^2 + \|\nabla\boldsymbol\varepsilon(\boldsymbol v)\|_0^2 \quad\forall~\boldsymbol v\in H^1_0(\Omega;\mathbb{R}^d)\cap H^2(\Omega;\mathbb{R}^d).
+% \end{equation}
+
+% The following inequality can be found in \cite[Theorem 2.2]{GiraultRaviart1986}:
+% \begin{equation}\label{eq:poincareL2m1}
+% \|p\|_0\lesssim \|p\|_{-1}+\|\nabla p\|_{-1}\quad\forall~p\in L^2(\Omega).
+% \end{equation}
+
+% Recall the continuity of the right inverse of the divergence operator in \cite{CostabelMcIntosh2010}.
+% \begin{lemma}\label{lm:divrightinverse}
+% For $p\in H_0^{m}(\Omega)\cap L_0^2(\Omega)$ with non-negative integer $m$, there exists $\boldsymbol{v}\in H_0^{m+1}(\Omega;\mathbb R^d)$ such that $\div\boldsymbol{v}=p$ and
+% \begin{equation*}
+% \|\nabla\boldsymbol v\|_{j}\lesssim \|p\|_{j} \quad {\rm  for }\;  j=0,1,\ldots, m.
+% \end{equation*}
+% \end{lemma}
+% \cref{lm:divrightinverse}
+
+
+% \subsection{Mixed formulation}
+% %To construct a discrete method for \eqref{eq:straingradproblem} possessing uniform convergence with respected to $\lambda$ and $\iota$, Referring to \cite{LiaoMingXu2021taylorhood},We mimic Lam\'e system by introducing $p=\lambda\div\boldsymbol u$
+% In order to solve the problem \eqref{eq:straingradproblem} with a mixed finite element method, we recall its mixed formulation in \cite{LiaoMingXu2021taylorhood}.
+% % By introducing an auxiliary variable $p=\lambda\div\boldsymbol u$ as for the Lam\'e system, one can reformulate \eqref{eq:straingradproblem} in the form \cite{LiaoMingXu2021taylorhood}
+% % \begin{equation*}
+% % \begin{cases}
+% % -\div\big((I-\iota^2\Delta)(2\mu\boldsymbol\varepsilon(\boldsymbol u))\big) -\nabla\big((I-\iota^2\Delta)p\big)=\boldsymbol f & \textrm{ in } \Omega,\\
+% % \div\boldsymbol u -\dfrac{1}{\lambda}p=0 & \textrm{ in } \Omega,\\
+% % \boldsymbol u=\partial_{\boldsymbol{n}}\boldsymbol u=\boldsymbol 0 & \textrm{ on } \partial\Omega.
+% % \end{cases}
+% % \end{equation*}
+% % Then, by integration by parts, we can deduce that
+% The variational formulation of \eqref{straingradLameproblem} is to find $\boldsymbol u\in V:=H_0^2(\Omega; \mathbb R^d)$ and $p\in Q:=H_0^1(\Omega)\cap L^2_0(\Omega)$ such that
+% \begin{equation}\label{eq:straingradmixedform}
+% \begin{cases}
+% a(\boldsymbol u, \boldsymbol v)
+% +b(\boldsymbol v, p)=(\boldsymbol f, \boldsymbol v)&  \forall~\boldsymbol v\in V,\\
+% b(\boldsymbol u, q)-c(p,q)=0 & \forall~q\in Q,
+% \end{cases}
+% \end{equation}
+% where
+% % \[
+% % a(\boldsymbol u, \boldsymbol v)=2\mu(\boldsymbol\varepsilon(\boldsymbol u), \boldsymbol\varepsilon(\boldsymbol v))_{\iota}, b(\boldsymbol v, p)=(\div\boldsymbol v, p)_{\iota}, c(p,q)=(p, q)_{\iota}/\lambda,
+% % \]
+% \begin{align*}
+% a(\boldsymbol u, \boldsymbol v)&:=2\mu(\boldsymbol\varepsilon(\boldsymbol u), \boldsymbol\varepsilon(\boldsymbol v))_{\iota}=2\mu\big((\boldsymbol\varepsilon(\boldsymbol u), \boldsymbol\varepsilon(\boldsymbol v))+\iota^2(\nabla\boldsymbol\varepsilon(\boldsymbol u), \nabla\boldsymbol\varepsilon(\boldsymbol v))\big),	 \\
+% b(\boldsymbol v, p)&:=(\div\boldsymbol v, p)_{\iota}=(\div\boldsymbol v, p)+\iota^2(\nabla\div\boldsymbol v, \nabla p), \\
+% c(p,q)&:=(p, q)_{\iota}/\lambda=\big((p, q)+\iota^2(\nabla p, \nabla q)\big)/\lambda
+% \end{align*}
+% with a weighted $H^1$ inner product $(p, q)_{\iota}:=(p, q)+\iota^2(\nabla p, \nabla q)$.
+% To make the forthcoming discussion in a compact way, we further introduce the following weighted Sobolev norms over $V$ and $Q$:
+% \[
+% \|\boldsymbol v\|_V : = \left(|\boldsymbol v|_1^2 + \iota ^2 |\boldsymbol v|_2^2\mathbb Right)^{1/2}\quad \forall\; \boldsymbol v\in V; \quad \|q\|_Q : = \left(\|q\|_0^2 + \iota ^2 |q|_1^2\mathbb Right)^{1/2}\quad \forall\; q\in Q.
+% \]
+
+% Now, it is easy to check that the linear forms $a(\cdot,\cdot)$, $b(\cdot,\cdot)$ and $c(\cdot,\cdot)$ are bounded on $V\times V$, $V\times Q$ and $Q\times Q$, respectively. The coercivity of the linear form $a(\cdot,\cdot)$ on $V\times V$ results from Korn's inequalities~\eqref{eq:korninequality1st}-\eqref{eq:korninequalityH2}. And the inf-sup condition
+% \begin{equation*}	
+% \|q\|_{Q}\lesssim  \sup\limits_{\boldsymbol v \in V}\frac {b(\boldsymbol v,q)} {\|\boldsymbol v\|_V } \quad \forall~q\in Q
+% \end{equation*}
+% holds from Lemma~\ref{lm:divrightinverse}. Applying the Babu{\v{s}}ka-Brezzi theory \cite{BoffiBrezziFortin2013}, we have the stability
+% % $$
+% % \|\boldsymbol u\|_V+\|p\|_Q \lesssim \sup_{\boldsymbol v\in V, q\in Q}\frac{a(\boldsymbol u, \boldsymbol v)+b(\boldsymbol v, p)-b(\boldsymbol u, q)}{\|\boldsymbol v\|_V+\|q\|_Q} \quad\forall~\boldsymbol u\in V, p\in Q,
+% % $$
+% % which immediately gives
+% \begin{equation*}	
+% \|\boldsymbol u\|_V+\|p\|_Q \lesssim \sup_{\boldsymbol v\in V,\, q\in Q}\frac{a(\boldsymbol u, \boldsymbol v)+b(\boldsymbol v, p)-b(\boldsymbol u, q)+c(p,q)}{\|\boldsymbol v\|_V+\|q\|_Q} \quad\forall~\boldsymbol u\in V, p\in Q.
+% \end{equation*}
+% Therefore, the mixed formulation \eqref{eq:straingradmixedform} is well-posed.
+% % with the stability bound
+% % $$
+% % \|\boldsymbol u\|_V+\|p\|_Q \lesssim \|\boldsymbol f\|_{V'}=\sup_{\boldsymbol v\in V}\frac{(\boldsymbol f, \boldsymbol v)}{\|\boldsymbol v\|_V}.
+% % $$
+% % \begin{align}
+% % % \nonumber to remove numbering (before each equation)
+% %   a(\boldsymbol v,\boldsymbol v) \gtrsim \|\boldsymbol v\|_{V} \quad \forall \boldsymbol v\in V, &\qquad c(q,q)\geq \|q\|_{Q} \quad \forall q\in Q,  \notag \\
+% %   \|q\|_{Q}\lesssim  &\sup\limits_{\boldsymbol v \in V}\frac {b(\boldsymbol v,q)} {\|\boldsymbol v\|_V } \quad \forall q\in Q. \label{infsupcondition}
+% % \end{align}
+
+% %  By the Babu\v{s}ka-Brezzi theory, problem \eqref{eq:straingradmixedform} is well-posed if and only if
+% %  \begin{eqnarray}
+% %  % \nonumber to remove numbering (before each equation)
+% %    \sqrt{ a( \boldsymbol v, \boldsymbol v ) } + \sup \limits_{p\in Q} \frac {b(\boldsymbol v, q )} {\|q\|_Q}   & \eqsim & \|\boldsymbol v\|_V,\quad \boldsymbol v\in V, \label{eq:wellposed1}\\
+% %    \sqrt{ c( q, q ) } + \sup \limits_{v\in V} \frac {b(\boldsymbol v, q )} {\|\boldsymbol v\|_V}  & \eqsim &  \| q\|_P \label{eq:wellposed2}\quad q\in Q.
+% %  \end{eqnarray}
+% %   Clearly we have \eqref{eq:wellposed1} by Lemma \ref{lm:korn}
+% %   and \eqref{eq:wellposed2} follows from the inf-sup condition \eqref{infsupcondition} immediately.
+
+
+The rest of this paper is organized as follows. Three assumptions are presented in Sect.~\ref{sec:assumption}.
+In Sect.~\ref{sec:regularity} we establish a uniform regularity for the SGE model under previous assumptions.
+
+
+\section{Regularity assumptions}\label{sec:assumption}
+
+% In order to derive the robust error estimates for the proposed mixed finite element method in the next section, we require to develop a series of regularity estimates for the underlying (system of) partial differential equations. In fact, these results are interesting themselves.
+This section is devoted to presenting some regularity assumptions, and prove the regularity assumptions in two dimensions.
+
+% \subsection{Assumptions}
+\begin{assumption}\label{RegularityAssumption0}
+Let $f \in L_0^2(\Omega)$, and $u\in H_0^1(\Omega)$ be the solution of the Poisson equation $-\Delta u=f$. Assume $u\in H^2(\Omega)$ admits the estimate
+\begin{equation}\label{eq:poissonH2regularity}
+\|u\|_2\lesssim \|f\|_{0}.
+\end{equation}
+\end{assumption}
+The $H^2$ regularity \eqref{eq:poissonH2regularity} of the Poisson equation is well-known for convex domains \cite[Theorem 3.2.1.2]{Grisvard1985}.
+
+
+Consider the following fourth order Stokes problem: Find $(\boldsymbol\phi, p)\in H_0^2(\Omega; \mathbb R^d)\times(H_0^1(\Omega)\cap L_0^2(\Omega))$ such that
+\begin{equation}\label{eq:fourthorderStokes}
+\begin{cases}
+\Delta^2\boldsymbol\phi + \nabla\Delta p=\boldsymbol f & {\rm in }\; \Omega,\\
+\Delta\div\boldsymbol\phi= g & {\rm in }\; \Omega,\\
+\boldsymbol\phi=\partial_{\boldsymbol{n}}\boldsymbol\phi=\boldsymbol 0 & {\rm on }\; \partial\Omega,
+\end{cases}
+\end{equation}
+where $\boldsymbol f \in H^{-2}(\Omega; \mathbb{R}^d)$ and $g\in H^{-1}(\Omega)$.
+The well-posedness of the fourth order Stokes problem \eqref{eq:fourthorderStokes} follows from the div surjection  (cf. \cite[Theorem 1.1]{CostabelMcIntosh2010})
+$$
+\div H_0^2(\Omega; \mathbb R^d) = H_0^1(\Omega)\cap L_0^2(\Omega).
+$$
+The proof of the well-posedness of the fourth order Stokes problem \eqref{eq:fourthorderStokes} with $g=0$ in \cite[Lemma 3.1]{ChenHuangHuang2023} can be easily adapted to the general $g\in H^{-1}(\Omega)$. And it holds the stability estimate
+\begin{equation}\label{eq:fourthorderStokesregularity0}
+\|\boldsymbol\phi\|_2+\|p\|_1\lesssim \|\boldsymbol f\|_{-2} + \|g\|_{-1}.
+\end{equation}
+
+
+We will recall the two assumptions in \cite{ChenHuangHuang2023} with a slight modification.
+Let $\chi\in H_0^1(\Omega)\cap H^2(\Omega)$ be the function solving
+\[
+-\Delta\chi=1\quad\text{in }\Omega,\qquad \chi=0\quad\text{on }\partial\Omega.
+\]
+Define the closed codimension--one subspace
+\[
+L^2_\chi(\Omega):=\big\{ g\in L^2(\Omega)\,:\, (g,\chi)_{L^2(\Omega)}=0\big\}.
+\]
+
+\begin{lemma}\label{lem:L2chi}
+It holds that
+$$
+\Delta\div\big(H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)\subseteq \Delta(H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)) \subseteq L^2_\chi(\Omega).
+$$
+\end{lemma}
+\begin{proof}
+By $\div\big(H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)\subseteq (H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega))$, it follows
+$$
+\Delta\div\big(H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)\subseteq \Delta(H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)).
+$$	
+For any $p\in (H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega))$, we have
+\begin{align*}
+(\Delta p,\chi)=(p,\Delta\chi)=-(p,1)=0,
+\end{align*}
+which implies $\Delta(H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)) \subseteq L^2_\chi(\Omega)$.
+\end{proof}
+
+\begin{lemma}
+Assume the $H^2$ regularity \eqref{eq:poissonH2regularity} of the Poisson equation holds.
+Then
+\begin{equation}\label{eq:Deltasurjection}
+\Delta(H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)) = L^2_\chi(\Omega).
+\end{equation}
+\end{lemma}
+\begin{proof}
+For any $g\in L^2_\chi(\Omega)$, let $v=\Delta^{-1}g\in H_0^1(\Omega)$.
+By the $H^2$ regularity \eqref{eq:poissonH2regularity}, we have $v\in H^2(\Omega)\cap H_0^1(\Omega)$. Apply the integration by parts to get
+$$
+(v,1)=-(v,\Delta\chi)=-(\Delta v,\chi)=-(g,\chi)=0,
+$$
+which implies $v\in L_0^2(\Omega)$ and thus $g=\Delta v\in \Delta(H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega))$.
+\end{proof}
+
+The two assumptions are presented as follows.
+\begin{assumption}\label{RegularityAssumption1}
+Let $\boldsymbol f \in H^{-1}(\Omega; \mathbb{R}^d)$ and $g\in L^2_\chi(\Omega)$. Let $(\boldsymbol\phi, p)\in H_0^2(\Omega; \mathbb R^d)\times(H_0^1(\Omega)\cap L_0^2(\Omega))$ be the solution of problem~\eqref{eq:fourthorderStokes}. Assume $\boldsymbol{\phi}\in H^3(\Omega; \mathbb R^d)$ and $p\in H^2(\Omega)$ which admit the estimate
+\begin{equation}\label{eq:fourthorderStokesregularity1}
+\|\boldsymbol\phi\|_3+\|p\|_2\lesssim \|\boldsymbol f\|_{-1} + \|g\|_{0}.
+\end{equation}
+\end{assumption}
+
+
+\begin{assumption}\label{RegularityAssumption2}
+	Assume that $\boldsymbol f\in H^{-1}(\Omega; \mathbb R^d)$. Let $\boldsymbol u\in H_0^2(\Omega; \mathbb R^d)$ be the solution of the following problem:
+	\begin{equation*}
+	\begin{cases}
+	\Delta (\div\boldsymbol\sigma(\boldsymbol u))=\boldsymbol f & {\rm  in }\; \Omega,\\
+	\boldsymbol u=\partial_{\boldsymbol{n}}  \boldsymbol u= \boldsymbol 0 & {\rm on }\; \partial\Omega,
+	\end{cases}
+	\end{equation*}
+	where $\lambda \in[0,\Lambda]$ and $\mu\in [\mu_0,\mu_1]$ being the Lam\'{e} constants. Then $\boldsymbol u\in H^3(\Omega; \mathbb R^d)$ and it admits the estimate
+	\[
+	\| \boldsymbol u\|_3 \lesssim \|\boldsymbol f\|_{-1},
+	\]
+	where the hidden constant may depend on $\Lambda$, $\mu_0$ and $\mu_1$.
+\end{assumption}
+
+% We will prove Assumption~\ref{RegularityAssumption1} holds for a convex polygon in Section~\ref{sec:assumption12d}. 
+Since the solution $\boldsymbol{\phi}$ of \eqref{eq:fourthorderStokes} is zero when $\boldsymbol{f}\in\nabla L^2(\Omega)$,
+by replacing $\boldsymbol{f}$ in problem \eqref{eq:fourthorderStokes} with $\boldsymbol{f}+\nabla q$, we have from \eqref{eq:fourthorderStokesregularity1} that
+\begin{equation}\label{eq:fourthorderStokesregularity2}
+\|\boldsymbol\phi\|_3\lesssim
+\inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1}.
+\end{equation}
+ 
+The Assumption \ref{RegularityAssumption1} with $g=0$ is exactly the Assumption 3.1 in \cite{ChenHuangHuang2023}, which has been proved for convex polygons in two dimensions in \cite[Theorem 3.6]{ChenHuangHuang2023} by using the $H^4$ regularity result for the triharmonic equation.
+Then we prove Assumption \ref{RegularityAssumption1} for general $g$ in two dimensions for convex polygons in the remainder of this section.
+
+
+% \subsection{Verification of Assumptions in two dimensions}
+
+\begin{lemma}\label{lem:main}
+Let $\Omega\subset\mathbb R^2$ be a bounded, simply connected polygonal domain.
+Then
+\[
+\div\big( H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)\big)
+=
+ H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega).
+\]
+Moreover, there exists a bounded linear right inverse
+\[
+\mathcal R:\  H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega)
+\to
+ H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2),
+\quad
+\div(\mathcal R g)=g.
+\]
+\end{lemma}
+
+\begin{proof}
+It can be verified directly that 
+\[
+\div\big( H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)\big)
+\subseteq
+ H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega).
+\]
+Then we prove the reverse inclusion and the existence of the bounded linear right inverse.
+Let
+$
+g\in  H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega).
+$
+We shall construct $\boldsymbol u\in  H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)$ with $\div\boldsymbol u=g$.
+
+Noting that $g|_{\partial\Omega}=0$, by Theorem 3.1 in \cite{ArnoldScottVogelius1988}, there exists a $\boldsymbol u_1\in H^3(\Omega;\mathbb R^2)\cap  H_0^1(\Omega;\mathbb R^2)$ such that
+\[
+\div\boldsymbol u_1 = g,
+\qquad
+\|\boldsymbol u_1\|_{3}\lesssim \|g\|_{2}.
+\]
+Let $\Delta_0(\Omega)$ and $\Delta_1(\Omega)$ be set of all vertices and edges of the polygon $\Omega$, respectively. For each edge $e\in \Delta_1(\Omega)$, let $\boldsymbol n$ and $\boldsymbol t$ be the unit outward normal and tangential vectors on $e$, respectively.
+By $\boldsymbol u_1|_{\partial\Omega}=0$ and $g|_{\partial\Omega}=0$, we have
+% Fix an open edge $e\subset\partial\Omega$.
+% Since $\boldsymbol{n},\boldsymbol{\tau}$ are constant on $e$ and $\boldsymbol u_1|_e=0$, we have $\partial_\tau \boldsymbol u_1|_e=0$ (trace sense).
+% Moreover, $g\in  H_0^1(\Omega)$ implies $g|_{\partial\Omega}=0$, hence $(\div\boldsymbol u_1)|_e=g|_e=0$.
+% On a straight edge,
+% \[
+% (\div\boldsymbol u_1)|_e
+% =
+% (\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e + (\boldsymbol{t}\cdot \partial_t\boldsymbol u_1)|_e
+% =
+% (\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e,
+% \]
+% so
+\begin{equation}\label{eq:normal-comp-zero}
+(\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e = (\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e + (\boldsymbol{t}\cdot \partial_t\boldsymbol u_1)|_e
+= (\div\boldsymbol u_1)|_e = 0.
+\end{equation}
+% Thus the boundary normal derivative $\partial_n\boldsymbol u_1$ is purely tangential on each edge.
+% \smallskip
+% \noindent\textbf{2.3 Define the tangential mismatch $h$.}
+Define the scalar boundary function
+\[
+h := \boldsymbol{t}\cdot (\partial_n\boldsymbol u_1)\big|_{\partial\Omega}=\partial_n\boldsymbol u_1|_{\partial\Omega}.
+\]
+Since $\boldsymbol u_1\in  H^3(\Omega;\mathbb R^2)$, we have $\partial_n\boldsymbol u_1|_{\partial\Omega}\in  H^{3/2}(\partial\Omega;\mathbb R^2)$ and hence
+\begin{equation}\label{eq:h-reg}
+h\in  H^{3/2}(\partial\Omega),
+\qquad
+\|h\|_{ H^{3/2}(\partial\Omega)}\lesssim \|\boldsymbol u_1\|_{3}.
+\end{equation}
+For vertex $\texttt{v}\in\Delta_0(\Omega)$ shared by two edges $e^\pm \in \Delta_1(\Omega)$. Because $\boldsymbol u_1\in  H^3$ and $\boldsymbol u_1|_{\partial\Omega}=0$ as a global trace, we have $\partial_t\boldsymbol u_1|_{e^\pm}=0$. This means that $(\nabla \boldsymbol{u}_1)(\texttt{v})=0$. Hence
+\begin{equation}\label{eq:vertex-normal-derivative}
+% (\partial_n \boldsymbol u_1)(\texttt{v})=\boldsymbol 0,
+% \qquad
+% \text{hence}\qquad
+h(\texttt{v})=0
+\ \ \text{for each vertex }\texttt{v}\in\Delta_0(\Omega).
+\end{equation}
+Then there exists a $\psi\in H^4(\Omega)\cap H_0^2(\Omega)$ such that (cf. \cite[Theorem~5]{Agranovich2007}, \cite[Theorem~4]{Agranovich2008} and \cite[Theorem~R(m)]{Verchota1990})
+\begin{equation}\label{eq:psi-traces}
+\partial_{nn}\psi|_{\partial\Omega}=-h,\quad \textrm{ and } \quad \|\psi\|_{ H^4(\Omega)}\lesssim \|h\|_{ H^{3/2}(\partial\Omega)}.
+\end{equation}
+
+Set
+$\boldsymbol v := \curl\psi \in  H^3(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)$, then
+$\div\boldsymbol v = 0$.
+We now verify that $\boldsymbol v$ exactly cancels the boundary normal derivative of $\boldsymbol u_1$.
+On each edge $e\in\Delta_1(\Omega)$,
+\[
+\boldsymbol{t}\cdot(\partial_n\boldsymbol v)
+=
+\partial_n(\boldsymbol v\cdot \boldsymbol{t})
+=
+\partial_n(-\partial_n\psi)
+=
+-\partial_{nn}\psi
+=
+h
+=
+\boldsymbol{t}\cdot(\partial_n\boldsymbol u_1),
+\]
+and
+\[
+\boldsymbol{n}\cdot(\partial_n\boldsymbol v)
+=
+\partial_n(\boldsymbol v\cdot \boldsymbol{n})
+=
+\partial_n(\partial_t\psi)
+=
+\partial_t(\partial_n\psi)
+=
+0.
+\]
+% where the last step uses $\partial_n\psi|_{\partial\Omega}=0$.
+Together with \eqref{eq:normal-comp-zero}, this yields
+\begin{equation}\label{eq:normal-derivative-match}
+(\partial_n\boldsymbol v)|_{\partial\Omega}=(\partial_n\boldsymbol u_1)|_{\partial\Omega}.
+\end{equation}
+Let
+$\boldsymbol u := \boldsymbol u_1 - \boldsymbol v$.
+Then $\boldsymbol u\in  H^3(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)$ and
+\[
+\div\boldsymbol u = \div\boldsymbol u_1 - \div\boldsymbol v = g - 0 = g.
+\]
+From \eqref{eq:normal-derivative-match} we obtain $\partial_n\boldsymbol u|_{\partial\Omega}=0$.
+Thus $\boldsymbol u\in  H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)$ and $\div\boldsymbol u=g$.
+
+Moreover, the construction is linear in $g$ and the estimates
+\[
+\|\boldsymbol u_1\|_{3}\lesssim \|g\|_{ 2},
+\quad
+\|h\|_{ H^{3/2}(\partial\Omega)}\lesssim \|\boldsymbol u_1\|_{3},
+\quad
+\|\psi\|_{4}\lesssim \|h\|_{ H^{3/2}(\partial\Omega)},
+\quad
+\|\boldsymbol v\|_{3}\lesssim \|\psi\|_{4}
+\]
+imply
+$
+\|\boldsymbol u\|_{3}\lesssim \|g\|_{2}.
+$
+\end{proof}
+
+
+
+\section{Regularity results}\label{sec:regularity}
+
+Now we are ready to show the regularity results of the SGE model \eqref{eq:straingradproblem} under Assumptions~\ref{RegularityAssumption0}-\ref{RegularityAssumption2}.
+
+
+% \subsection{Regularity of the SGE model}
+% Now we are ready to show the regularity results of the SGE model. From now on we always suppose Assumptions~\ref{RegularityAssumption1}-\ref{RegularityAssumption2} hold.
+\begin{lemma}\label{lm:fourthorderelasregularity}
+	Let $\boldsymbol w\in H_0^2(\Omega; \mathbb R^d)$ be the solution of
+	\begin{equation}\label{eq:fourthorderelasproblem}
+	\begin{cases}
+	\div\Delta\big(2\mu\boldsymbol\varepsilon(\boldsymbol w)+\lambda(\div\boldsymbol w)\boldsymbol I\big)=\boldsymbol f & {\rm  in }\; \Omega,\\
+	\boldsymbol w=\partial_{\boldsymbol{n}}\boldsymbol w=\boldsymbol 0 & {\rm on }\; \partial\Omega
+	\end{cases}
+	\end{equation}
+with $\boldsymbol f\in H^{-1}(\Omega; \mathbb{R}^d)$.
+	Suppose Assumptions \ref{RegularityAssumption1}-\ref{RegularityAssumption2} hold.
+	We have
+	\begin{align}\label{eq:fourthorderelasregularity}
+	\|\boldsymbol w\|_{2+j}+\lambda\|\div\boldsymbol w\|_{1+j}\lesssim \|\boldsymbol f\|_{j-2} \quad\textrm{ for } j=0,1.
+	\end{align}
+The hidden constants may depend on $\Omega$, $\mu$ and the constants
+in Assumptions \ref{RegularityAssumption1}--\ref{RegularityAssumption2},
+but are independent of $\lambda$.
+\end{lemma}
+\begin{proof}
+The estimate \eqref{eq:fourthorderelasregularity} for $j=0$ has been proved in \cite[Lemma 3.7]{ChenHuangHuang2023}. 
+Then we prove \eqref{eq:fourthorderelasregularity} for $j=1$. 
+	% We follow the argument of Lemma~2.2 in \cite{BrennerSung1992} to prove \eqref{eq:fourthorderelasregularity}.
+	% The weak formulation of \eqref{eq:fourthorderelasproblem} is
+	% \begin{equation}\label{eq:20210918}
+	% 2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol w), \nabla\boldsymbol\varepsilon(\boldsymbol v)) + \lambda(\nabla\div\boldsymbol w, \nabla\div\boldsymbol v)=(\boldsymbol f, \boldsymbol v) \quad\forall~\boldsymbol v\in H_0^2(\Omega; \mathbb R^d),
+	% \end{equation}%\cite{LaxMilgram1954}
+	% which is well-posed by the $H^2$-Korn's inequality \eqref{eq:korninequalityH2}, and it holds
+	% $
+	% \|\boldsymbol w\|_2\lesssim \|\boldsymbol f\|_{-2}.
+	% $
+	% By Lemma~\ref{lm:divrightinverse}, there exists $\widetilde{\boldsymbol w}\in H_0^2(\Omega; \mathbb R^d)$ such that
+	% $\div\widetilde{\boldsymbol w}=\div\boldsymbol w$ and $\|\widetilde{\boldsymbol w}\|_2\lesssim \|\div\boldsymbol w\|_1.$
+	% Taking $\boldsymbol v=\widetilde{\boldsymbol w}$ in \eqref{eq:20210918}, it follows that
+	% \begin{equation*}
+	% \lambda|\div\boldsymbol w|_1^2=(\boldsymbol f, \widetilde{\boldsymbol w})-2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol w), \nabla\boldsymbol\varepsilon(\widetilde{\boldsymbol w}))\lesssim \|\boldsymbol f\|_{-2}\|\widetilde{\boldsymbol w}\|_2+\|\boldsymbol w\|_2\|\widetilde{\boldsymbol w}\|_2,
+	% \end{equation*}
+	% which gives \eqref{eq:fourthorderelasregularity} for $j=0$.
+
+Let $(\boldsymbol\phi,p_0)\in H_0^2(\Omega;\mathbb R^d)\times
+\big(H_0^1(\Omega)\cap L_0^2(\Omega)\big)$ solve
+\begin{equation}\label{eq:limit_stokes_journal2}
+\begin{cases}
+\Delta^2\boldsymbol\phi+\nabla\Delta p_0=\dfrac{1}{\mu}\boldsymbol f
+& \text{in }\Omega,\\[2pt]
+\Delta\operatorname{div}\boldsymbol\phi=0 & \text{in }\Omega.
+\end{cases}
+\end{equation}
+By Assumption~\ref{RegularityAssumption1},
+\begin{equation}\label{eq:stokes_reg_journal2}
+\|\boldsymbol\phi\|_{3}+\|p_0\|_{2}\lesssim\|\boldsymbol f\|_{-1}.
+\end{equation}
+Introduce
+\[
+% \pi:=(\mu+\lambda)\operatorname{div}\boldsymbol w,\qquad
+\gamma:=\frac{\mu}{\mu+\lambda}\in(0,1],\qquad
+\eta:=\frac{1}{\gamma}\operatorname{div}\boldsymbol w-p_0,\qquad \boldsymbol e:=\boldsymbol w-\boldsymbol\phi.
+\]
+The first equation in \eqref{eq:fourthorderelasproblem} can be rewritten as
+\begin{equation}\label{eq:elas_rewrite_journal2}
+\Delta^2\boldsymbol w+\nabla\Delta\Big(\frac{1}{\gamma}\operatorname{div}\boldsymbol w\Big)=\frac{1}{\mu}\boldsymbol f  \quad \textrm{ in } \Omega.
+\end{equation}
+Subtracting \eqref{eq:limit_stokes_journal2} gives
+\begin{equation}\label{eq:error_system_journal2}
+\begin{cases}
+\Delta^2\boldsymbol e+\nabla\Delta\eta=\boldsymbol 0 & \text{in }\Omega,\\[2pt]
+\Delta\operatorname{div}\boldsymbol e-\gamma\,\Delta\eta
+=\gamma\,\Delta p_0& \text{in }\Omega,\\[2pt]
+\boldsymbol e=\partial_{\boldsymbol n}\boldsymbol e=\boldsymbol 0 &\text{on }\partial\Omega.
+\end{cases}
+\end{equation}
+
+We now use a standard perturbation argument. By Lemma~\ref{lem:L2chi}, $\Delta p_0\in L^2_\chi(\Omega)$ and hence $\varepsilon\,\Delta p_0\in L^2_\chi(\Omega)$.
+Set
+\begin{align*}
+X&:=\big(H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)\times
+\big(H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)\big), \\
+Y&:=H^{-1}(\Omega;\mathbb R^d)\times L^2_\chi(\Omega),
+\end{align*}
+and
+define operators $\mathcal A_0,\mathcal B\in\mathcal L(X,Y)$ by
+\[
+\mathcal A_0(\boldsymbol v,r):=\big(\Delta^2\boldsymbol v+\nabla\Delta r,\ \Delta\operatorname{div}\boldsymbol v\big),
+\qquad
+\mathcal B(\boldsymbol v,r):=\big(\boldsymbol 0,\ \Delta r\big).
+\]
+The norms for spaces $X$ and $Y$ are given by $$
+\|(\boldsymbol v,r)\|_X^2:=\|\boldsymbol v\|_3^2+\|r\|_2^2,
+\qquad
+\|(\boldsymbol v,r)\|_Y^2:=\|\boldsymbol v\|_{-1}^2+\|r\|_0^2.
+$$	
+Assumption~\ref{RegularityAssumption1} implies that $\mathcal A_0:X\to Y$ is an isomorphism and
+\begin{equation}\label{eq:A0inv_bound_journal2}
+\|(\boldsymbol v,r)\|_{X}\le C_S\,\|\mathcal A_0(\boldsymbol v,r)\|_{Y}
+\qquad\forall\,(\boldsymbol v,r)\in X.
+\end{equation}
+We can choose $C_S\geq1$.
+Moreover, $\|\mathcal B(\boldsymbol v,r)\|_Y=\|\Delta r\|_0\le \sqrt{d}\|r\|_2\le \sqrt{d}\|(\boldsymbol v,r)\|_X$,
+hence $\|\mathcal B\|_{\mathcal L(X,Y)}\le \sqrt{d}$.
+Consequently,
+\[
+\|\mathcal A_0^{-1}\mathcal B\|_{\mathcal L(X)}\le
+\|\mathcal A_0^{-1}\|_{\mathcal L(Y,X)}\,\|\mathcal B\|_{\mathcal L(X,Y)}
+\le \sqrt{d}\,C_S.
+\]
+Choose
+$
+\gamma_0:=\frac{1}{2\sqrt{d}\,C_S}\in(0,1).
+$
+If $\gamma\le\gamma_0$, equivalently 
+$$
+\lambda\ge \lambda_\ast:=\mu\Big(\gamma_0^{-1}-1\Big)=\mu(2\sqrt{d}\,C_S-1),$$
+then the operator
+$\mathcal A_\gamma:=\mathcal A_0-\gamma\mathcal B$ is invertible on $X$ and
+\begin{equation}\label{eq:perturb_inverse_journal2}
+\|(\boldsymbol v,r)\|_X\le 2C_S\,\|\mathcal A_\gamma(\boldsymbol v,r)\|_Y
+\qquad\forall\,(\boldsymbol v,r)\in X,
+\end{equation}
+which follows from the Neumann series for
+$I-\gamma\mathcal A_0^{-1}\mathcal B$ (cf. \cite[Chapter~I, \S4, Example~4.5, (4.22) and the perturbation estimate (4.24), pp.~30--31]{Kato1995}).
+Applying \eqref{eq:perturb_inverse_journal2} to \eqref{eq:error_system_journal2} gives
+\begin{equation}\label{eq:error_est_journal2}
+\|\boldsymbol e\|_3+\|\eta\|_2\le 2C_S\,\gamma\,\|\Delta p_0\|_0
+\le 2\sqrt{d}\,C_S\,\gamma\,\|p_0\|_2\leq \|p_0\|_2\quad\textrm{ for }\lambda\ge\lambda_\ast.
+\end{equation}
+Combining \eqref{eq:stokes_reg_journal2} and \eqref{eq:error_est_journal2} yields
+\[
+\|\boldsymbol w\|_3\le \|\boldsymbol\phi\|_3+\|\boldsymbol e\|_3
+\lesssim\|\boldsymbol f\|_{-1}\quad\textrm{ for }\lambda\ge\lambda_\ast.
+\]
+For the divergence term, since $\operatorname{div}\boldsymbol w=\gamma(\eta+p_0)$,
+\[
+(\mu+\lambda)\|\operatorname{div}\boldsymbol w\|_2
+\le \mu(\|\eta\|_2+\|p_0\|_2)
+\le 2\mu\,\|p_0\|_2\lesssim \|\boldsymbol f\|_{-1},
+\]
+and therefore $\lambda\|\operatorname{div}\boldsymbol w\|_2\lesssim \|\boldsymbol f\|_{-1}$ as well.
+Hence \eqref{eq:fourthorderelasregularity} holds for all $\lambda\ge\lambda_\ast$ with a constant independent of $\lambda$.
+
+For $0\le\lambda\le\lambda_\ast$, \eqref{eq:elas_rewrite_journal2} is precisely
+$\Delta(\div\boldsymbol\sigma(\boldsymbol w))=\boldsymbol f$.
+Assumption~\ref{RegularityAssumption2} yields
+\[
+\|\boldsymbol w\|_3\lesssim \|\boldsymbol f\|_{-1},
+\qquad
+\lambda\|\operatorname{div}\boldsymbol w\|_2\le \lambda_\ast\|\operatorname{div}\boldsymbol w\|_2
+\lesssim \lambda_\ast\|\boldsymbol w\|_3\lesssim \|\boldsymbol f\|_{-1}.
+\]
+Together with the large--$\lambda$ estimate, this proves \eqref{eq:fourthorderelasregularity} for all $\lambda\ge0$.
+\end{proof}
+
+\begin{lemma}
+Suppose Assumptions \ref{RegularityAssumption0}-\ref{RegularityAssumption2} hold.
+Let $\boldsymbol w\in H_0^2(\Omega; \mathbb R^d)$ be the solution of equation \eqref{eq:fourthorderelasproblem}.
+We have
+\begin{align}
+\label{eq:fourthorderelasregularityw}
+\|\boldsymbol w\|_{3}\lesssim \inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1} + \frac{1}{\lambda}\|\boldsymbol f\|_{-1}.
+\end{align}
+\end{lemma}
+\begin{proof}
+Take any $q\in L^2(\Omega)$. Let $C_q=(q,\chi)/(1,\chi)\in\mathbb R$, then $q-C_q\in L^2_\chi(\Omega)$. By \eqref{eq:Deltasurjection}, there exists $p\in H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)$ such that $\Delta p=q-C_q$, which indicates $\nabla\Delta p=\nabla q$.
+Thus it holds from \eqref{eq:limit_stokes_journal2} that
+\[
+\Delta^2\boldsymbol\phi+\nabla\Delta\Big(p_0+\frac{1}{\mu}p\Big)
+=\frac{1}{\mu}\boldsymbol f+\frac{1}{\mu}\nabla q.
+\]
+Apply the Assumption~\ref{RegularityAssumption1} to acquire
+\[
+\|\boldsymbol\phi\|_3\lesssim \|\boldsymbol f+\nabla q\|_{-1}\qquad\forall\,q\in L^2(\Omega),
+\]
+hence
+\begin{equation}\label{eq:phi_bestgrad_journal2}
+\|\boldsymbol\phi\|_3\lesssim \inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1}.
+\end{equation}
+
+If $\lambda\ge\lambda_\ast$, then \eqref{eq:error_est_journal2} and \eqref{eq:stokes_reg_journal2} imply
+\[
+\|\boldsymbol e\|_3\lesssim \gamma\,\|p_0\|_2\lesssim  \frac{\mu_1}{\lambda}\,\|\boldsymbol f\|_{-1}\qquad(\lambda>0).
+\]
+Combining with \eqref{eq:phi_bestgrad_journal2} yields \eqref{eq:fourthorderelasregularityw} for $\lambda\ge\lambda_\ast$.
+
+For $0<\lambda<\lambda_\ast$, Assumption~\ref{RegularityAssumption2} gives
+$\|\boldsymbol w\|_3\lesssim \|\boldsymbol f\|_{-1}\le (\lambda_\ast/\lambda)\|\boldsymbol f\|_{-1}$.
+Since $\inf_{q\in L^2}\|\boldsymbol f+\nabla q\|_{-1}\ge0$, we obtain
+\[
+\|\boldsymbol w\|_3
+\lesssim \inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1}+\frac{1}{\lambda}\|\boldsymbol f\|_{-1},
+\]
+after absorbing $\lambda_\ast$ into the hidden constant. This completes the proof.	
+\end{proof}
+
+Taking $\iota=0$, problem \eqref{eq:straingradproblem} becomes the linear elasticity model. Let $\boldsymbol u_0\in H_0^1(\Omega; \mathbb R^d)$ be the solution of the linear elasticity problem
+\begin{equation}\label{eq:elasticity}
+\begin{cases}
+-\mu\Delta\boldsymbol u_0 - (\lambda+\mu)\nabla\div\boldsymbol u_0 =\boldsymbol f & \textrm{ in } \Omega,\\
+\boldsymbol u_0=\boldsymbol0 & \textrm{ on } \partial\Omega.
+\end{cases}
+\end{equation}
+According to \cite{BrennerSung1992,MazyaRossmann2010}, it holds
+\begin{equation}\label{eq:u0regularity}
+\|\boldsymbol u_0\|_2+\lambda\|\div\boldsymbol u_0\|_1 \lesssim \|\boldsymbol f\|_0.
+\end{equation}
+
+
+\begin{theorem}\label{tm:upregularity}
+Suppose Assumptions \ref{RegularityAssumption0}-\ref{RegularityAssumption2} hold.
+Let $\boldsymbol u\in H_0^2(\Omega; \mathbb R^d)$ be the solution of problem \eqref{eq:straingradproblem}, and $\boldsymbol u_0\in H_0^1(\Omega; \mathbb R^d)$ satisfy the linear elasticity problem \eqref{eq:elasticity}. It holds
+\begin{equation}\label{eq:straingradregularity}	
+\begin{aligned}	
+&|\boldsymbol u-\boldsymbol u_0|_{1} +\iota\|\boldsymbol u\|_2  + \iota^{2}\|\boldsymbol u\|_{3}\\
+&\qquad+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 + \lambda\iota|\div\boldsymbol u|_1 + \lambda\iota^2\|\div\boldsymbol u\|_2 \lesssim \iota^{1/2}\|\boldsymbol f\|_0.
+\end{aligned}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Recall the following estimate from \cite[Lemma 3.8]{ChenHuangHuang2023}:
+\begin{equation}\label{eq:straingradregularity1}
+	|\boldsymbol u-\boldsymbol u_0|_{1} +\iota\|\boldsymbol u\|_2  + \iota^{2}\|\boldsymbol u\|_{3} \lesssim \iota^{1/2}\|\boldsymbol f\|_0.
+	\end{equation}
+Applying Lemma~\ref{lm:fourthorderelasregularity} to %\eqref{eq:20210919}, 
+	\begin{equation}\label{eq:20210919}
+	\div\Delta\boldsymbol\sigma(\boldsymbol u)=\iota^{-2}\div\boldsymbol\sigma(\boldsymbol u-\boldsymbol u_0),
+	\end{equation}
+we obtain from \eqref{eq:fourthorderelasregularity} and \eqref{eq:straingradregularity1} that
+	\begin{align}
+	\lambda\iota^{2}\|\div\boldsymbol u\|_{2}&\lesssim \|\div\boldsymbol\sigma(\boldsymbol u-\boldsymbol u_0)\|_{-1}\lesssim \|\boldsymbol\sigma(\boldsymbol u-\boldsymbol u_0)\|_{0}\lesssim |\boldsymbol u-\boldsymbol u_0|_1
+	+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 \notag\\
+	&\lesssim \iota^{1/2}\|\boldsymbol f\|_0+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0. \label{eq:20210923-4}
+	\end{align}
+Thanks to \eqref{eq:straingradregularity1} and \eqref{eq:20210923-4}, it suffices to prove
+	\begin{equation}\label{eq:straingradregularity0}
+	\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 + \lambda\iota|\div\boldsymbol u|_1 \lesssim \iota^{1/2}\|\boldsymbol f\|_0.
+	\end{equation}
+
+By Theorem~1.1 in \cite{CostabelMcIntosh2010}, there exists $\boldsymbol v\in H_0^1(\Omega; \mathbb R^d)$ such that
+	\begin{equation}\label{eq:20210923-3}
+	\div\boldsymbol v=\div(\boldsymbol u-\boldsymbol u_0),\quad \|\boldsymbol v\|_1\lesssim \|\div(\boldsymbol u-\boldsymbol u_0)\|_0.
+	\end{equation}
+	Multiply \eqref{eq:20210919} by $\boldsymbol v$ and apply the integration by parts to get
+	\begin{align}
+	&\quad \lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^2 +\lambda\iota^{2}|\div\boldsymbol u|_1^2 \notag\\
+	&=-2\mu(\boldsymbol\varepsilon(\boldsymbol u-\boldsymbol u_0), \boldsymbol\varepsilon(\boldsymbol v)) + 2\mu\iota^{2}(\Delta\boldsymbol\varepsilon(\boldsymbol u), \boldsymbol\varepsilon(\boldsymbol v)) - \lambda\iota^{2}(\Delta\div\boldsymbol u, \div\boldsymbol u_0). \label{eq:20211217}
+	\end{align}
+	By the multiplicative trace inequality and \eqref{eq:20210923-4}, it holds
+	\begin{align*}
+	- \lambda\iota^{2}(\Delta\div\boldsymbol u, \div\boldsymbol u_0)&=\lambda\iota^{2}(\nabla\div\boldsymbol u, \nabla\div\boldsymbol u_0)- \lambda\iota^{2}(\partial_{\boldsymbol{n}}\div\boldsymbol u, \div\boldsymbol u_0)_{\partial\Omega} \\
+	&\lesssim \lambda\iota^{2}|\div\boldsymbol u|_1|\div\boldsymbol u_0|_1 + \lambda\iota^{2}|\div\boldsymbol u|_1^{1/2}\|\div\boldsymbol u\|_2^{1/2}\|\div\boldsymbol u_0\|_1 \\
+	&\lesssim \lambda\iota^{2}|\div\boldsymbol u|_1|\div\boldsymbol u_0|_1 + \lambda^{1/2}\iota^{5/4}|\div\boldsymbol u|_1^{1/2}\|\boldsymbol f\|_0^{1/2}\|\div\boldsymbol u_0\|_1 \\
+	&\quad + \lambda\iota|\div\boldsymbol u|_1^{1/2}\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^{1/2}\|\div\boldsymbol u_0\|_1.
+	\end{align*}
+	Then we acquire from \eqref{eq:20210923-3}-\eqref{eq:20211217} that
+	\begin{align*}
+	&\quad \lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^2 +\lambda\iota^{2}|\div\boldsymbol u|_1^2 \\
+	&\lesssim (|\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3)|\boldsymbol v|_1 +\lambda\iota^{2}|\div\boldsymbol u|_1|\div\boldsymbol u_0|_1 \\
+	&\quad + \lambda^{1/2}\iota^{5/4}|\div\boldsymbol u|_1^{1/2}\|\boldsymbol f\|_0^{1/2}\|\div\boldsymbol u_0\|_1+ \lambda\iota|\div\boldsymbol u|_1^{1/2}\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^{1/2}\|\div\boldsymbol u_0\|_1 \\
+	&\lesssim (|\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3) \|\div(\boldsymbol u-\boldsymbol u_0)\|_0 +(\lambda\iota^{2}|\div\boldsymbol u|_1^2)^{1/2}(\lambda\iota^2\|\div\boldsymbol u_0\|_1^2)^{1/2} \\
+	&\quad + \iota^{3/2}|\div\boldsymbol u|_1\|\boldsymbol f\|_0 + \lambda\iota\|\div\boldsymbol u_0\|_1^2 \\
+	&\quad + (\lambda\iota|\div\boldsymbol u|_1\|\div(\boldsymbol u-\boldsymbol u_0)\|_0)^{1/2}(\lambda\iota\|\div\boldsymbol u_0\|_1^2)^{1/2}.
+	\end{align*}
+	This implies
+	\begin{align*}
+	&\quad \lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^2 +\lambda\iota^{2}|\div\boldsymbol u|_1^2 \lesssim \frac{1}{\lambda}(|\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3)^2+ \lambda\iota\|\div\boldsymbol u_0\|_1^2 + \frac{1}{\lambda}\iota\|\boldsymbol f\|_0^2,
+	\end{align*}
+	i.e.,
+	\begin{equation*}
+	\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 +\lambda\iota|\div\boldsymbol u|_1 \lesssim |\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3+\lambda\iota^{1/2}\|\div\boldsymbol u_0\|_1+\iota^{1/2}\|\boldsymbol f\|_0.
+	\end{equation*}
+	Therefore, we conclude \eqref{eq:straingradregularity0} from
+	\eqref{eq:straingradregularity1} and \eqref{eq:u0regularity}.
+\end{proof}
+
+
+
+\bibliographystyle{abbrv}
+\bibliography{refs}
+
+\end{document}
