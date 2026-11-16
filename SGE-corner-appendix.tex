@@ -1,0 +1,274 @@
+\appendix
+\section{The clamped fourth order Lam\'e corner pencil}\label{app:corner-spectrum}
+
+\begin{theorem}\label{thm:corner-spectrum}
+Let $0<\omega<\pi$, $\lambda\geq0$ and $\mu>0$. The corner pencil associated with
+\[
+P_{\lambda,\mu}\boldsymbol u
+=\Delta\big[\mu\Delta\boldsymbol u+(\lambda+\mu)\nabla\div\boldsymbol u\big]
+\]
+and the clamped conditions $\boldsymbol u=\partial_{\boldsymbol n}\boldsymbol u=0$ on the two sides of a sector of opening $\omega$ has no spectrum in
+\[
+1\leq\operatorname{Re}s\leq2,
+\]
+where the displacement is written as $\boldsymbol u=r^s\boldsymbol\Phi(\theta)$ in Cartesian components.
+\end{theorem}
+
+Center the sector on the positive horizontal axis, with angular interval $-\vartheta<\theta<\vartheta$, where $\vartheta=\omega/2$. On either ray, the clamped conditions are equivalent to $\boldsymbol\Phi=\boldsymbol\Phi'=0$. Set
+\[
+z=s-1,\qquad d=\sin\omega,\qquad c=\cos\omega,
+\qquad \rho=\frac{\lambda+\mu}{\lambda+3\mu}\in(0,1).
+\]
+Reflection about the bisector splits the pencil into the branches in which $(\Phi_1,\Phi_2)$ is respectively (even, odd) and (odd, even). We normalize their characteristic determinants by free initial data at the bisector.
+
+\subsection{Normalization of the characteristic determinants}
+
+\begin{lemma}\label{lem:corner-determinant}
+For the two reflection branches, put $\tau=-\rho$ and $\tau=\rho$, respectively. Their normalized characteristic determinants are nonzero numerical constant multiples of
+\begin{equation}\label{eq:corner-determinant}
+D_\tau(z)=\frac{A(z)+\tau N(z)}{(1+\tau)z^2(z^2-1)},
+\end{equation}
+where
+\begin{equation}\label{eq:corner-AN}
+A(z)=\sin^2(\omega z)-z^2d^2,
+\qquad N(z)=zd\big[zd\cos(\omega z)-c\sin(\omega z)\big].
+\end{equation}
+The expressions in~\eqref{eq:corner-determinant} are interpreted by their removable limits at $z=0,\pm1$.
+\end{lemma}
+
+\begin{proof}
+Write $W=u_1+iu_2$, let $\zeta=x_1+ix_2$, and put $\partial_{\bar\zeta}=(\partial_1+i\partial_2)/2$. With $L\boldsymbol u=\mu\Delta\boldsymbol u+(\lambda+\mu)\nabla\div\boldsymbol u$, one has
+\[
+(L\boldsymbol u)_1+i(L\boldsymbol u)_2
+=\frac{\lambda+3\mu}{2}\big(\Delta W+4\rho\partial_{\bar\zeta}^{\,2}\overline W\big).
+\]
+Initially take real $0<z<1$, and abbreviate $b=s-2$, $\ell=s-4$. The identities
+\[
+\Delta(r^s e^{ik\theta})=(s^2-k^2)r^{s-2}e^{ik\theta},
+\qquad
+\partial_{\bar\zeta}^{\,2}(r^s e^{ik\theta})
+=\frac{(s-k)(s-k-2)}4r^{s-2}e^{i(k+2)\theta}
+\]
+give the angular solution
+\begin{equation}\label{eq:corner-angular-basis}
+\begin{aligned}
+r^{-s}W={}&A_1e^{is\theta}+A_2e^{-is\theta}
++A_3e^{ib\theta}+A_4e^{-ib\theta}
+-\frac{\rho z}{2}\overline{A_3}e^{-i\ell\theta},
+\qquad A_j\in\mathbb C.
+\end{aligned}
+\end{equation}
+Indeed, the only correction needed for the four uncoupled frequencies $s,-s,b,-b$ is the term at $-\ell=4-s$. The coefficient of $\Delta^2(r^s e^{-i\ell\theta})$ is $32(s-2)(s-3)$, while that of $4\rho\Delta\partial_{\bar\zeta}^{\,2}(r^s e^{-ib\theta})$ is $16\rho z(s-2)(s-3)$. This gives the coefficient $-\rho z/2$; its conjugate produces no further correction. The eight real solutions in~\eqref{eq:corner-angular-basis} are linearly independent for $0<z<1$. They exhaust the angular system because its highest derivative coefficient is
+\[
+\mu\boldsymbol I+(\lambda+\mu)\boldsymbol e_\theta\otimes\boldsymbol e_\theta,
+\]
+which is invertible, and the system consists of two equations of order four.
+
+When all $A_j$ are real, the correction coefficient is $\tau z/2$ with $\tau=-\rho$, giving the (even, odd) branch. When all $A_j$ are purely imaginary, division of $W$ by $i$ gives the same real-coefficient representation with $\tau=\rho$, corresponding to the other branch. Define the endpoint and initial-data columns
+\[
+\boldsymbol v(k)=
+\begin{pmatrix}\cos(k\vartheta)\\-k\sin(k\vartheta)\\\sin(k\vartheta)\\k\cos(k\vartheta)\end{pmatrix},
+\qquad
+\boldsymbol j(k)=\begin{pmatrix}1\\-k^2\\k\\-k^3\end{pmatrix},
+\]
+and, for either column-valued function $F$, set
+\[
+M_\tau(F)=\big[F(s),\ F(-s),\ F(b)+(\tau z/2)F(-\ell),\ F(-b)\big].
+\]
+The endpoint rows are $\Phi_1,\Phi_1',\Phi_2,\Phi_2'$ at $\theta=\vartheta$. In the first branch the free initial data are $\Phi_1(0),\Phi_1''(0),\Phi_2'(0),\Phi_2'''(0)$; the second branch is equivalent after the fixed exchange of components described above. Thus the determinant of the map from free initial data to endpoint data is
+\[
+\frac{\det M_\tau(\boldsymbol v)}{\det M_\tau(\boldsymbol j)}.
+\]
+The left endpoint conditions follow by reflection.
+
+For the numerator, introduce
+\[
+\begin{aligned}
+E(k)&=s\sin(s\vartheta)\cos(k\vartheta)-k\cos(s\vartheta)\sin(k\vartheta),\\
+O(k)&=k\sin(s\vartheta)\cos(k\vartheta)-s\cos(s\vartheta)\sin(k\vartheta).
+\end{aligned}
+\]
+Eliminating the columns with frequencies $s$ and $-s$, or expanding the resulting two $2\times2$ determinants, gives
+\[
+\frac{\det M_\tau(\boldsymbol v)}{\det M_0(\boldsymbol v)}
+=1+\frac{\tau z}{4}\left(\frac{E(\ell)}{E(b)}-\frac{O(\ell)}{O(b)}\right).
+\]
+Writing $S_0=\sin(\omega z)$, the addition formulas yield
+\[
+\begin{aligned}
+E(b)&=S_0+zd,& O(b)&=-S_0+zd,\\
+E(\ell)&=2\sin((z-1)\omega)+(z-1)\sin(2\omega),\\
+O(\ell)&=-2\sin((z-1)\omega)+(z-1)\sin(2\omega).
+\end{aligned}
+\]
+Consequently $E(b)O(b)=-A(z)$, and
+\[
+\frac z4\left(\frac{E(\ell)}{E(b)}-\frac{O(\ell)}{O(b)}\right)=\frac{N(z)}{A(z)}.
+\]
+These divisions are legitimate for real $0<z<1$, since strict concavity of the sine function gives $\sin(\omega z)>zd$.
+
+For the denominator, $\boldsymbol j(k)$ differs from $(1,k,k^2,k^3)^{\mathsf T}$ only by a fixed row permutation and signs. Replacing its column at $b$ by the column at $-\ell$, the Vandermonde formula gives the ratio
+\[
+\prod_{\kappa\in\{s,-s,-b\}}\frac{-\ell-\kappa}{b-\kappa}=\frac2z.
+\]
+Thus $\det M_\tau(\boldsymbol j)=(1+\tau)\det M_0(\boldsymbol j)$. Moreover, $\det M_0(\boldsymbol v)$ is a nonzero numerical constant times $E(b)O(b)$, and $\det M_0(\boldsymbol j)$ is a nonzero numerical constant times
+\[
+sb(s-b)^2(s+b)^2=16z^2(z^2-1).
+\]
+Combining these identities proves~\eqref{eq:corner-determinant} up to a nonzero numerical factor.
+
+The conjugate representation was used only for real $s$. Returning to the two Cartesian components and complexifying their initial data, the normalized fundamental matrix depends holomorphically on complex $s$: the angular coefficients are polynomial in $s$, and the highest derivative coefficient is invertible and independent of $s$. The identity theorem extends the formula to all complex $s$, with removable limits at $z=0,\pm1$. This normalization includes the generalized angular solutions at coalescing frequencies; the zeros of the unnormalized numerator at these integers are not automatically spectral points.
+\end{proof}
+
+\begin{lemma}\label{lem:reentrant-spectrum}
+Let $\pi<\omega<2\pi$, $\lambda\geq0$ and $\mu>0$. Each reflection branch of the clamped fourth order Lam\'e corner pencil has a real spectral exponent
+\[
+\frac32<s<1+\frac\pi\omega<2.
+\]
+\end{lemma}
+\begin{proof}
+Fix $0<z<1$. The endpoint matrix $M_\tau(\boldsymbol v)$ in the proof of Lemma~\ref{lem:corner-determinant} depends analytically on $\omega$, whereas its initial-data matrix $M_\tau(\boldsymbol j)$ is independent of $\omega$ and invertible. Consequently, their determinant ratio is analytic in $\omega$. The identity~\eqref{eq:corner-determinant}, initially proved for $0<\omega<\pi$, extends analytically to $0<\omega<2\pi$, including the reentrant angles.
+
+For either $\tau=\pm\rho$, write $F_\tau=A+\tau N$ and $t=\pi/\omega\in(1/2,1)$. Direct substitution in~\eqref{eq:corner-AN} gives
+\[
+F_\tau(1/2)=\sin^4(\omega/2)\big(1+\tau\cos(\omega/2)\big)>0,\qquad
+F_\tau(t)=-(1+\tau)t^2\sin^2\omega<0,
+\]
+where $|\tau|<1$.
+The intermediate value theorem yields $z_\ast\in(1/2,t)$ with $F_\tau(z_\ast)=0$. The denominator $(1+\tau)z_\ast^2(z_\ast^2-1)$ in~\eqref{eq:corner-determinant} is nonzero, so this is a zero of the normalized characteristic determinant. Hence $s=1+z_\ast$ is a spectral exponent in the asserted interval. The corresponding real branch matrix has a nonzero real kernel vector, so the angular eigenfunction may be chosen real.
+\end{proof}
+
+\subsection{A strict sign on the right boundary of the strip}
+
+\begin{lemma}\label{lem:corner-critical-sign}
+For $0<\omega<\pi$ and $y>0$,
+\[
+\operatorname{Im}\frac{N(1+iy)}{A(1+iy)}>0.
+\]
+\end{lemma}
+
+\begin{proof}
+Put
+\[
+t=\omega y,\quad S=\sinh t,\quad H=\cosh t,\quad
+ a=\frac{\sin\omega}{\omega},\quad g=\frac tS,\quad h=\frac{tH}{S}.
+\]
+Then $0<a,g<1$. Define
+\[
+l=ag=\frac{yd}{S},\qquad q=l^2,\qquad r_0=lH=ah,
+\qquad X=\frac{r_0-c}{1-q}.
+\]
+At $z=1+iy$, substitute
+\[
+\sin(\omega z)=dH+icS,\qquad
+\cos(\omega z)=cH-idS,\qquad zd=d+ilS
+\]
+into~\eqref{eq:corner-AN} to obtain
+\[
+\begin{aligned}
+\operatorname{Re}A&=S^2(2d^2-1+q),&
+\operatorname{Im}A&=2dS(cH-l),\\
+\operatorname{Re}N&=lS^2(1+d^2-cr_0),&
+\operatorname{Im}N&=dS(qS^2-1+cr_0).
+\end{aligned}
+\]
+Using $c^2+d^2=1$ and $H^2-S^2=1$, expansion gives
+\begin{equation}\label{eq:corner-sign-factorization}
+\operatorname{Im}(N\overline A)
+=dS^3(1-q)^2\big[(1+q)X^2-cX-1\big].
+\end{equation}
+
+Set $c_*=a+a^2-1$. The inequality $c<c_*$ is equivalent to
+\[
+\omega\tan(\omega/2)+1-\cos\omega>\omega^2.
+\]
+It follows from $\tan u>u+u^3/3$ for $0<u<\pi/2$ and $1-\cos\omega\geq\omega^2/2-\omega^4/24$.
+
+To estimate the hyperbolic terms, put $p=h-1$, $v=1-g^2\in(0,1)$ and
+\[
+B(v)=\frac{v(3-v)}{3-2v}.
+\]
+Direct differentiation gives $tp'=p+v$ and $tv'=2p(1-v)$. Near zero,
+\[
+p=\frac{t^2}{3}-\frac{t^4}{45}+O(t^6),\qquad
+v=\frac{t^2}{3}-\frac{t^4}{15}+O(t^6),
+\]
+so $p-B(v)=t^4/135+O(t^6)>0$. If this difference had a first zero at a positive $t$, its derivative there would be nonpositive. At a point where $p=B(v)$, however,
+\[
+t\big(p-B(v)\big)'
+=\frac{v^2\big[9(1-v)^2+v^2(7-4v)\big]}{(3-2v)^3}>0.
+\]
+Consequently $p>B(v)>v$ for every $t>0$.
+
+For $\beta\leq c_*$, define
+\[
+X_\beta=\frac{r_0-\beta}{1-q},
+\qquad F(\beta)=(1+q)X_\beta^2-\beta X_\beta-1.
+\]
+Since $(1-q)(X_{c_*}-1)=a(p-av)>0$, we have $X_\beta>1$. Also $c_*<1$, so
+\[
+F'(\beta)=-\frac{2(1+q)X_\beta-\beta}{1-q}-X_\beta<0
+\qquad(\beta\leq c_*).
+\]
+It remains to prove $F(c_*)>0$.
+
+Set $b=3-2v>1$ and $L=1+av/b$. The bound $p>B(v)$ gives
+\[
+b(p-av)-v(1-q)
+>v(1-a)\big[2-a-v(1-a)\big]>0,
+\]
+and hence $X_{c_*}>L>1$. The quadratic $(1+q)X^2-c_*X-1$ is increasing for $X\geq1$. Using $q=a^2(1-v)$, direct expansion yields
+\[
+\begin{aligned}
+b^2\big[(1+q)L^2-c_*L-1\big]
+={}&a^2v^2(2-v)\\
+&+(1-a)\big[b^2+3av(b-a)\big]\\
+&+(1-a)a^2v^2\big[7-3v-a(1-v)\big]>0.
+\end{aligned}
+\]
+Every term in this decomposition is positive, since $b>1>a$ and $7-3v-a(1-v)>4$. Thus $F(c_*)>0$, and $c<c_*$ gives $F(c)>0$. Equation~\eqref{eq:corner-sign-factorization} proves $\operatorname{Im}(N\overline A)>0$. In particular $A(1+iy)\neq0$, and division by $|A|^2$ gives the asserted sign.
+\end{proof}
+
+\subsection{Exclusion of spectrum on the closed strip}
+
+\begin{proof}[Proof of Theorem~\ref{thm:corner-spectrum}]
+We first locate the zeros of $A$ on $0\leq\operatorname{Re}z\leq1$. Write $z=x+iy$. If $A(z)=0$, then $\sin(\omega z)=\pm zd$. For $0<x<1$, strict concavity of the sine function on $[0,\omega]$ gives
+\[
+\sin(\omega x)\cosh(\omega y)>xd,
+\]
+contradicting the real part of either equation. The same strict inequality holds for $x=1$, $y\neq0$. For $x=0$, $y\neq0$, the imaginary part is impossible because $|\sinh(\omega y)|>|y|\omega>|y|d$. Thus the only zeros in the closed strip are $z=0$ and $z=1$, of orders two and one, respectively:
+\[
+A(z)=(\omega^2-d^2)z^2+O(z^4),\qquad
+A'(1)=-2d(d-\omega c)<0.
+\]
+Here $d-\omega c>0$, since its derivative with respect to $\omega$ is $\omega\sin\omega>0$.
+
+The quotient $Q=N/A$ extends holomorphically across both points, with
+\begin{equation}\label{eq:corner-endpoints}
+Q(0)=\frac{d(d-\omega c)}{\omega^2-d^2}>0,
+\qquad Q(1)=\frac{\omega-dc}{2(d-\omega c)}\in(0,1).
+\end{equation}
+The numerator $\omega-dc$ is positive because its derivative is $2d^2$. To prove $Q(1)<1$, let $G(\omega)=2d+dc-\omega(1+2c)$. Then $G(0)=0$ and $G'=2d(\omega-d)>0$. The reference determinant has nonzero limits
+\[
+\left.\frac{A(z)}{z^2(z^2-1)}\right|_{z=0}=-(\omega^2-d^2),
+\qquad
+\left.\frac{A(z)}{z^2(z^2-1)}\right|_{z=1}=-d(d-\omega c).
+\]
+In particular, normalization removes the apparent root at $s=2$.
+
+Put $V(x,y)=\operatorname{Im}Q(x+iy)$. Because $Q$ is even and has real coefficients, $V=0$ on the real and imaginary axes. Lemma~\ref{lem:corner-critical-sign} gives $V(1,y)>0$ for every $y>0$. Moreover, $|\sin(\omega z)|\geq\sinh(\omega y)$ implies the uniform decay
+\[
+|Q(x+iy)|=O_\omega\big((1+y^2)e^{-\omega y}\big)
+\qquad(y\to+\infty,\quad0\leq x\leq1).
+\]
+Apply the harmonic minimum principle to $[0,1]\times[0,T]$, and let $T\to\infty$. This gives $V\geq0$ on the upper half-strip. The strict sign on its right boundary and the strong minimum principle give $V>0$ in the interior. Conjugation gives the opposite strict sign in the lower half-strip.
+
+On the bottom edge, the Hopf boundary lemma gives $V_y(x,0)>0$ for $0<x<1$. The Cauchy--Riemann equations yield $Q'(x)=V_y(x,0)>0$. On the left edge, the Hopf boundary lemma gives $V_x(0,y)>0$ for $y>0$. The Cauchy--Riemann equations then imply
+\[
+\frac{\dd}{\dd y}Q(iy)=-V_x(0,y)<0
+\qquad(y>0).
+\]
+Together with $Q(iy)\to0$ and~\eqref{eq:corner-endpoints}, this shows that all finite values of $Q$ on the real segment $[0,1]$ and on the imaginary axis belong to $(0,1)$.
+
+For either $\tau=\pm\rho$, we have $|\tau|<1$. Where $Q$ is nonreal, $1+\tau Q$ cannot vanish; where $Q$ is real in the closed strip, it belongs to $(0,1)$ and again $1+\tau Q\neq0$. The nonzero reference determinant and~\eqref{eq:corner-determinant} exclude zeros in both reflection branches throughout $0\leq\operatorname{Re}z\leq1$. Since $s=z+1$, the required strip contains no spectral point. There is consequently no eigenvector from which an associated logarithmic chain could start, including at the integer exponents.
+\end{proof}

@@ -58,8 +58,8 @@
 
 \begin{document}
 
-\title[regularity of strain gradient elasticity]
-{A uniform regularity of the strain gradient elasticity model on polytopes}
+\title[Clamped strain gradient elasticity on polygons]
+{A convexity criterion and sharp parameter-uniform estimates for clamped strain gradient elasticity on polygons}
 
 % \author{Xuehai Huang}
 % \address{School of Mathematics, Shanghai University of Finance and Economics,
@@ -76,7 +76,7 @@
 
 
 \begin{abstract}
-A uniform regularity of the strain gradient elasticity model on polytopes is derived under reasonable assumptions.
+On a bounded connected planar polygonal Lipschitz domain, for fixed material parameters and positive length scale, clamped strain gradient elasticity has global $H^3$ regularity for every $L^2$ load if and only if the domain is convex. The proof excludes the entire critical spectral strip of the fourth order Lam\'e corner pencil at convex corners and constructs a singular mode at every reentrant corner. On each fixed convex polygon, the three weighted displacement terms are bounded by $C_\Omega\mu^{-1}\sqrt\iota\,\|\boldsymbol f\|_{L^2}$ and the three pressure terms by $C_\Omega[\lambda/(\lambda+2\mu)]\sqrt\iota\,\|\boldsymbol f\|_{L^2}$ for all $\lambda\geq0$, $\mu>0$ and $0<\iota<1$. A single polynomial load depending only on the polygon attains all six scales simultaneously. On a fixed convex polygon, for fixed material parameters and load, each of the three displacement quantities is $\Theta(\sqrt\iota)$ as $\iota\to0$ if and only if $\|\partial_{\boldsymbol n}\boldsymbol u_0\|_{L^2(\partial\Omega)}>0$, where $\boldsymbol u_0$ is the classical Dirichlet solution. We also prove the required divergence lifting on bounded connected Lipschitz domains in arbitrary dimension. For fixed Lam\'e parameters, second order $H^1$ displacement convergence holds exactly when $\boldsymbol u_0$ belongs to $H_0^2(\Omega;\mathbb R^d)$ and $\Delta\boldsymbol f\in H^{-1}$. For every nonzero solution satisfying this criterion, the $H^1$ displacement error has a nonzero second order leading term, whereas the limit of the rescaled pressure error may vanish.
 \end{abstract}
 
 % \keywords{
@@ -89,7 +89,7 @@ A uniform regularity of the strain gradient elasticity model on polytopes is der
 \maketitle
 
 \section{Introduction}
-Let $\Omega\subset \mathbb{R}^d$ ($d\geq2$) be a polytope. Consider the following strain gradient elasticity (SGE) model: 
+Let $\Omega\subset \mathbb{R}^d$ ($d\geq2$) be a bounded connected polytopal Lipschitz domain. Consider the following strain gradient elasticity (SGE) model:
 \begin{equation}
 \begin{cases}\label{eq:straingradproblem}
 -\div\big((\boldsymbol I-\iota^2\Delta)\boldsymbol\sigma(\boldsymbol u)\big)=\boldsymbol f & \textrm{ in }  \Omega,\\
@@ -100,38 +100,67 @@ where $\boldsymbol n$ is the unit outward normal to $\partial\Omega$, $\boldsymb
 $
 \varepsilon_{ij}(\boldsymbol u)=1/2(\partial_i u_j+\partial_ju_i).
 $
-Here $\lambda$ and $\mu$ are the Lam\'e constants, and $\boldsymbol I$ is the identity tensor field. The resulting stress field is given by $\tilde{\boldsymbol\sigma}(\boldsymbol u)=(\boldsymbol I-\iota^2\Delta)\boldsymbol\sigma(\boldsymbol u)$, where $\iota\in (0,1)$ denotes the size parameter of the material under discussion.
+Here $\lambda\ge0$ and $\mu>0$ are the Lam\'e constants, and $\boldsymbol I$ is the identity tensor field. The resulting stress field is given by $\tilde{\boldsymbol\sigma}(\boldsymbol u)=(\boldsymbol I-\iota^2\Delta)\boldsymbol\sigma(\boldsymbol u)$, where $\iota>0$ denotes the size parameter of the material under discussion. The parameter-uniform estimates below concern $0<\iota<1$; the geometric characterization in Theorem~\ref{thm:polygon-regularity} allows every fixed $\iota>0$.
 
-In this paper, we establish the following regularity estimate for problem~\eqref{eq:straingradproblem}:
-\begin{equation}\label{intro:straingradregularity}	
-\begin{aligned}	
-&|\boldsymbol u-\boldsymbol u_0|_{1} +\iota\|\boldsymbol u\|_2  + \iota^{2}\|\boldsymbol u\|_{3}\\
-&\qquad+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 + \lambda\iota|\div\boldsymbol u|_1 + \lambda\iota^2\|\div\boldsymbol u\|_2 
-\ \lesssim\ \iota^{1/2}\|\boldsymbol f\|_0,
+Theorem~\ref{thm:polygon-regularity} gives a geometric characterization of global regularity. For every fixed $\lambda\geq0$, $\mu>0$ and $\iota>0$, the energy solution belongs to $H^3$ for every $L^2$ load on a bounded connected planar polygonal Lipschitz domain if and only if the domain is convex. Appendix~\ref{app:corner-spectrum} excludes the entire closed complex spectral strip $1\leq\operatorname{Re}s\leq2$ at each convex corner, including both integer endpoints after determinant normalization. At every reentrant corner of opening $\omega$, each reflection branch has a real exponent $3/2<s_\ast<1+\pi/\omega<2$. The associated cutoff mode gives an $H_0^2$ solution outside $H^3$ even for an $L^4$ load in the full SGE problem.
+
+Let $\boldsymbol u_0\in H_0^1(\Omega;\mathbb R^d)$ denote the classical Dirichlet elasticity solution of~\eqref{eq:elasticity}, and write $p_\iota=\lambda\div\boldsymbol u$ and $p_0=\lambda\div\boldsymbol u_0$. On each fixed convex polygon, Corollary~\ref{cor:convex-regularity} proves
+\begin{equation}\label{intro:straingradregularity}
+\begin{aligned}
+|\boldsymbol u-\boldsymbol u_0|_1+\iota\|\boldsymbol u\|_2+\iota^2\|\boldsymbol u\|_3
+&\leq C_\Omega\mu^{-1}\sqrt\iota\,\|\boldsymbol f\|_0,\\
+\|p_\iota-p_0\|_0+\iota|p_\iota|_1+\iota^2\|p_\iota\|_2
+&\leq C_\Omega\frac{\lambda}{\lambda+2\mu}\sqrt\iota\,\|\boldsymbol f\|_0
 \end{aligned}
 \end{equation}
-under Assumptions~\ref{RegularityAssumption0}--\ref{RegularityAssumption2}, via a standard perturbation argument.
-The estimate~\eqref{intro:straingradregularity} was proved for smooth domains in~\cite{LiaoMingXu2023}, and we built up the regularity \eqref{intro:straingradregularity} for polytopes in \cite{ChenHuangHuang2023}.
+for every $\lambda\geq0$, $\mu>0$ and $0<\iota<1$. Theorem~\ref{thm:polygon-sharpness} fixes the polygon first and then constructs one polynomial load $\boldsymbol f_\Omega$, independent of all three parameters, for which each displacement term has matching bounds at scale $\mu^{-1}\sqrt\iota$ and each pressure term at scale $[\lambda/(\lambda+2\mu)]\sqrt\iota$. The comparison constants depend only on $\Omega$, and all three pressure terms vanish at $\lambda=0$.
+
+The square construction extends the solenoidal example in~\cite[Example~6.2]{ChenHuangHuang2023}, which examines finite element convergence with respect to the mesh size $h$. Our additional gradient component gives the classical pressure a nonzero boundary trace for $\lambda>0$; the product of squared affine edge functions extends the construction to every fixed convex polygon. The resulting bounds concern the six continuous quantities individually as functions of $\iota$ and the material parameters.
+
+Earlier analyses of robust finite element methods on polytopes used an explicit corner regularity hypothesis. Li, Ming and Wang~\cite[Hypothesis~1, equation~(14), p.~6]{LiMingWang2021Korn} assume the $H^{-1}\to H^3$ estimate for the clamped fourth order Lam\'e operator and leave its validity on convex polytopes open. Chen, Huang and Huang~\cite[Remark~3.2, p.~2242]{ChenHuangHuang2023} likewise note that this regularity was not established even on convex polygons. The first arXiv version of Liao, Ming and Xu already stated the parameter-uniform estimate on convex polygons~\cite[Lemma~2.7, equation~(2.18)]{LiaoMingXu2021taylorhood}. Its argument invokes Agmon--Douglis--Nirenberg regularity through an auxiliary estimate and in the bounded-parameter case, without establishing the required regularity at polygonal vertices. The revised analysis uses smooth planar domains~\cite[Lemma~2.6]{LiaoMingXu2023}. Proposition~\ref{prop:convex-lame} supplies the corner regularity for all convex angles, and Theorem~\ref{thm:polygon-regularity} establishes the necessity of convexity.
+
+Liao, Ming and Xu~\cite[Theorem~2.9]{LiaoMingXu2023} proved parameter-uniform displacement and pressure bounds on smooth planar domains. Chen, Huang and Huang~\cite[Lemma~3.8 and Theorem~3.9]{ChenHuangHuang2023} obtained corresponding conditional estimates on polygons. In general dimension, Theorem~\ref{tm:upregularity} gives a six-term $O(\sqrt\iota)$ bound under Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2} and the uniform classical elasticity estimate~\eqref{eq:u0regularity}, uniformly for $\lambda\geq0$, $\mu\in[\mu_0,\mu_1]$ and $0<\iota<1$, with fixed $0<\mu_0\leq\mu_1$. Assumption~\ref{RegularityAssumption0} follows from~\ref{RegularityAssumption1}. Section~\ref{sec:regularity} combines a standard perturbation argument for large $\lambda$ with the bounded-parameter corner estimate and then uses material scaling to obtain the full parameter range on convex polygons.
+
+For $\lambda>0$, these continuous regularity results supply the estimates used in the robust finite element error bound of~\cite[Theorem~5.9]{ChenHuangHuang2023} on convex polygons. This consequence retains the finite element spaces and mesh assumptions of that work, including shape regularity and the requirement that every element have an interior vertex. On each fixed convex polygon, Corollary~\ref{cor:convex-regularity} also verifies the six SGE regularity bounds assumed in~\cite[Section~2.3, equations~(2.7)--(2.8)]{HuangHuangTang2026robust} for $0<\iota<1$.
 
 A key ingredient in the proof of Lemma~3.7 in~\cite{ChenHuangHuang2023} is the following div-surjectivity statement:
 \[
 \div\big( H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)
-= H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega),
+= H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega).
 \]
-which is used there without proof and is not obvious. Indeed, the analogous surjectivity at one lower order fails:
+Lemma~2.1 of~\cite[p.~2240]{ChenHuangHuang2023}, with $m=2$, provides a divergence lifting for data in $H_0^2(\Omega)\cap L_0^2(\Omega)$, whereas the proof of its Lemma~3.7 on p.~2245 requires data in the larger space $H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)$. The latter space allows a nonzero normal-derivative trace. For a bounded simply connected polygonal Lipschitz domain in the plane, the analogous surjectivity at one lower order fails:
 \[
 \div\big( H^2(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)\big)
 \neq H^1(\Omega)\cap L_0^2(\Omega).
 \]
-As pointed out in~\cite[Theorem~3.1]{ArnoldScottVogelius1988}, the space
-$\div\big( H^2(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)\big)$
-is a proper closed subspace of $H^1(\Omega)\cap L_0^2(\Omega)$. In this paper, we prove in Lemma~\ref{lem:main} that the div-surjectivity
+As characterized in~\cite[Theorem~3.1]{ArnoldScottVogelius1988} and recalled in~\cite[Section~3.1 and Lemma~3.2]{LiaoMing2025}, this lower order divergence range consists of the functions $q\in H^1(\Omega)\cap L_0^2(\Omega)$ satisfying
 \[
-\div\big( H^3(\Omega;\mathbb R^2)\cap H_0^2(\Omega;\mathbb R^2)\big)
-= H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)
+\int_\Omega \frac{|q(x)|^2}{|x-a|^2}\dx<\infty
+\qquad\text{at every genuine corner }a.
 \]
-indeed holds at least in two dimensions.
+Here genuine corners are vertices with non-collinear adjacent sides; redundant vertices with interior angle $\pi$ are omitted. The range is a dense proper subspace in the usual $H^1$ norm. Indeed, logarithmic cutoffs near the vertices, followed by a mean correction supported in the interior, give density in $H^1(\Omega)\cap L_0^2(\Omega)$. In Lemma~\ref{lem:main}, we prove the higher order div-surjectivity above for every bounded connected Lipschitz domain in $\mathbb R^d$, $d\geq2$. The proof combines the higher order trace extension theory of~\cite{MazyaMitreaShaposhnikova2010} with the divergence right inverse of~\cite{CostabelMcIntosh2010}; convexity, simple connectedness and polygonal boundaries are not required.
 
+The boundary conditions in~\cite{LiaoMing2025} are $\boldsymbol u=0$ and $(\partial_{\boldsymbol n}\boldsymbol\sigma(\boldsymbol u))\boldsymbol n=0$. On smooth planar domains, its Theorem~A.3 gives an $O(\iota)$ estimate in the weighted displacement--pressure norm in~(A.4), improved to $O(\iota^{3/2})$ in~(A.5) when $\boldsymbol u_0\in H^3$ and $p_0:=\lambda\div\boldsymbol u_0\in H^2$. For these smoother data and $\boldsymbol v\in H^2\cap H_0^1$, integration by parts gives the residual identity
+\[
+\begin{aligned}
+-\iota^2(\nabla\boldsymbol\sigma(\boldsymbol u_0),\nabla\boldsymbol\varepsilon(\boldsymbol v))
+&=\iota^2(\Delta\boldsymbol\sigma(\boldsymbol u_0),\boldsymbol\varepsilon(\boldsymbol v))\\
+&\quad-\iota^2\int_{\partial\Omega}
+\big((\partial_{\boldsymbol n}\boldsymbol\sigma(\boldsymbol u_0))\boldsymbol n\big)\cdot\partial_{\boldsymbol n}\boldsymbol v\,\dd s.
+\end{aligned}
+\]
+The boundary term vanishes for clamped test functions. The second order estimate in Corollary~\ref{cor:compatible-data} additionally requires $\boldsymbol u_0\in H_0^2$, so that the displacement difference belongs to the clamped trial space. The effect of incompatible boundary data is described in Proposition~\ref{prop:boundary-mismatch}.
+
+For fixed material parameters and a fixed load on a convex polygon, Proposition~\ref{prop:boundary-mismatch} shows that the normal derivative trace of $\boldsymbol u_0$ is nonzero if and only if each of the three displacement quantities attains order $\sqrt\iota$. When the trace vanishes, all three are $O(\iota)$. The additional condition $\Delta\boldsymbol f\in H^{-1}$ then characterizes second order $H^1$ displacement convergence.
+
+The role of matching normal-derivative data in the classical limit is also discussed in~\cite[Theorem~3]{CharalambopoulosGortsasPolyzos2022}. For the clamped problem considered here, Proposition~\ref{prop:compatible-leading} gives the exact criterion
+\[
+|\boldsymbol u_\iota-\boldsymbol u_0|_1=O(\iota^2)
+\quad\Longleftrightarrow\quad
+\boldsymbol u_0\in H_0^2(\Omega;\mathbb R^d)
+\ \text{and}\ \Delta\boldsymbol f\in H^{-1}(\Omega;\mathbb R^d)
+\]
+for fixed Lam\'e parameters. It also determines the strong limits of the scaled displacement and pressure errors and the strictly positive limiting coefficient of the four-term error in~\eqref{eq:compatible-leading-coefficient} for every nonzero compatible solution. The pressure limit itself may vanish.
 
 For later uses, we introduce some notation.
 Given a bounded domain $D\subset \mathbb{R}^{d}$
@@ -148,10 +177,6 @@ Let $L^2_0(D)$ be the space of functions in $L^2(D)$ with vanishing integral ave
 % & \mathbb{P}_k(D; \mathbb R^s) = \{\boldsymbol v= [v_1,v_2,\cdots,v_s]^T| v_i\in \mathbb{P}_k(D),1\leq i \leq s \}, \\
 % &L^2_0(D) = \{p\in L^2(D) | \int_{D} p {\rm d}x=0 \}.
 % \end{align*}
-
-For a scalar function $w$ and a vector valued function $\boldsymbol v = (v_1,v_2)^{\intercal}$ in two dimensions, introduce two usual differential operations
-$\curl w = (\partial_2 w, - \partial_1 w)^{\intercal}$. 
-% and $\mathbb Rot \boldsymbol v = \partial_1 v_2 - \partial_2 v_1.$
 
 % In the rest of this subsection, we present some basic inequalities for later theoretical analysis.
 As usual, we use $\lesssim$ to represent $\leq C$, where $C$ may be a generic positive constant independent of %the mesh size $h$, 
@@ -253,18 +278,17 @@ the material parameter $\iota$ and the Lam\'e coefficient $\lambda$. And $a\eqsi
 % %   and \eqref{eq:wellposed2} follows from the inf-sup condition \eqref{infsupcondition} immediately.
 
 
-The rest of this paper is organized as follows. Three assumptions are presented in Sect.~\ref{sec:assumption}.
-In Sect.~\ref{sec:regularity} we establish a uniform regularity for the SGE model under previous assumptions.
+The rest of this paper is organized as follows. Section~\ref{sec:assumption} develops the regularity assumptions and the divergence lifting, verifies the assumptions on convex polygons, and proves the geometric characterization of $H^3$ regularity. Section~\ref{sec:regularity} establishes the uniform SGE estimates, their sharpness on every convex polygon, and the second order convergence criterion. Appendix~\ref{app:corner-spectrum} proves spectral exclusion at convex corners and the existence of singular exponents at reentrant corners.
 
 
 \section{Regularity assumptions}\label{sec:assumption}
 
 % In order to derive the robust error estimates for the proposed mixed finite element method in the next section, we require to develop a series of regularity estimates for the underlying (system of) partial differential equations. In fact, these results are interesting themselves.
-This section is devoted to presenting some regularity assumptions, and prove the regularity assumptions in two dimensions.
+This section presents three regularity assumptions and verifies all of them on fixed bounded convex polygons. They remain hypotheses in general dimensions.
 
 % \subsection{Assumptions}
 \begin{assumption}\label{RegularityAssumption0}
-Let $f \in L_0^2(\Omega)$, and $u\in H_0^1(\Omega)$ be the solution of the Poisson equation $-\Delta u=f$. Assume $u\in H^2(\Omega)$ admits the estimate
+Let $f \in L^2(\Omega)$, and $u\in H_0^1(\Omega)$ be the solution of the Poisson equation $-\Delta u=f$. Assume $u\in H^2(\Omega)$ admits the estimate
 \begin{equation}\label{eq:poissonH2regularity}
 \|u\|_2\lesssim \|f\|_{0}.
 \end{equation}
@@ -272,34 +296,40 @@ Let $f \in L_0^2(\Omega)$, and $u\in H_0^1(\Omega)$ be the solution of the Poiss
 The $H^2$ regularity \eqref{eq:poissonH2regularity} of the Poisson equation is well-known for convex domains \cite[Theorem 3.2.1.2]{Grisvard1985}.
 
 
-Consider the following fourth order Stokes problem: Find $(\boldsymbol\phi, p)\in H_0^2(\Omega; \mathbb R^d)\times(H_0^1(\Omega)\cap L_0^2(\Omega))$ such that
-\begin{equation}\label{eq:fourthorderStokes}
-\begin{cases}
-\Delta^2\boldsymbol\phi + \nabla\Delta p=\boldsymbol f & {\rm in }\; \Omega,\\
-\Delta\div\boldsymbol\phi= g & {\rm in }\; \Omega,\\
-\boldsymbol\phi=\partial_{\boldsymbol{n}}\boldsymbol\phi=\boldsymbol 0 & {\rm on }\; \partial\Omega,
-\end{cases}
-\end{equation}
-where $\boldsymbol f \in H^{-2}(\Omega; \mathbb{R}^d)$ and $g\in H^{-1}(\Omega)$.
-The well-posedness of the fourth order Stokes problem \eqref{eq:fourthorderStokes} follows from the div surjection  (cf. \cite[Theorem 1.1]{CostabelMcIntosh2010})
-$$
-\div H_0^2(\Omega; \mathbb R^d) = H_0^1(\Omega)\cap L_0^2(\Omega).
-$$
-The proof of the well-posedness of the fourth order Stokes problem \eqref{eq:fourthorderStokes} with $g=0$ in \cite[Lemma 3.1]{ChenHuangHuang2023} can be easily adapted to the general $g\in H^{-1}(\Omega)$. And it holds the stability estimate
-\begin{equation}\label{eq:fourthorderStokesregularity0}
-\|\boldsymbol\phi\|_2+\|p\|_1\lesssim \|\boldsymbol f\|_{-2} + \|g\|_{-1}.
-\end{equation}
-
-
-We will recall the two assumptions in \cite{ChenHuangHuang2023} with a slight modification.
-Let $\chi\in H_0^1(\Omega)\cap H^2(\Omega)$ be the function solving
+Let $\chi\in H_0^1(\Omega)$ solve
 \[
 -\Delta\chi=1\quad\text{in }\Omega,\qquad \chi=0\quad\text{on }\partial\Omega.
 \]
-Define the closed codimension--one subspace
+Under Assumption~\ref{RegularityAssumption0}, $\chi\in H^2(\Omega)$. Define
 \[
-L^2_\chi(\Omega):=\big\{ g\in L^2(\Omega)\,:\, (g,\chi)_{L^2(\Omega)}=0\big\}.
+H^{-1}_\chi(\Omega):=\{g\in H^{-1}(\Omega):\langle g,\chi\rangle=0\},
+\qquad L^2_\chi(\Omega):=L^2(\Omega)\cap H^{-1}_\chi(\Omega).
 \]
+Consider the fourth order Stokes problem: find $(\boldsymbol\phi,p)\in H_0^2(\Omega;\mathbb R^d)\times(H_0^1(\Omega)\cap L_0^2(\Omega))$ such that
+\begin{equation}\label{eq:fourthorderStokes}
+\begin{cases}
+\Delta^2\boldsymbol\phi+\nabla\Delta p=\boldsymbol f & {\rm in }\;\Omega,\\
+\Delta\div\boldsymbol\phi=g & {\rm in }\;\Omega,\\
+\boldsymbol\phi=\partial_{\boldsymbol n}\boldsymbol\phi=\boldsymbol0 & {\rm on }\;\partial\Omega,
+\end{cases}
+\end{equation}
+where $\boldsymbol f\in H^{-2}(\Omega;\mathbb R^d)$ and $g\in H^{-1}_\chi(\Omega)$.
+This compatibility condition is necessary: for $h\in H_0^1(\Omega)$,
+\[
+\langle\Delta h,\chi\rangle=-(\nabla h,\nabla\chi)=-\int_\Omega h\dx.
+\]
+In particular, $g=1$ is inadmissible, since $\langle1,\chi\rangle=\|\nabla\chi\|_0^2>0$.
+The weak stability argument applies on any bounded connected Lipschitz domain in $\mathbb R^d$, $d\geq2$. Set $V=H_0^2(\Omega;\mathbb R^d)$ and $Q=H_0^1(\Omega)\cap L_0^2(\Omega)$. By~\cite[Theorem~1.1 and Corollary~4.7(b)]{CostabelMcIntosh2010}, the divergence has a bounded linear right inverse $\mathcal B:Q\to V$, with $\|\mathcal Bq\|_2\lesssim\|q\|_1$. Hence
+\[
+\sup_{\boldsymbol v\in V\setminus\{0\}}
+\frac{(\nabla\div\boldsymbol v,\nabla q)}{\|\boldsymbol v\|_2}
+\geq\frac{|q|_1^2}{\|\mathcal Bq\|_2}\gtrsim\|q\|_1
+\qquad(q\in Q\setminus\{0\}).
+\]
+Together with the coercivity of $(\nabla^2\boldsymbol v,\nabla^2\boldsymbol v)$ on $V$, this proves mixed well-posedness for $g=0$ in every dimension. For compatible $g$, the Dirichlet solution $h=\Delta_D^{-1}g$ belongs to $Q$ and satisfies $\|h\|_1\lesssim\|g\|_{-1}$. Subtracting $\mathcal Bh$ reduces the problem to $g=0$ with force $\boldsymbol f-\Delta^2\mathcal Bh$. Since $\|\Delta^2\mathcal Bh\|_{-2}\lesssim\|g\|_{-1}$, we obtain well-posedness and
+\begin{equation}\label{eq:fourthorderStokesregularity0}
+\|\boldsymbol\phi\|_2+\|p\|_1\lesssim\|\boldsymbol f\|_{-2}+\|g\|_{-1}.
+\end{equation}
 
 \begin{lemma}\label{lem:L2chi}
 It holds that
@@ -352,178 +382,227 @@ Let $\boldsymbol f \in H^{-1}(\Omega; \mathbb{R}^d)$ and $g\in L^2_\chi(\Omega)$
 	\boldsymbol u=\partial_{\boldsymbol{n}}  \boldsymbol u= \boldsymbol 0 & {\rm on }\; \partial\Omega,
 	\end{cases}
 	\end{equation*}
-	where $\lambda \in[0,\Lambda]$ and $\mu\in [\mu_0,\mu_1]$ being the Lam\'{e} constants. Then $\boldsymbol u\in H^3(\Omega; \mathbb R^d)$ and it admits the estimate
+	where $\lambda\in[0,\Lambda]$ and $0<\mu_0\leq\mu\leq\mu_1$ are the Lam\'{e} constants. Then $\boldsymbol u\in H^3(\Omega; \mathbb R^d)$ and it admits the estimate
 	\[
 	\| \boldsymbol u\|_3 \lesssim \|\boldsymbol f\|_{-1},
 	\]
 	where the hidden constant may depend on $\Lambda$, $\mu_0$ and $\mu_1$.
 \end{assumption}
 
-% We will prove Assumption~\ref{RegularityAssumption1} holds for a convex polygon in Section~\ref{sec:assumption12d}. 
-Since the solution $\boldsymbol{\phi}$ of \eqref{eq:fourthorderStokes} is zero when $\boldsymbol{f}\in\nabla L^2(\Omega)$,
-by replacing $\boldsymbol{f}$ in problem \eqref{eq:fourthorderStokes} with $\boldsymbol{f}+\nabla q$, we have from \eqref{eq:fourthorderStokesregularity1} that
+In the results of Section~\ref{sec:regularity} that invoke Assumption~\ref{RegularityAssumption2}, its endpoint $\Lambda$ is chosen to cover the threshold specified in Lemma~\ref{lm:fourthorderelasregularity}.
+
+\begin{proposition}\label{prop:convex-lame}
+Let $\Omega\subset\mathbb R^2$ be a fixed bounded convex polygon, $0\leq\Lambda<\infty$, and $0<\mu_0\leq\mu_1$. Assumption~\ref{RegularityAssumption2} holds uniformly for $0\leq\lambda\leq\Lambda$ and $\mu_0\leq\mu\leq\mu_1$: the energy solution satisfies
+\[
+\|\boldsymbol u\|_3\leq C(\Omega,\Lambda,\mu_0,\mu_1)\|\boldsymbol f\|_{-1}.
+\]
+\end{proposition}
+\begin{proof}
+Write
+\[
+P_{\lambda,\mu}\boldsymbol u
+=\Delta\big[\mu\Delta\boldsymbol u+(\lambda+\mu)\nabla\div\boldsymbol u\big].
+\]
+Its principal symbol is
+$|\xi|^2[\mu|\xi|^2I+(\lambda+\mu)\xi\otimes\xi]$,
+with eigenvalues $\mu|\xi|^4$ and $(\lambda+2\mu)|\xi|^4$. Thus the system is strongly elliptic, and the clamped Dirichlet conditions satisfy the complementing condition on each open edge. After removing redundant collinear vertices, every corner angle lies in $(0,\pi)$. Theorem~\ref{thm:corner-spectrum} shows that the corner pencil, with displacement ansatz $r^s\boldsymbol\Phi(\theta)$, has no spectrum in the closed strip $1\leq\operatorname{Re}s\leq2$.
+
+We apply the corner expansion theorem for elliptic systems in~\cite[Theorem~1.1(ii), pp.~1684--1685, and Sections~1.c and~2.a]{CostabelDauge1994}, with component orders $m_1=m_2=2$, initial regularity index $s_0=0$, and target index $s_{\rm CD}=1$ in that reference. Its Mellin parameter $\zeta$ enters as $r^{\zeta+2}$, so the energy and target lines $\operatorname{Re}\zeta=-1$ and $\operatorname{Re}\zeta=0$ correspond to the two boundary lines of our strip. Spectral exclusion removes the intervening singular terms. The integer-index clause applies because the angles differ from $\pi$ and $2\pi$; in~\cite[equation~(1.6), p.~1685]{CostabelDauge1994}, $\varepsilon$ occurs only in an additional weighted $L^2$ estimate, not in the Sobolev regularity.
+
+On the straight sector, the homogeneous constant-coefficient operator and the clamped boundary operators coincide with their principal parts. Their positive-order Taylor coefficients in the corner expansion therefore vanish, so the higher-order corrections can be taken to be zero~\cite[Sections~4.a--b, equations~(4.9)--(4.10), pp.~1713--1714]{CostabelDauge1994}. Any cutoff polynomial belongs to $H^3$; see also~\cite[Remark~4.7(ii), p.~1717]{CostabelDauge1994}. For a smooth cutoff $\chi$, multiplication preserves $H_0^2$, and
+\[
+P_{\lambda,\mu}(\chi\boldsymbol u)
+=\chi\boldsymbol f+[P_{\lambda,\mu},\chi]\boldsymbol u,
+\qquad
+\|[P_{\lambda,\mu},\chi]\boldsymbol u\|_{-1}
+\leq C_{\chi,\lambda,\mu}\|\boldsymbol u\|_2.
+\]
+Indeed, the commutator has order at most three, so its estimate requires only the energy regularity $\boldsymbol u\in H_0^2$. A finite partition of unity combines the corner estimates with the interior and open-edge estimates. Consequently, for each fixed pair $(\lambda,\mu)$,
+\[
+\|\boldsymbol u\|_3\leq C_{\lambda,\mu}
+\big(\|P_{\lambda,\mu}\boldsymbol u\|_{-1}+\|\boldsymbol u\|_2\big).
+\]
+No corner compatibility condition on $\boldsymbol f\in H^{-1}$ is required. Testing the energy equation with $\boldsymbol u$ gives
+\[
+\mu\|D^2\boldsymbol u\|_0^2
++(\lambda+\mu)\|\nabla\div\boldsymbol u\|_0^2
+=\langle\boldsymbol f,\boldsymbol u\rangle,
+\]
+which controls $\|\boldsymbol u\|_2$ by $\|\boldsymbol f\|_{-1}$.
+
+On the fixed spaces
+$X=H^3(\Omega;\mathbb R^2)\cap H_0^2(\Omega;\mathbb R^2)$ and
+$Y=H^{-1}(\Omega;\mathbb R^2)$, energy uniqueness and the regularity just proved show that $P_{\lambda,\mu}:X\to Y$ is an isomorphism. Moreover,
+\[
+\|P_{\lambda,\mu}-P_{\lambda',\mu'}\|_{\mathcal L(X,Y)}
+\leq C_\Omega\big(|\lambda-\lambda'|+|\mu-\mu'|\big).
+\]
+Continuity of inversion and compactness of $[0,\Lambda]\times[\mu_0,\mu_1]$ give the asserted uniform bound.
+\end{proof}
+
+Assumption~\ref{RegularityAssumption1}, even restricted to $g=0$, implies Assumption~\ref{RegularityAssumption0}. Indeed, given $G\in L^2(\Omega)$, let $z\in H_0^1(\Omega)$ solve $\Delta z=G$. Fix $\psi\in C_c^\infty(\Omega)$ with $\int_\Omega\psi\dx=1$, and set $c=\int_\Omega z\dx$ and $p=z-c\psi$. Weak Poisson stability gives $|c|\lesssim\|G\|_0$. Then $(\boldsymbol0,p)$ solves~\eqref{eq:fourthorderStokes} with force $\nabla(G-c\Delta\psi)\in H^{-1}(\Omega;\mathbb R^d)$ and $g=0$. Assumption~\ref{RegularityAssumption1} yields
+\[
+\|p\|_2\lesssim\|\nabla(G-c\Delta\psi)\|_{-1}\lesssim\|G\|_0,
+\]
+so $\|z\|_2\leq\|p\|_2+|c|\|\psi\|_2\lesssim\|G\|_0$. Assumption~\ref{RegularityAssumption0} is retained separately to state the Poisson range identity~\eqref{eq:Deltasurjection}.
+
+For $g=0$, a pure gradient force gives $\boldsymbol\phi=0$: given $q\in L^2(\Omega)$, let $\Delta p_q=q-(q,\chi)/(1,\chi)$ with $p_q\in H_0^1(\Omega)\cap L_0^2(\Omega)$. Then $\nabla\Delta p_q=\nabla q$. Thus changing $\boldsymbol f$ by a gradient changes only the pressure. Assumption~\ref{RegularityAssumption1} consequently gives, for all compatible data,
 \begin{equation}\label{eq:fourthorderStokesregularity2}
 \|\boldsymbol\phi\|_3\lesssim
-\inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1}.
+\inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1}+\|g\|_0.
 \end{equation}
- 
-The Assumption \ref{RegularityAssumption1} with $g=0$ is exactly the Assumption 3.1 in \cite{ChenHuangHuang2023}, which has been proved for convex polygons in two dimensions in \cite[Theorem 3.6]{ChenHuangHuang2023} by using the $H^4$ regularity result for the triharmonic equation.
-Then we prove Assumption \ref{RegularityAssumption1} for general $g$ in two dimensions for convex polygons in the remainder of this section.
+The last term vanishes when $g=0$.
 
-
-% \subsection{Verification of Assumptions in two dimensions}
+Assumption~\ref{RegularityAssumption1} for $g=0$ was proved on convex polygons in~\cite[Theorem~3.6]{ChenHuangHuang2023} using the $H^4$ regularity of the triharmonic equation. We next prove the divergence lifting on general Lipschitz domains; its combination with the homogeneous-constraint Stokes regularity handles general compatible $g$ on convex polygons.
 
 \begin{lemma}\label{lem:main}
-Let $\Omega\subset\mathbb R^2$ be a bounded, simply connected polygonal domain.
-Then
+Let $\Omega\subset\mathbb R^d$, $d\geq2$, be a bounded connected Lipschitz domain. Then
 \[
-\div\big( H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)\big)
-=
- H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega).
+\div\big(H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)
+=H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega).
 \]
 Moreover, there exists a bounded linear right inverse
 \[
-\mathcal R:\  H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega)
-\to
- H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2),
-\quad
-\div(\mathcal R g)=g.
+\mathcal R:H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)
+\longrightarrow H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)
 \]
+satisfying $\div(\mathcal Rh)=h$ and $\|\mathcal Rh\|_3\lesssim\|h\|_2$.
 \end{lemma}
 
 \begin{proof}
-It can be verified directly that 
+The forward inclusion follows from the zero traces and the divergence theorem. For the converse, let $h\in H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)$ and put $\boldsymbol g=\operatorname{Tr}\nabla h\in H^{1/2}(\partial\Omega;\mathbb R^d)$. Since $\operatorname{Tr}h=0$, its tangential derivatives vanish and $\boldsymbol g=\alpha\boldsymbol n$ almost everywhere on $\partial\Omega$. Define
 \[
-\div\big( H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)\big)
-\subseteq
- H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega).
+T_{ijk}=\alpha n_i n_j n_k
+=\begin{cases}
+g_i g_j g_k/|\boldsymbol g|^2,&\boldsymbol g\ne0,\\
+0,&\boldsymbol g=0.
+\end{cases}
 \]
-Then we prove the reverse inclusion and the existence of the bounded linear right inverse.
-Let
-$
-g\in  H^2(\Omega)\cap  H_0^1(\Omega)\cap L_0^2(\Omega).
-$
-We shall construct $\boldsymbol u\in  H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)$ with $\div\boldsymbol u=g$.
-
-Noting that $g|_{\partial\Omega}=0$, by Theorem 3.1 in \cite{ArnoldScottVogelius1988}, there exists a $\boldsymbol u_1\in H^3(\Omega;\mathbb R^2)\cap  H_0^1(\Omega;\mathbb R^2)$ such that
-\[
-\div\boldsymbol u_1 = g,
-\qquad
-\|\boldsymbol u_1\|_{3}\lesssim \|g\|_{2}.
-\]
-Let $\Delta_0(\Omega)$ and $\Delta_1(\Omega)$ be set of all vertices and edges of the polygon $\Omega$, respectively. For each edge $e\in \Delta_1(\Omega)$, let $\boldsymbol n$ and $\boldsymbol t$ be the unit outward normal and tangential vectors on $e$, respectively.
-By $\boldsymbol u_1|_{\partial\Omega}=0$ and $g|_{\partial\Omega}=0$, we have
-% Fix an open edge $e\subset\partial\Omega$.
-% Since $\boldsymbol{n},\boldsymbol{\tau}$ are constant on $e$ and $\boldsymbol u_1|_e=0$, we have $\partial_\tau \boldsymbol u_1|_e=0$ (trace sense).
-% Moreover, $g\in  H_0^1(\Omega)$ implies $g|_{\partial\Omega}=0$, hence $(\div\boldsymbol u_1)|_e=g|_e=0$.
-% On a straight edge,
-% \[
-% (\div\boldsymbol u_1)|_e
-% =
-% (\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e + (\boldsymbol{t}\cdot \partial_t\boldsymbol u_1)|_e
-% =
-% (\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e,
-% \]
-% so
-\begin{equation}\label{eq:normal-comp-zero}
-(\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e = (\boldsymbol{n}\cdot \partial_n\boldsymbol u_1)|_e + (\boldsymbol{t}\cdot \partial_t\boldsymbol u_1)|_e
-= (\div\boldsymbol u_1)|_e = 0.
+The map $\boldsymbol\xi\mapsto\boldsymbol\xi^{\otimes3}/|\boldsymbol\xi|^2$, extended by zero at the origin, is globally Lipschitz. Here $H^{1/2}(\partial\Omega)=B_2^{1/2}(\partial\Omega)$ with equivalent norms. The fractional Sobolev seminorm therefore gives
+\begin{equation}\label{eq:divlifting-trace-bound}
+\|T\|_{H^{1/2}(\partial\Omega)}\lesssim\|\boldsymbol g\|_{H^{1/2}(\partial\Omega)}\lesssim\|h\|_2.
 \end{equation}
-% Thus the boundary normal derivative $\partial_n\boldsymbol u_1$ is purely tangential on each edge.
-% \smallskip
-% \noindent\textbf{2.3 Define the tangential mismatch $h$.}
-Define the scalar boundary function
+For each component $w_k$, prescribe zero traces of orders zero and one, and second Cartesian derivative traces $\operatorname{Tr}\partial_{ij}w_k=T_{ijk}$. These data satisfy the tangential compatibility conditions in~\cite[Proposition~7.7]{MazyaMitreaShaposhnikova2010}, since
 \[
-h := \boldsymbol{t}\cdot (\partial_n\boldsymbol u_1)\big|_{\partial\Omega}=\partial_n\boldsymbol u_1|_{\partial\Omega}.
+n_lT_{ijk}-n_jT_{ilk}=0.
 \]
-Since $\boldsymbol u_1\in  H^3(\Omega;\mathbb R^2)$, we have $\partial_n\boldsymbol u_1|_{\partial\Omega}\in  H^{3/2}(\partial\Omega;\mathbb R^2)$ and hence
-\begin{equation}\label{eq:h-reg}
-h\in  H^{3/2}(\partial\Omega),
-\qquad
-\|h\|_{ H^{3/2}(\partial\Omega)}\lesssim \|\boldsymbol u_1\|_{3}.
+The bounded linear trace lifting and norm equivalence in~\cite[Propositions~7.3, 7.6 and Theorem~7.8]{MazyaMitreaShaposhnikova2010}, with $m=3$, $p=2$, $a=0$ and $s=1/2$, give $\boldsymbol w\in H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)$ with the prescribed traces and $\|\boldsymbol w\|_3\lesssim\|h\|_2$. The construction is linear in $h$, because $T_{ijk}=n_i n_jg_k$ on the subspace of normal fields. Moreover,
+\begin{equation}\label{eq:divlifting-matched-traces}
+\operatorname{Tr}\div\boldsymbol w=0,\qquad
+\operatorname{Tr}\partial_j\div\boldsymbol w=\sum_iT_{iji}=g_j.
 \end{equation}
-For vertex $\texttt{v}\in\Delta_0(\Omega)$ shared by two edges $e^\pm \in \Delta_1(\Omega)$. Because $\boldsymbol u_1\in  H^3$ and $\boldsymbol u_1|_{\partial\Omega}=0$ as a global trace, we have $\partial_t\boldsymbol u_1|_{e^\pm}=0$. This means that $(\nabla \boldsymbol{u}_1)(\texttt{v})=0$. Hence
-\begin{equation}\label{eq:vertex-normal-derivative}
-% (\partial_n \boldsymbol u_1)(\texttt{v})=\boldsymbol 0,
-% \qquad
-% \text{hence}\qquad
-h(\texttt{v})=0
-\ \ \text{for each vertex }\texttt{v}\in\Delta_0(\Omega).
-\end{equation}
-Then there exists a $\psi\in H^4(\Omega)\cap H_0^2(\Omega)$ such that (cf. \cite[Theorem~5]{Agranovich2007}, \cite[Theorem~4]{Agranovich2008} and \cite[Theorem~R(m)]{Verchota1990})
-\begin{equation}\label{eq:psi-traces}
-\partial_{nn}\psi|_{\partial\Omega}=-h,\quad \textrm{ and } \quad \|\psi\|_{ H^4(\Omega)}\lesssim \|h\|_{ H^{3/2}(\partial\Omega)}.
-\end{equation}
-
-Set
-$\boldsymbol v := \curl\psi \in  H^3(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)$, then
-$\div\boldsymbol v = 0$.
-We now verify that $\boldsymbol v$ exactly cancels the boundary normal derivative of $\boldsymbol u_1$.
-On each edge $e\in\Delta_1(\Omega)$,
-\[
-\boldsymbol{t}\cdot(\partial_n\boldsymbol v)
-=
-\partial_n(\boldsymbol v\cdot \boldsymbol{t})
-=
-\partial_n(-\partial_n\psi)
-=
--\partial_{nn}\psi
-=
-h
-=
-\boldsymbol{t}\cdot(\partial_n\boldsymbol u_1),
-\]
-and
-\[
-\boldsymbol{n}\cdot(\partial_n\boldsymbol v)
-=
-\partial_n(\boldsymbol v\cdot \boldsymbol{n})
-=
-\partial_n(\partial_t\psi)
-=
-\partial_t(\partial_n\psi)
-=
-0.
-\]
-% where the last step uses $\partial_n\psi|_{\partial\Omega}=0$.
-Together with \eqref{eq:normal-comp-zero}, this yields
-\begin{equation}\label{eq:normal-derivative-match}
-(\partial_n\boldsymbol v)|_{\partial\Omega}=(\partial_n\boldsymbol u_1)|_{\partial\Omega}.
-\end{equation}
-Let
-$\boldsymbol u := \boldsymbol u_1 - \boldsymbol v$.
-Then $\boldsymbol u\in  H^3(\Omega;\mathbb R^2)\cap H_0^1(\Omega;\mathbb R^2)$ and
-\[
-\div\boldsymbol u = \div\boldsymbol u_1 - \div\boldsymbol v = g - 0 = g.
-\]
-From \eqref{eq:normal-derivative-match} we obtain $\partial_n\boldsymbol u|_{\partial\Omega}=0$.
-Thus $\boldsymbol u\in  H^3(\Omega;\mathbb R^2)\cap  H_0^2(\Omega;\mathbb R^2)$ and $\div\boldsymbol u=g$.
-
-Moreover, the construction is linear in $g$ and the estimates
-\[
-\|\boldsymbol u_1\|_{3}\lesssim \|g\|_{ 2},
-\quad
-\|h\|_{ H^{3/2}(\partial\Omega)}\lesssim \|\boldsymbol u_1\|_{3},
-\quad
-\|\psi\|_{4}\lesssim \|h\|_{ H^{3/2}(\partial\Omega)},
-\quad
-\|\boldsymbol v\|_{3}\lesssim \|\psi\|_{4}
-\]
-imply
-$
-\|\boldsymbol u\|_{3}\lesssim \|g\|_{2}.
-$
+Thus $q:=h-\div\boldsymbol w\in H_0^2(\Omega)\cap L_0^2(\Omega)$, and $\|q\|_2\lesssim\|h\|_2$. By~\cite[Theorem~1.1]{CostabelMcIntosh2010}, choose $\boldsymbol z\in H_0^3(\Omega;\mathbb R^d)$ linearly in $q$ with $\div\boldsymbol z=q$ and $\|\boldsymbol z\|_3\lesssim\|q\|_2$. Then $\mathcal Rh=\boldsymbol w+\boldsymbol z$ is the required right inverse.
 \end{proof}
 
+Lemma~\ref{lem:main} is a consequence of the boundary trace extension theory in~\cite{MazyaMitreaShaposhnikova2010} and the divergence right inverse in~\cite{CostabelMcIntosh2010}; the divergence result itself is not stated in the former reference. Only the trace theory of its Section~7 is used here. Its elliptic solvability result~\cite[Theorem~1.1]{MazyaMitreaShaposhnikova2010} requires both the coefficients and the boundary normal to belong to VMO. The more general small-oscillation condition is given in its Section~1.2, equation~(1.12), and Theorem~8.1. These elliptic results cannot be invoked directly to supply the SGE regularity assumptions on arbitrary polygons.
 
+The same construction gives, for every integer $k\geq1$,
+\[
+\div\big(H^{k+2}(\Omega;\mathbb R^d)\cap H_0^{k+1}(\Omega;\mathbb R^d)\big)
+=H^{k+1}(\Omega)\cap H_0^k(\Omega)\cap L_0^2(\Omega),
+\]
+with a bounded linear right inverse. To see this, write the highest boundary trace of $h$ as $A=\operatorname{Tr}\nabla^kh=\alpha\boldsymbol n^{\otimes k}$; its pure normal form follows from the vanishing lower traces and tangential compatibility. On this cone the map
+\[
+F_k(\alpha\boldsymbol n^{\otimes k})=\alpha\boldsymbol n^{\otimes(k+2)}
+\]
+is well-defined and Lipschitz. Indeed, for $A=\alpha\boldsymbol n^{\otimes k}$, $B=\beta\boldsymbol m^{\otimes k}$ and $t=\boldsymbol n\cdot\boldsymbol m$, the squared differences are $\alpha^2+\beta^2-2\alpha\beta t^{k+2}$ and $\alpha^2+\beta^2-2\alpha\beta t^k$, respectively, and
+\[
+|F_k(A)-F_k(B)|^2\leq\frac{k+2}{k}|A-B|^2.
+\]
+Thus the prescribed order-$(k+1)$ vector traces $F_k(A)$ belong to $H^{1/2}(\partial\Omega)$ and satisfy the tangential compatibility conditions; all lower traces are set to zero. Applying the trace lifting with $m=k+2$ gives $\boldsymbol w\in H^{k+2}\cap H_0^{k+1}$ and $\operatorname{Tr}\nabla^k\div\boldsymbol w=A$. The difference $h-\div\boldsymbol w$ lies in $H_0^{k+1}\cap L_0^2$, so the high-order divergence right inverse completes the construction. Linearity again follows from $F_k(A)=A\otimes\boldsymbol n^{\otimes2}$ on the admissible trace subspace. These higher order identities are further consequences of the two cited theories.
+
+\begin{proposition}\label{prop:homogeneous-stokes}
+On any bounded connected Lipschitz domain $\Omega\subset\mathbb R^d$, $d\geq2$, Assumption~\ref{RegularityAssumption1} holds for all $g\in L^2_\chi(\Omega)$ if and only if it holds for $g=0$.
+\end{proposition}
+\begin{proof}
+Only sufficiency needs proof. The pure pressure construction above shows that the case $g=0$ implies Assumption~\ref{RegularityAssumption0}. For $g\in L^2_\chi(\Omega)$, let $h=\Delta_D^{-1}g$. The Poisson estimate and compatibility give
+\[
+h\in H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega),\qquad\|h\|_2\lesssim\|g\|_0.
+\]
+Lemma~\ref{lem:main} provides $\boldsymbol w=\mathcal Rh\in H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)$ with $\|\boldsymbol w\|_3\lesssim\|g\|_0$. Apply the assumed Stokes estimate for $g=0$ to the force $\boldsymbol f-\Delta^2\boldsymbol w\in H^{-1}(\Omega;\mathbb R^d)$. Its solution $(\boldsymbol\phi_0,p)$ satisfies
+\[
+\|\boldsymbol\phi_0\|_3+\|p\|_2\lesssim\|\boldsymbol f-\Delta^2\boldsymbol w\|_{-1}\lesssim\|\boldsymbol f\|_{-1}+\|g\|_0.
+\]
+Then $(\boldsymbol\phi,p)=(\boldsymbol\phi_0+\boldsymbol w,p)$ solves~\eqref{eq:fourthorderStokes} and satisfies~\eqref{eq:fourthorderStokesregularity1}.
+\end{proof}
+
+\begin{proposition}\label{prop:convex-stokes}
+Let $\Omega\subset\mathbb R^2$ be a bounded connected polygonal Lipschitz domain. Assumption~\ref{RegularityAssumption1} holds if and only if $\Omega$ is convex.
+\end{proposition}
+\begin{proof}
+For a convex polygon, the case $g=0$ follows from~\cite[Theorem~3.6]{ChenHuangHuang2023}. Proposition~\ref{prop:homogeneous-stokes} gives the general case.
+
+If $\Omega$ is not convex, it has a reentrant corner with interior angle $\omega\in(\pi,2\pi)$. In polar coordinates centered at that corner, choose a smooth radial cutoff $\eta$ equal to one near the origin and supported in a neighborhood where $\Omega$ is the sector $0<\theta<\omega$. Set
+\[
+\alpha=\frac{\pi}{\omega}\in(0,1),\qquad
+z=\eta(r)r^\alpha\sin(\alpha\theta).
+\]
+Then $z\in H_0^1(\Omega)$ but $z\notin H^2(\Omega)$: the squared integral of its second derivatives near the corner is proportional to $\int_0^\varepsilon r^{2\alpha-3}\,\dd r=\infty$. On the other hand,
+\[
+\Delta z=\big(\eta''(r)r^\alpha+(2\alpha+1)\eta'(r)r^{\alpha-1}\big)\sin(\alpha\theta)\in H^1(\Omega),
+\]
+because the derivatives of $\eta$ are supported away from the corner. Choose $\psi\in C_c^\infty(\Omega)$ with $\int_\Omega\psi\dx=1$, and set
+\[
+p=z-\Big(\int_\Omega z\dx\Big)\psi,\qquad
+\boldsymbol f=\nabla\Delta p\in L^2(\Omega;\mathbb R^2).
+\]
+Thus $p\in H_0^1(\Omega)\cap L_0^2(\Omega)$ but $p\notin H^2(\Omega)$. The pair $(\boldsymbol0,p)$ is the weak solution of~\eqref{eq:fourthorderStokes} with this force and $g=0$, contradicting Assumption~\ref{RegularityAssumption1}.
+\end{proof}
+
+\begin{theorem}\label{thm:polygon-regularity}
+Let $\Omega\subset\mathbb R^2$ be a bounded connected polygonal Lipschitz domain. Fix $\lambda\geq0$, $\mu>0$ and $\iota>0$, and write $P_{\lambda,\mu}=\Delta\div\boldsymbol\sigma$. The following statements are equivalent:
+\begin{enumerate}[(i)]
+\item $\Omega$ is convex.
+\item For every $\boldsymbol g\in H^{-1}(\Omega;\mathbb R^2)$, the energy solution in $H_0^2(\Omega;\mathbb R^2)$ of $P_{\lambda,\mu}\boldsymbol v=\boldsymbol g$ belongs to $H^3(\Omega;\mathbb R^2)$.
+\item For every $\boldsymbol f\in L^2(\Omega;\mathbb R^2)$, the energy solution of~\eqref{eq:straingradproblem} belongs to $H^3(\Omega;\mathbb R^2)$.
+\end{enumerate}
+If $\Omega$ is not convex, statements~{\rm(ii)} and~{\rm(iii)} already fail for $L^4$ loads. In particular, Assumption~\ref{RegularityAssumption2} holds on any fixed nonempty bounded parameter rectangle if and only if $\Omega$ is convex.
+\end{theorem}
+\begin{proof}
+Suppose first that $\Omega$ is convex. Proposition~\ref{prop:convex-lame} proves~{\rm(ii)}. The SGE energy solution $\boldsymbol u\in H_0^2$ satisfies
+\[
+P_{\lambda,\mu}\boldsymbol u
+=\iota^{-2}\big(\boldsymbol f+\div\boldsymbol\sigma(\boldsymbol u)\big)\in L^2(\Omega;\mathbb R^2).
+\]
+Thus~{\rm(ii)} also gives~{\rm(iii)}.
+
+If $\Omega$ is not convex, it has a reentrant corner with interior angle $\pi<\omega<2\pi$. Lemma~\ref{lem:reentrant-spectrum} gives a real singular exponent and a nonzero real angular function such that
+\[
+\frac32<s_\ast<1+\frac{\pi}{\omega}<2,\qquad
+\boldsymbol V=r^{s_\ast}\boldsymbol\Phi(\theta),\qquad
+P_{\lambda,\mu}\boldsymbol V=0,
+\]
+with clamped conditions on both rays. Choose a smooth radial cutoff $\eta$ equal to one near the vertex and supported where $\Omega$ agrees with the sector, and set $\boldsymbol v=\eta\boldsymbol V$. Since $D^j\boldsymbol V=O(r^{s_\ast-j})$ for $j\leq2$, we have $\boldsymbol v\in H^2$. Its zero and first order traces vanish on the sides. Cutting it off also at radius $\varepsilon$ changes its $H^2$ norm by $O(\varepsilon^{s_\ast-1})$, so $\boldsymbol v\in H_0^2(\Omega;\mathbb R^2)$. On the other hand,
+\[
+\partial_r^3\boldsymbol V
+=s_\ast(s_\ast-1)(s_\ast-2)r^{s_\ast-3}\boldsymbol\Phi(\theta),
+\qquad
+\int_0^\varepsilon r^{2s_\ast-5}\,\dd r=\infty,
+\]
+and therefore $\boldsymbol v\notin H^3$.
+
+The commutator $P_{\lambda,\mu}\boldsymbol v=[P_{\lambda,\mu},\eta]\boldsymbol V$ is smooth away from the vertex and supported in an annulus, hence belongs to $L^\infty$. Its distributional identity extends to the energy formulation by density of $C_c^\infty(\Omega;\mathbb R^2)$ in $H_0^2$. Energy uniqueness shows that $\boldsymbol v$ is the solution for this load, disproving~{\rm(ii)}. Moreover, $s_\ast>3/2$ implies $D^2\boldsymbol v\in L^4$, since near the vertex
+\[
+\int_0^\varepsilon r^{4s_\ast-7}\,\dd r<\infty.
+\]
+Thus, for the fixed value of $\iota$, put
+\[
+\boldsymbol f_\iota
+=\iota^2P_{\lambda,\mu}\boldsymbol v-\div\boldsymbol\sigma(\boldsymbol v)
+\in L^4(\Omega;\mathbb R^2).
+\]
+Then $\boldsymbol v$ is the SGE energy solution and disproves~{\rm(iii)}. These counterexample loads may depend on the fixed material parameters and on $\iota$, as permitted when testing regularity for all loads. The final assertion follows from this necessity and Proposition~\ref{prop:convex-lame}.
+\end{proof}
+
+Lemma~\ref{lem:main} resolves the divergence lifting in every dimension. In higher dimensions, verifying Assumption~\ref{RegularityAssumption1} still requires fourth order Stokes regularity with homogeneous constraint. On convex polygons, Propositions~\ref{prop:convex-lame} and~\ref{prop:convex-stokes} verify both regularity assumptions needed below.
 
 \section{Regularity results}\label{sec:regularity}
 
-Now we are ready to show the regularity results of the SGE model \eqref{eq:straingradproblem} under Assumptions~\ref{RegularityAssumption0}-\ref{RegularityAssumption2}.
+We first derive fourth order elasticity estimates from Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2}. The SGE estimate additionally requires the uniform classical elasticity bound~\eqref{eq:u0regularity}.
 
 
 % \subsection{Regularity of the SGE model}
-% Now we are ready to show the regularity results of the SGE model. From now on we always suppose Assumptions~\ref{RegularityAssumption1}-\ref{RegularityAssumption2} hold.
+% Now we are ready to show the regularity results of the SGE model. From now on we always suppose Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2} hold.
 \begin{lemma}\label{lm:fourthorderelasregularity}
 	Let $\boldsymbol w\in H_0^2(\Omega; \mathbb R^d)$ be the solution of
 	\begin{equation}\label{eq:fourthorderelasproblem}
@@ -533,35 +612,35 @@ Now we are ready to show the regularity results of the SGE model \eqref{eq:strai
 	\end{cases}
 	\end{equation}
 with $\boldsymbol f\in H^{-1}(\Omega; \mathbb{R}^d)$.
-	Suppose Assumptions \ref{RegularityAssumption1}-\ref{RegularityAssumption2} hold.
+	Suppose Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2} hold.
 	We have
 	\begin{align}\label{eq:fourthorderelasregularity}
 	\|\boldsymbol w\|_{2+j}+\lambda\|\div\boldsymbol w\|_{1+j}\lesssim \|\boldsymbol f\|_{j-2} \quad\textrm{ for } j=0,1.
 	\end{align}
-The hidden constants may depend on $\Omega$, $\mu$ and the constants
-in Assumptions \ref{RegularityAssumption1}--\ref{RegularityAssumption2},
-but are independent of $\lambda$.
+The hidden constants may depend on $\Omega$, $\mu_0$, $\mu_1$ and the constants
+in Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2},
+but are uniform for $\lambda\geq0$ and $\mu\in[\mu_0,\mu_1]$. For $\lambda\geq\mu_1(2\sqrt d\,C_S-1)$, where $C_S$ is the constant in~\eqref{eq:A0inv_bound_journal2}, Assumption~\ref{RegularityAssumption2} is unnecessary.
 \end{lemma}
 \begin{proof}
-The estimate \eqref{eq:fourthorderelasregularity} for $j=0$ has been proved in \cite[Lemma 3.7]{ChenHuangHuang2023}. 
-Then we prove \eqref{eq:fourthorderelasregularity} for $j=1$. 
-	% We follow the argument of Lemma~2.2 in \cite{BrennerSung1992} to prove \eqref{eq:fourthorderelasregularity}.
-	% The weak formulation of \eqref{eq:fourthorderelasproblem} is
-	% \begin{equation}\label{eq:20210918}
-	% 2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol w), \nabla\boldsymbol\varepsilon(\boldsymbol v)) + \lambda(\nabla\div\boldsymbol w, \nabla\div\boldsymbol v)=(\boldsymbol f, \boldsymbol v) \quad\forall~\boldsymbol v\in H_0^2(\Omega; \mathbb R^d),
-	% \end{equation}%\cite{LaxMilgram1954}
-	% which is well-posed by the $H^2$-Korn's inequality \eqref{eq:korninequalityH2}, and it holds
-	% $
-	% \|\boldsymbol w\|_2\lesssim \|\boldsymbol f\|_{-2}.
-	% $
-	% By Lemma~\ref{lm:divrightinverse}, there exists $\widetilde{\boldsymbol w}\in H_0^2(\Omega; \mathbb R^d)$ such that
-	% $\div\widetilde{\boldsymbol w}=\div\boldsymbol w$ and $\|\widetilde{\boldsymbol w}\|_2\lesssim \|\div\boldsymbol w\|_1.$
-	% Taking $\boldsymbol v=\widetilde{\boldsymbol w}$ in \eqref{eq:20210918}, it follows that
-	% \begin{equation*}
-	% \lambda|\div\boldsymbol w|_1^2=(\boldsymbol f, \widetilde{\boldsymbol w})-2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol w), \nabla\boldsymbol\varepsilon(\widetilde{\boldsymbol w}))\lesssim \|\boldsymbol f\|_{-2}\|\widetilde{\boldsymbol w}\|_2+\|\boldsymbol w\|_2\|\widetilde{\boldsymbol w}\|_2,
-	% \end{equation*}
-	% which gives \eqref{eq:fourthorderelasregularity} for $j=0$.
+For $j=0$, the weak equation is
+\[
+2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol w),\nabla\boldsymbol\varepsilon(\boldsymbol v))
++\lambda(\nabla\div\boldsymbol w,\nabla\div\boldsymbol v)
+=\langle\boldsymbol f,\boldsymbol v\rangle
+\qquad\forall\boldsymbol v\in H_0^2(\Omega;\mathbb R^d).
+\]
+Testing with $\boldsymbol v=\boldsymbol w$ and using Korn's inequality gives $\|\boldsymbol w\|_2\lesssim\|\boldsymbol f\|_{-2}$. Next set $q=\lambda\div\boldsymbol w\in H_0^1(\Omega)\cap L_0^2(\Omega)$ and test with the divergence lift $\boldsymbol v=\mathcal Bq$ used above. Then
+\[
+\begin{aligned}
+|q|_1^2
+&=\langle\boldsymbol f,\mathcal Bq\rangle
+-2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol w),\nabla\boldsymbol\varepsilon(\mathcal Bq))\\
+&\lesssim\big(\|\boldsymbol f\|_{-2}+\mu\|\boldsymbol w\|_2\big)\|q\|_1.
+\end{aligned}
+\]
+Poincar\'e's inequality proves $\lambda\|\div\boldsymbol w\|_1=\|q\|_1\lesssim\|\boldsymbol f\|_{-2}$. This argument is valid in every dimension and includes $\lambda=0$ without division by $\lambda$.
 
+We next prove~\eqref{eq:fourthorderelasregularity} for $j=1$.
 Let $(\boldsymbol\phi,p_0)\in H_0^2(\Omega;\mathbb R^d)\times
 \big(H_0^1(\Omega)\cap L_0^2(\Omega)\big)$ solve
 \begin{equation}\label{eq:limit_stokes_journal2}
@@ -595,7 +674,7 @@ Subtracting \eqref{eq:limit_stokes_journal2} gives
 \end{cases}
 \end{equation}
 
-We now use a standard perturbation argument. By Lemma~\ref{lem:L2chi}, $\Delta p_0\in L^2_\chi(\Omega)$ and hence $\varepsilon\,\Delta p_0\in L^2_\chi(\Omega)$.
+We now use a standard perturbation argument. By Lemma~\ref{lem:L2chi}, $\Delta p_0\in L^2_\chi(\Omega)$ and hence $\gamma\,\Delta p_0\in L^2_\chi(\Omega)$.
 Set
 \begin{align*}
 X&:=\big(H^3(\Omega;\mathbb R^d)\cap H_0^2(\Omega;\mathbb R^d)\big)\times
@@ -632,22 +711,28 @@ Choose
 $
 \gamma_0:=\frac{1}{2\sqrt{d}\,C_S}\in(0,1).
 $
-If $\gamma\le\gamma_0$, equivalently 
+The condition $\gamma\le\gamma_0$ is equivalent to
 $$
-\lambda\ge \lambda_\ast:=\mu\Big(\gamma_0^{-1}-1\Big)=\mu(2\sqrt{d}\,C_S-1),$$
-then the operator
-$\mathcal A_\gamma:=\mathcal A_0-\gamma\mathcal B$ is invertible on $X$ and
+\lambda\ge \lambda_\ast:=\mu\Big(\gamma_0^{-1}-1\Big)=\mu(2\sqrt{d}\,C_S-1).$$
+For $\lambda\ge\lambda_\ast$,
+the operator
+$\mathcal A_\gamma:=\mathcal A_0-\gamma\mathcal B:X\to Y$ is an isomorphism and
 \begin{equation}\label{eq:perturb_inverse_journal2}
 \|(\boldsymbol v,r)\|_X\le 2C_S\,\|\mathcal A_\gamma(\boldsymbol v,r)\|_Y
 \qquad\forall\,(\boldsymbol v,r)\in X,
 \end{equation}
-which follows from the Neumann series for
-$I-\gamma\mathcal A_0^{-1}\mathcal B$ (cf. \cite[Chapter~I, \S4, Example~4.5, (4.22) and the perturbation estimate (4.24), pp.~30--31]{Kato1995}).
+which follows from $\mathcal A_\gamma=\mathcal A_0(I-\gamma\mathcal A_0^{-1}\mathcal B)$ and the Neumann series for the self-map
+$I-\gamma\mathcal A_0^{-1}\mathcal B:X\to X$ (cf. \cite[Chapter~I, \S4, Example~4.5, (4.22) and the perturbation estimate (4.24), pp.~30--31]{Kato1995}).
 Applying \eqref{eq:perturb_inverse_journal2} to \eqref{eq:error_system_journal2} gives
 \begin{equation}\label{eq:error_est_journal2}
-\|\boldsymbol e\|_3+\|\eta\|_2\le 2C_S\,\gamma\,\|\Delta p_0\|_0
+\big(\|\boldsymbol e\|_3^2+\|\eta\|_2^2\big)^{1/2}\le 2C_S\,\gamma\,\|\Delta p_0\|_0
 \le 2\sqrt{d}\,C_S\,\gamma\,\|p_0\|_2\leq \|p_0\|_2\quad\textrm{ for }\lambda\ge\lambda_\ast.
 \end{equation}
+Here the strong solution is first constructed using $\mathcal A_\gamma^{-1}$. Its second equation gives
+\[
+\Delta\big[\div\boldsymbol e-\gamma(\eta+p_0)\big]=0.
+\]
+The expression in brackets belongs to $H_0^1(\Omega)$, hence vanishes. Substitution into the first equation shows that $\boldsymbol\phi+\boldsymbol e$ satisfies the original weak elasticity problem, whose uniqueness identifies it with $\boldsymbol w$. Thus no $H^3$ regularity of $\boldsymbol w$ is presumed.
 Combining \eqref{eq:stokes_reg_journal2} and \eqref{eq:error_est_journal2} yields
 \[
 \|\boldsymbol w\|_3\le \|\boldsymbol\phi\|_3+\|\boldsymbol e\|_3
@@ -662,9 +747,7 @@ For the divergence term, since $\operatorname{div}\boldsymbol w=\gamma(\eta+p_0)
 and therefore $\lambda\|\operatorname{div}\boldsymbol w\|_2\lesssim \|\boldsymbol f\|_{-1}$ as well.
 Hence \eqref{eq:fourthorderelasregularity} holds for all $\lambda\ge\lambda_\ast$ with a constant independent of $\lambda$.
 
-For $0\le\lambda\le\lambda_\ast$, \eqref{eq:elas_rewrite_journal2} is precisely
-$\Delta(\div\boldsymbol\sigma(\boldsymbol w))=\boldsymbol f$.
-Assumption~\ref{RegularityAssumption2} yields
+For $0\le\lambda\le\lambda_\ast$, we use Assumption~\ref{RegularityAssumption2} with $\Lambda\geq\mu_1(2\sqrt d\,C_S-1)$. Equation~\eqref{eq:elas_rewrite_journal2} is precisely $\Delta(\div\boldsymbol\sigma(\boldsymbol w))=\boldsymbol f$, so that assumption yields
 \[
 \|\boldsymbol w\|_3\lesssim \|\boldsymbol f\|_{-1},
 \qquad
@@ -674,14 +757,15 @@ Assumption~\ref{RegularityAssumption2} yields
 Together with the large--$\lambda$ estimate, this proves \eqref{eq:fourthorderelasregularity} for all $\lambda\ge0$.
 \end{proof}
 
-\begin{lemma}
-Suppose Assumptions \ref{RegularityAssumption0}-\ref{RegularityAssumption2} hold.
+\begin{lemma}\label{lm:fourthorderelasbestgradient}
+Suppose Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2} hold.
 Let $\boldsymbol w\in H_0^2(\Omega; \mathbb R^d)$ be the solution of equation \eqref{eq:fourthorderelasproblem}.
 We have
 \begin{align}
 \label{eq:fourthorderelasregularityw}
-\|\boldsymbol w\|_{3}\lesssim \inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1} + \frac{1}{\lambda}\|\boldsymbol f\|_{-1}.
+\|\boldsymbol w\|_{3}\lesssim \inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1} + \gamma\|\boldsymbol f\|_{-1},\qquad\gamma=\frac{\mu}{\lambda+\mu}.
 \end{align}
+For $\lambda\geq\mu_1(2\sqrt d\,C_S-1)$, Assumption~\ref{RegularityAssumption2} is unnecessary.
 \end{lemma}
 \begin{proof}
 Take any $q\in L^2(\Omega)$. Let $C_q=(q,\chi)/(1,\chi)\in\mathbb R$, then $q-C_q\in L^2_\chi(\Omega)$. By \eqref{eq:Deltasurjection}, there exists $p\in H^2(\Omega)\cap H_0^1(\Omega)\cap L_0^2(\Omega)$ such that $\Delta p=q-C_q$, which indicates $\nabla\Delta p=\nabla q$.
@@ -699,20 +783,16 @@ hence
 \|\boldsymbol\phi\|_3\lesssim \inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1}.
 \end{equation}
 
-If $\lambda\ge\lambda_\ast$, then \eqref{eq:error_est_journal2} and \eqref{eq:stokes_reg_journal2} imply
+If $\lambda\ge\lambda_\ast$, then~\eqref{eq:error_est_journal2} and~\eqref{eq:stokes_reg_journal2} imply
 \[
-\|\boldsymbol e\|_3\lesssim \gamma\,\|p_0\|_2\lesssim  \frac{\mu_1}{\lambda}\,\|\boldsymbol f\|_{-1}\qquad(\lambda>0).
+\|\boldsymbol e\|_3\lesssim\gamma\|p_0\|_2\lesssim\gamma\|\boldsymbol f\|_{-1}.
 \]
-Combining with \eqref{eq:phi_bestgrad_journal2} yields \eqref{eq:fourthorderelasregularityw} for $\lambda\ge\lambda_\ast$.
-
-For $0<\lambda<\lambda_\ast$, Assumption~\ref{RegularityAssumption2} gives
-$\|\boldsymbol w\|_3\lesssim \|\boldsymbol f\|_{-1}\le (\lambda_\ast/\lambda)\|\boldsymbol f\|_{-1}$.
-Since $\inf_{q\in L^2}\|\boldsymbol f+\nabla q\|_{-1}\ge0$, we obtain
+Combining this with~\eqref{eq:phi_bestgrad_journal2} yields~\eqref{eq:fourthorderelasregularityw}.
+For $0\le\lambda\le\lambda_\ast$, we have $\gamma\ge\gamma_0$, so Assumption~\ref{RegularityAssumption2} gives
 \[
-\|\boldsymbol w\|_3
-\lesssim \inf_{q\in L^2(\Omega)}\|\boldsymbol f+\nabla q\|_{-1}+\frac{1}{\lambda}\|\boldsymbol f\|_{-1},
+\|\boldsymbol w\|_3\lesssim\|\boldsymbol f\|_{-1}\le\gamma_0^{-1}\gamma\|\boldsymbol f\|_{-1}.
 \]
-after absorbing $\lambda_\ast$ into the hidden constant. This completes the proof.	
+This also proves~\eqref{eq:fourthorderelasregularityw}, including $\lambda=0$.
 \end{proof}
 
 Taking $\iota=0$, problem \eqref{eq:straingradproblem} becomes the linear elasticity model. Let $\boldsymbol u_0\in H_0^1(\Omega; \mathbb R^d)$ be the solution of the linear elasticity problem
@@ -722,15 +802,21 @@ Taking $\iota=0$, problem \eqref{eq:straingradproblem} becomes the linear elasti
 \boldsymbol u_0=\boldsymbol0 & \textrm{ on } \partial\Omega.
 \end{cases}
 \end{equation}
-According to \cite{BrennerSung1992,MazyaRossmann2010}, it holds
+For the main theorem we require the following classical elasticity estimate, uniformly in $\lambda\geq0$:
 \begin{equation}\label{eq:u0regularity}
 \|\boldsymbol u_0\|_2+\lambda\|\div\boldsymbol u_0\|_1 \lesssim \|\boldsymbol f\|_0.
 \end{equation}
 
 
+On convex polygons in $\mathbb R^2$, the displacement bound in~\eqref{eq:u0regularity} follows from~\cite[Theorem~3.1]{BacutaBramble2003}. To obtain the pressure bound, set $p_0=\lambda\div\boldsymbol u_0$. Equation~\eqref{eq:elasticity} gives
+\[
+\nabla p_0=-\frac{\lambda}{\lambda+\mu}\big(\boldsymbol f+\mu\Delta\boldsymbol u_0\big).
+\]
+Since $\int_\Omega p_0\dx=0$, Poincar\'e's inequality yields $\|p_0\|_1\lesssim\|\boldsymbol f\|_0$. On general polytopes,~\eqref{eq:u0regularity} is retained as an explicit hypothesis.
+
 \begin{theorem}\label{tm:upregularity}
-Suppose Assumptions \ref{RegularityAssumption0}-\ref{RegularityAssumption2} hold.
-Let $\boldsymbol u\in H_0^2(\Omega; \mathbb R^d)$ be the solution of problem \eqref{eq:straingradproblem}, and $\boldsymbol u_0\in H_0^1(\Omega; \mathbb R^d)$ satisfy the linear elasticity problem \eqref{eq:elasticity}. It holds
+Suppose Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2} hold, and suppose the classical elasticity solution satisfies the uniform estimate~\eqref{eq:u0regularity}.
+Let $\boldsymbol f\in L^2(\Omega;\mathbb R^d)$ and $\lambda\ge0$. Let $\boldsymbol u\in H_0^2(\Omega; \mathbb R^d)$ solve~\eqref{eq:straingradproblem}, and let $\boldsymbol u_0\in H_0^1(\Omega; \mathbb R^d)$ solve~\eqref{eq:elasticity}. It holds
 \begin{equation}\label{eq:straingradregularity}	
 \begin{aligned}	
 &|\boldsymbol u-\boldsymbol u_0|_{1} +\iota\|\boldsymbol u\|_2  + \iota^{2}\|\boldsymbol u\|_{3}\\
@@ -739,7 +825,11 @@ Let $\boldsymbol u\in H_0^2(\Omega; \mathbb R^d)$ be the solution of problem \eq
 \end{equation}
 \end{theorem}
 \begin{proof}
-Recall the following estimate from \cite[Lemma 3.8]{ChenHuangHuang2023}:
+We first adapt~\cite[Lemma~3.8]{ChenHuangHuang2023} using estimate~\eqref{eq:fourthorderelasregularityw}, which remains uniform as $\lambda\downarrow0$. Set $\boldsymbol e=\boldsymbol u-\boldsymbol u_0$ and $\boldsymbol F=\div\boldsymbol\sigma(\boldsymbol e)$. Since $\boldsymbol F=\mu\Delta\boldsymbol e+(\lambda+\mu)\nabla\div\boldsymbol e$ and $\gamma(\lambda+\mu)=\mu$, we have
+\[
+\inf_{q\in L^2(\Omega)}\|\boldsymbol F+\nabla q\|_{-1}+\gamma\|\boldsymbol F\|_{-1}\lesssim|\boldsymbol e|_1.
+\]
+The SGE equation gives $\iota^2\div\Delta\boldsymbol\sigma(\boldsymbol u)=\boldsymbol F$, so~\eqref{eq:fourthorderelasregularityw} yields $\iota^2\|\boldsymbol u\|_3\lesssim|\boldsymbol e|_1$ for all $\lambda\ge0$. This replaces the bound in~\cite[equation~(3.19)]{ChenHuangHuang2023}. The energy identity in~\cite[equation~(3.20)]{ChenHuangHuang2023}, followed by the same multiplicative trace and Young inequalities using~\eqref{eq:u0regularity}, gives
 \begin{equation}\label{eq:straingradregularity1}
 	|\boldsymbol u-\boldsymbol u_0|_{1} +\iota\|\boldsymbol u\|_2  + \iota^{2}\|\boldsymbol u\|_{3} \lesssim \iota^{1/2}\|\boldsymbol f\|_0.
 	\end{equation}
@@ -749,53 +839,432 @@ Applying Lemma~\ref{lm:fourthorderelasregularity} to %\eqref{eq:20210919},
 	\end{equation}
 we obtain from \eqref{eq:fourthorderelasregularity} and \eqref{eq:straingradregularity1} that
 	\begin{align}
-	\lambda\iota^{2}\|\div\boldsymbol u\|_{2}&\lesssim \|\div\boldsymbol\sigma(\boldsymbol u-\boldsymbol u_0)\|_{-1}\lesssim \|\boldsymbol\sigma(\boldsymbol u-\boldsymbol u_0)\|_{0}\lesssim |\boldsymbol u-\boldsymbol u_0|_1
-	+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 \notag\\
+	\lambda\iota^{2}\|\div\boldsymbol u\|_{2}&\lesssim \|\div\boldsymbol\sigma(\boldsymbol u-\boldsymbol u_0)\|_{-1}\lesssim \|\boldsymbol\sigma(\boldsymbol u-\boldsymbol u_0)\|_{0} \notag\\
+	&\lesssim |\boldsymbol u-\boldsymbol u_0|_1+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 \notag\\
 	&\lesssim \iota^{1/2}\|\boldsymbol f\|_0+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0. \label{eq:20210923-4}
 	\end{align}
-Thanks to \eqref{eq:straingradregularity1} and \eqref{eq:20210923-4}, it suffices to prove
-	\begin{equation}\label{eq:straingradregularity0}
-	\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 + \lambda\iota|\div\boldsymbol u|_1 \lesssim \iota^{1/2}\|\boldsymbol f\|_0.
-	\end{equation}
-
-By Theorem~1.1 in \cite{CostabelMcIntosh2010}, there exists $\boldsymbol v\in H_0^1(\Omega; \mathbb R^d)$ such that
-	\begin{equation}\label{eq:20210923-3}
-	\div\boldsymbol v=\div(\boldsymbol u-\boldsymbol u_0),\quad \|\boldsymbol v\|_1\lesssim \|\div(\boldsymbol u-\boldsymbol u_0)\|_0.
-	\end{equation}
-	Multiply \eqref{eq:20210919} by $\boldsymbol v$ and apply the integration by parts to get
-	\begin{align}
-	&\quad \lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^2 +\lambda\iota^{2}|\div\boldsymbol u|_1^2 \notag\\
-	&=-2\mu(\boldsymbol\varepsilon(\boldsymbol u-\boldsymbol u_0), \boldsymbol\varepsilon(\boldsymbol v)) + 2\mu\iota^{2}(\Delta\boldsymbol\varepsilon(\boldsymbol u), \boldsymbol\varepsilon(\boldsymbol v)) - \lambda\iota^{2}(\Delta\div\boldsymbol u, \div\boldsymbol u_0). \label{eq:20211217}
-	\end{align}
-	By the multiplicative trace inequality and \eqref{eq:20210923-4}, it holds
-	\begin{align*}
-	- \lambda\iota^{2}(\Delta\div\boldsymbol u, \div\boldsymbol u_0)&=\lambda\iota^{2}(\nabla\div\boldsymbol u, \nabla\div\boldsymbol u_0)- \lambda\iota^{2}(\partial_{\boldsymbol{n}}\div\boldsymbol u, \div\boldsymbol u_0)_{\partial\Omega} \\
-	&\lesssim \lambda\iota^{2}|\div\boldsymbol u|_1|\div\boldsymbol u_0|_1 + \lambda\iota^{2}|\div\boldsymbol u|_1^{1/2}\|\div\boldsymbol u\|_2^{1/2}\|\div\boldsymbol u_0\|_1 \\
-	&\lesssim \lambda\iota^{2}|\div\boldsymbol u|_1|\div\boldsymbol u_0|_1 + \lambda^{1/2}\iota^{5/4}|\div\boldsymbol u|_1^{1/2}\|\boldsymbol f\|_0^{1/2}\|\div\boldsymbol u_0\|_1 \\
-	&\quad + \lambda\iota|\div\boldsymbol u|_1^{1/2}\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^{1/2}\|\div\boldsymbol u_0\|_1.
-	\end{align*}
-	Then we acquire from \eqref{eq:20210923-3}-\eqref{eq:20211217} that
-	\begin{align*}
-	&\quad \lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^2 +\lambda\iota^{2}|\div\boldsymbol u|_1^2 \\
-	&\lesssim (|\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3)|\boldsymbol v|_1 +\lambda\iota^{2}|\div\boldsymbol u|_1|\div\boldsymbol u_0|_1 \\
-	&\quad + \lambda^{1/2}\iota^{5/4}|\div\boldsymbol u|_1^{1/2}\|\boldsymbol f\|_0^{1/2}\|\div\boldsymbol u_0\|_1+ \lambda\iota|\div\boldsymbol u|_1^{1/2}\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^{1/2}\|\div\boldsymbol u_0\|_1 \\
-	&\lesssim (|\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3) \|\div(\boldsymbol u-\boldsymbol u_0)\|_0 +(\lambda\iota^{2}|\div\boldsymbol u|_1^2)^{1/2}(\lambda\iota^2\|\div\boldsymbol u_0\|_1^2)^{1/2} \\
-	&\quad + \iota^{3/2}|\div\boldsymbol u|_1\|\boldsymbol f\|_0 + \lambda\iota\|\div\boldsymbol u_0\|_1^2 \\
-	&\quad + (\lambda\iota|\div\boldsymbol u|_1\|\div(\boldsymbol u-\boldsymbol u_0)\|_0)^{1/2}(\lambda\iota\|\div\boldsymbol u_0\|_1^2)^{1/2}.
-	\end{align*}
-	This implies
-	\begin{align*}
-	&\quad \lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0^2 +\lambda\iota^{2}|\div\boldsymbol u|_1^2 \lesssim \frac{1}{\lambda}(|\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3)^2+ \lambda\iota\|\div\boldsymbol u_0\|_1^2 + \frac{1}{\lambda}\iota\|\boldsymbol f\|_0^2,
-	\end{align*}
-	i.e.,
-	\begin{equation*}
-	\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 +\lambda\iota|\div\boldsymbol u|_1 \lesssim |\boldsymbol u-\boldsymbol u_0|_1 + \iota^{2}|\boldsymbol u|_3+\lambda\iota^{1/2}\|\div\boldsymbol u_0\|_1+\iota^{1/2}\|\boldsymbol f\|_0.
-	\end{equation*}
-	Therefore, we conclude \eqref{eq:straingradregularity0} from
-	\eqref{eq:straingradregularity1} and \eqref{eq:u0regularity}.
+Thanks to~\eqref{eq:straingradregularity1} and~\eqref{eq:20210923-4}, it suffices to prove
+\begin{equation}\label{eq:straingradregularity0}
+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0+\lambda\iota|\div\boldsymbol u|_1\lesssim\iota^{1/2}\|\boldsymbol f\|_0.
+\end{equation}
+Set $p=\lambda\div\boldsymbol u$, $p_0=\lambda\div\boldsymbol u_0$ and $r=p-p_0$. The divergence right inverse~\cite[Theorem~1.1]{CostabelMcIntosh2010} gives $\boldsymbol v\in H_0^1(\Omega;\mathbb R^d)$ with
+\begin{equation}\label{eq:20210923-3}
+\div\boldsymbol v=r,\qquad\|\boldsymbol v\|_1\lesssim\|r\|_0.
+\end{equation}
+Testing~\eqref{eq:20210919} with $\boldsymbol v$, and using $p\in H^2(\Omega)\cap H_0^1(\Omega)$, gives
+\begin{equation}\label{eq:20211217}
+\begin{aligned}
+\|r\|_0^2+\iota^2|p|_1^2
+&=-2\mu(\boldsymbol\varepsilon(\boldsymbol e),\boldsymbol\varepsilon(\boldsymbol v))
++2\mu\iota^2(\Delta\boldsymbol\varepsilon(\boldsymbol u),\boldsymbol\varepsilon(\boldsymbol v))\\
+&\qquad-\iota^2(\Delta p,p_0).
+\end{aligned}
+\end{equation}
+Write $M_f=\|\boldsymbol f\|_0$, $a=\sqrt\iota M_f$ and $T=(\|r\|_0^2+\iota^2|p|_1^2)^{1/2}$. By~\eqref{eq:straingradregularity1} and~\eqref{eq:20210923-3}, the first two terms on the right are bounded by $CaT$. Moreover,~\eqref{eq:20210923-4} and~\eqref{eq:u0regularity} give
+\[
+\iota^2\|p\|_2\lesssim a+T,\qquad\|p_0\|_1\lesssim M_f.
+\]
+Integration by parts and the multiplicative trace inequality imply
+\begin{align*}
+\iota^2|(\Delta p,p_0)|
+&\lesssim\iota^2M_f\big(|p|_1+|p|_1^{1/2}\|p\|_2^{1/2}\big)\\
+&\lesssim\iota M_fT+a\sqrt{T(T+a)}\lesssim aT+a^2.
+\end{align*}
+Thus $T^2\lesssim aT+a^2$, and Young's inequality gives $T\lesssim a$. This proves~\eqref{eq:straingradregularity0}, including $\lambda=0$, without division by $\lambda$.
 \end{proof}
 
 
+
+
+\begin{corollary}\label{cor:convex-regularity}
+Let $\Omega\subset\mathbb R^2$ be a fixed bounded convex polygon. For every $\boldsymbol f\in L^2(\Omega;\mathbb R^2)$, let $\boldsymbol u_\iota$ and $\boldsymbol u_0$ solve~\eqref{eq:straingradproblem} and~\eqref{eq:elasticity}, and set $p_\iota=\lambda\div\boldsymbol u_\iota$ and $p_0=\lambda\div\boldsymbol u_0$. Then
+\[
+\begin{aligned}
+|\boldsymbol u_\iota-\boldsymbol u_0|_1+\iota\|\boldsymbol u_\iota\|_2+\iota^2\|\boldsymbol u_\iota\|_3
+&\leq C_\Omega\mu^{-1}\sqrt\iota\,\|\boldsymbol f\|_0,\\
+\|p_\iota-p_0\|_0+\iota|p_\iota|_1+\iota^2\|p_\iota\|_2
+&\leq C_\Omega\frac{\lambda}{\lambda+2\mu}\sqrt\iota\,\|\boldsymbol f\|_0
+\end{aligned}
+\]
+for all $\lambda\geq0$, $\mu>0$ and $0<\iota<1$, with a constant depending only on $\Omega$.
+\end{corollary}
+\begin{proof}
+First set $\mu=1$. Proposition~\ref{prop:convex-stokes} verifies Assumption~\ref{RegularityAssumption1}, and~\cite[Theorem~3.1]{BacutaBramble2003} and the pressure argument above give~\eqref{eq:u0regularity}. Let $C_S\geq1$ be the constant in~\eqref{eq:A0inv_bound_journal2} and choose $\Lambda=2\sqrt2\,C_S-1$. Proposition~\ref{prop:convex-lame} verifies Assumption~\ref{RegularityAssumption2} on $[0,\Lambda]$, with a constant depending only on $\Omega$. The large-parameter branches of Lemmas~\ref{lm:fourthorderelasregularity} and~\ref{lm:fourthorderelasbestgradient} cover $\lambda\geq\Lambda$. Theorem~\ref{tm:upregularity} therefore proves~\eqref{eq:straingradregularity} for every $\lambda\geq0$ when $\mu=1$.
+
+For the refined pressure factor, set
+\[
+D=\|\div(\boldsymbol u_\iota-\boldsymbol u_0)\|_0
++\iota|\div\boldsymbol u_\iota|_1+\iota^2\|\div\boldsymbol u_\iota\|_2.
+\]
+The continuity of $\div$ and~\eqref{eq:straingradregularity} give $(\lambda+2)D\lesssim\sqrt\iota\,\|\boldsymbol f\|_0$. The three pressure terms sum to $\lambda D=[\lambda/(\lambda+2)](\lambda+2)D$, including at $\lambda=0$.
+
+For arbitrary $\mu>0$, put $\widehat\lambda=\lambda/\mu$. For the same load, uniqueness gives the exact scaling identities
+\[
+\boldsymbol u_{\iota;\lambda,\mu}
+=\mu^{-1}\boldsymbol u_{\iota;\widehat\lambda,1},
+\qquad
+p_{\iota;\lambda,\mu}=p_{\iota;\widehat\lambda,1},
+\]
+and the same identities hold for the classical solutions. Apply the unit-$\mu$ bounds at $\widehat\lambda$ and use
+$\widehat\lambda/(\widehat\lambda+2)=\lambda/(\lambda+2\mu)$.
+\end{proof}
+
+\begin{proposition}\label{prop:boundary-mismatch}
+Fix $\lambda\geq0$, $\mu>0$ and $\boldsymbol f\in L^2(\Omega;\mathbb R^d)$, and suppose $\boldsymbol u_0\in H^2(\Omega;\mathbb R^d)$. Write $\boldsymbol u_\iota=\boldsymbol u$ to display the dependence on $\iota$. If~\eqref{eq:straingradregularity1} holds and $\|\partial_{\boldsymbol n}\boldsymbol u_0\|_{0,\partial\Omega}>0$, then
+\[
+|\boldsymbol u_\iota-\boldsymbol u_0|_1=\Theta(\sqrt\iota),\qquad
+\iota\|\boldsymbol u_\iota\|_2=\Theta(\sqrt\iota),\qquad
+\iota^2\|\boldsymbol u_\iota\|_3=\Theta(\sqrt\iota).
+\]
+Set $p_\iota=\lambda\div\boldsymbol u_\iota$ and $p_0=\lambda\div\boldsymbol u_0$. If~\eqref{eq:straingradregularity} holds and $\|\operatorname{Tr}p_0\|_{0,\partial\Omega}>0$, then in addition
+\[
+\|p_\iota-p_0\|_0=\Theta(\sqrt\iota),\qquad
+\iota|p_\iota|_1=\Theta(\sqrt\iota),\qquad
+\iota^2\|p_\iota\|_2=\Theta(\sqrt\iota).
+\]
+In this case all six terms in~\eqref{eq:straingradregularity} attain half order. The constants in these two-sided bounds may depend on the fixed material parameters and data.
+On a fixed bounded convex polygon, the condition $\|\partial_{\boldsymbol n}\boldsymbol u_0\|_{0,\partial\Omega}>0$ is also necessary for each of the three displacement terms above to be $\Theta(\sqrt\iota)$. If this trace vanishes, their sum is $O(\iota)$ for the fixed material parameters and load.
+\end{proposition}
+\begin{proof}
+Set $B=\|\partial_{\boldsymbol n}\boldsymbol u_0\|_{0,\partial\Omega}>0$, $x_\iota=|\boldsymbol u_\iota-\boldsymbol u_0|_1$ and $y_\iota=\iota\|\boldsymbol u_\iota\|_2$. Since $\partial_{\boldsymbol n}\boldsymbol u_\iota=0$, the multiplicative trace inequality gives
+\[
+B^2\lesssim x_\iota\big(\iota^{-1}y_\iota+\|\boldsymbol u_0\|_2\big).
+\]
+Estimate~\eqref{eq:straingradregularity1} gives $x_\iota,y_\iota\lesssim\sqrt\iota$. Substituting the upper bound for $y_\iota$ yields $x_\iota\gtrsim\sqrt\iota$. Substituting the upper bound for $x_\iota$ instead yields $y_\iota\geq c\sqrt\iota-C\iota\|\boldsymbol u_0\|_2\gtrsim\sqrt\iota$ for sufficiently small $\iota$.
+
+For the highest order term, we use the Sobolev estimate
+\[
+\|v\|_{m+1}^2\lesssim\|v-w\|_m\|v\|_{m+2}+\|w\|_{m+1}^2,
+\qquad v\in H^{m+2},\quad w\in H^{m+1},\quad m=0,1.
+\]
+Indeed, take a common bounded Sobolev extension operator $E$ on the Lipschitz domain~\cite{Rychkov1999}, and write $V=Ev$, $W=Ew$. The Fourier representation of the Sobolev inner products on $\mathbb R^d$ gives
+\[
+\begin{aligned}
+\|V\|_{H^{m+1}(\mathbb R^d)}^2
+&=(V,V-W)_{H^{m+1}(\mathbb R^d)}+(V,W)_{H^{m+1}(\mathbb R^d)}\\
+&\leq\|V\|_{H^{m+2}(\mathbb R^d)}\|V-W\|_{H^m(\mathbb R^d)}
++\|V\|_{H^{m+1}(\mathbb R^d)}\|W\|_{H^{m+1}(\mathbb R^d)}.
+\end{aligned}
+\]
+Young's inequality and the extension bounds prove the claim, also componentwise for vector fields. Taking $m=1$, $v=\boldsymbol u_\iota$ and $w=\boldsymbol u_0$, and using Poincar\'e's inequality for $\boldsymbol u_\iota-\boldsymbol u_0$, gives
+\[
+c\iota^{-1}\leq\|\boldsymbol u_\iota\|_2^2
+\lesssim\sqrt\iota\,\|\boldsymbol u_\iota\|_3+\|\boldsymbol u_0\|_2^2.
+\]
+Thus $\|\boldsymbol u_\iota\|_3\gtrsim\iota^{-3/2}$ for small $\iota$, proving the third displacement bound.
+
+For the pressure, let $B_p=\|\operatorname{Tr}p_0\|_{0,\partial\Omega}>0$, $X_\iota=\|p_\iota-p_0\|_0$ and $Y_\iota=\iota|p_\iota|_1$. The clamped condition implies $\operatorname{Tr}p_\iota=0$, so the trace and Poincar\'e inequalities give
+\[
+B_p^2\lesssim X_\iota\big(\iota^{-1}Y_\iota+\|p_0\|_1\big).
+\]
+Using $X_\iota,Y_\iota\lesssim\sqrt\iota$ from~\eqref{eq:straingradregularity} in turn yields $X_\iota,Y_\iota\gtrsim\sqrt\iota$. Applying the preceding Sobolev estimate with $m=0$, $v=p_\iota$ and $w=p_0$ gives
+\[
+c\iota^{-1}\leq\|p_\iota\|_1^2
+\lesssim X_\iota\|p_\iota\|_2+\|p_0\|_1^2,
+\]
+and hence $\|p_\iota\|_2\gtrsim\iota^{-3/2}$. The upper bounds follow from~\eqref{eq:straingradregularity}. Finally, the zero Dirichlet trace of $\boldsymbol u_0$ implies
+\[
+\operatorname{Tr}p_0=\lambda\boldsymbol n\cdot\partial_{\boldsymbol n}\boldsymbol u_0,
+\]
+so the pressure trace condition also guarantees the displacement mismatch.
+
+Finally, suppose that $\Omega$ is a bounded convex polygon and $\partial_{\boldsymbol n}\boldsymbol u_0=0$. The classical regularity estimate gives $\boldsymbol u_0\in H^2$, and its vanishing Dirichlet and normal traces imply $\boldsymbol u_0\in H_0^2$. Define
+\[
+\begin{aligned}
+\mathcal E_1(\boldsymbol v)
+&=2\mu\|\boldsymbol\varepsilon(\boldsymbol v)\|_0^2+\lambda\|\div\boldsymbol v\|_0^2,\\
+\mathcal E_2(\boldsymbol v)
+&=2\mu\|\nabla\boldsymbol\varepsilon(\boldsymbol v)\|_0^2+\lambda\|\nabla\div\boldsymbol v\|_0^2.
+\end{aligned}
+\]
+Comparison of the SGE energy with the admissible function $\boldsymbol u_0$, using its classical weak equation, gives
+\[
+\mathcal E_1(\boldsymbol u_\iota-\boldsymbol u_0)
++\iota^2\mathcal E_2(\boldsymbol u_\iota)
+\leq\iota^2\mathcal E_2(\boldsymbol u_0).
+\]
+Korn's and Poincar\'e's inequalities yield
+$|\boldsymbol u_\iota-\boldsymbol u_0|_1+\iota\|\boldsymbol u_\iota\|_2=O(\iota)$.
+Moreover, the estimate
+$\iota^2\|\boldsymbol u_\iota\|_3\lesssim|\boldsymbol u_\iota-\boldsymbol u_0|_1$,
+established from~\eqref{eq:fourthorderelasregularityw} in the proof of Theorem~\ref{tm:upregularity}, gives the same bound for the third term. Thus all three are $o(\sqrt\iota)$, proving necessity.
+\end{proof}
+
+\begin{theorem}\label{thm:polygon-sharpness}
+Let $\Omega\subset\mathbb R^2$ be a fixed bounded convex polygon. There exists a nonzero polynomial load $\boldsymbol f_\Omega$, depending only on $\Omega$, with the following property. For its SGE and classical elasticity solutions, let $T_1,\ldots,T_6$ denote the six summands on the left of~\eqref{eq:straingradregularity}, and set $\alpha=\lambda/(\lambda+2\mu)$. There exist $c,C>0$, depending only on $\Omega$, such that
+\[
+\begin{aligned}
+c\mu^{-1}\sqrt\iota&\leq T_j\leq C\mu^{-1}\sqrt\iota,
+&&j=1,2,3,\\
+c\alpha\sqrt\iota&\leq T_j\leq C\alpha\sqrt\iota,
+&&j=4,5,6,
+\end{aligned}
+\]
+for every $\lambda\geq0$, $\mu>0$ and $0<\iota<1$. In particular, at $\lambda=0$ the three pressure terms vanish.
+\end{theorem}
+\begin{proof}
+Merge adjacent collinear edges and denote the genuine edges by $E_1,\ldots,E_M$, with outward normals $\boldsymbol n_1,\ldots,\boldsymbol n_M$. For each edge, choose the affine function $\ell_j$ that vanishes on $E_j$, is positive in $\Omega$, and satisfies $|\nabla\ell_j|=1$. Define
+\[
+\begin{gathered}
+\psi=\prod_{j=1}^M\ell_j^2,\qquad
+R=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\\
+\boldsymbol z=\nabla\psi,\qquad \boldsymbol w=R\nabla\psi,\qquad
+\boldsymbol f_\Omega=-\Delta\boldsymbol w-\nabla\Delta\psi.
+\end{gathered}
+\]
+These are polynomials depending only on $\Omega$. On each edge $E_k$, one has $\nabla\psi=0$ and
+\[
+D^2\psi=h_k\,\boldsymbol n_k\otimes\boldsymbol n_k,
+\qquad
+h_k=2\prod_{j\ne k}\ell_j^2>0
+\quad\text{in the relative interior of }E_k.
+\]
+Let $h$ denote the boundary function equal to $h_k$ on $E_k$. Thus $\|h\|_{0,\partial\Omega}>0$. For every $\lambda\geq0$ and $\mu>0$, direct substitution using $\div\boldsymbol w=0$ gives
+\[
+\boldsymbol u_0=\frac{\boldsymbol w}{\mu}+\frac{\boldsymbol z}{\lambda+2\mu},
+\qquad
+p_0=\frac{\lambda}{\lambda+2\mu}\Delta\psi,
+\qquad
+-\div\boldsymbol\sigma(\boldsymbol u_0)=\boldsymbol f_\Omega.
+\]
+The boundary condition $\boldsymbol u_0=0$ holds because $\nabla\psi=0$ there. Moreover,
+\[
+\partial_{\boldsymbol n}\boldsymbol u_0
+=h\left(\frac{R\boldsymbol n}{\mu}+\frac{\boldsymbol n}{\lambda+2\mu}\right).
+\]
+We first prove the bounds for $\mu=1$. Orthogonality of $R\boldsymbol n$ and $\boldsymbol n$ yields
+\[
+\|\partial_{\boldsymbol n}\boldsymbol u_0\|_{0,\partial\Omega}
+\geq\|h\|_{0,\partial\Omega}>0.
+\]
+In particular, $\boldsymbol u_0\ne0$, so Dirichlet elasticity uniqueness implies $\boldsymbol f_\Omega\ne0$. Also $\|\boldsymbol u_0\|_2$ is uniformly bounded, since the two coefficients in its formula are bounded by $1$ and $1/2$. Corollary~\ref{cor:convex-regularity} and the displacement argument in Proposition~\ref{prop:boundary-mismatch} therefore prove the first three bounds with uniform constants and a common smallness threshold.
+
+For the pressure terms, introduce
+\[
+q_\iota=(\lambda+2)\div\boldsymbol u_\iota,
+\qquad q_0=(\lambda+2)\div\boldsymbol u_0=\Delta\psi.
+\]
+No division by $\lambda$ is needed: writing
+\[
+q_\iota-q_0=(p_\iota-p_0)+2\div(\boldsymbol u_\iota-\boldsymbol u_0),
+\qquad q_\iota=p_\iota+2\div\boldsymbol u_\iota,
+\]
+the displacement and pressure terms in~\eqref{eq:straingradregularity} together yield
+\[
+X_\iota+Y_\iota+Z_\iota\lesssim\sqrt\iota,
+\quad
+X_\iota=\|q_\iota-q_0\|_0,\quad
+Y_\iota=\iota|q_\iota|_1,\quad
+Z_\iota=\iota^2\|q_\iota\|_2.
+\]
+The clamped condition gives $\operatorname{Tr}q_\iota=0$, whereas $q_0$ is independent of the material parameters and $\operatorname{Tr}q_0=h$. The multiplicative trace and Poincar\'e inequalities imply
+\[
+\|h\|_{0,\partial\Omega}^2
+\lesssim X_\iota\big(\iota^{-1}Y_\iota+\|q_0\|_1\big).
+\]
+Using the upper bounds for $Y_\iota$ and $X_\iota$ in turn gives $X_\iota,Y_\iota\gtrsim\sqrt\iota$ for sufficiently small $\iota$, uniformly in the material parameters. The Sobolev estimate from the proof of Proposition~\ref{prop:boundary-mismatch}, applied with $m=0$, $v=q_\iota$ and $w=q_0$, then gives
+\[
+c\iota^{-1}\leq\|q_\iota\|_1^2
+\lesssim X_\iota\|q_\iota\|_2+\|q_0\|_1^2
+\lesssim\sqrt\iota\,\|q_\iota\|_2+1.
+\]
+Thus $Z_\iota\gtrsim\sqrt\iota$, again with a parameter-independent smallness threshold. Finally, $p_\iota=\alpha q_\iota$ and $p_0=\alpha q_0$, so
+\[
+T_4=\alpha X_\iota,\qquad T_5=\alpha Y_\iota,\qquad T_6=\alpha Z_\iota.
+\]
+This proves all six bounds for $0<\iota<\iota_\ast$, with constants and a common threshold $\iota_\ast\in(0,1)$ depending only on $\Omega$.
+
+To cover the remaining interval, set $G=\Delta^2\psi$. Since $\psi\in H_0^2(\Omega)$ is nonzero, $G\not\equiv0$: otherwise testing $\Delta^2\psi=0$ with $\psi$ would give $\|\Delta\psi\|_0=0$ and hence $\psi=0$. Fix $\phi\in C_c^\infty(\Omega)$ such that
+\[
+\kappa=|(G,\phi)|>0,\qquad
+C_\phi=\|\Delta\phi\|_0+\|\Delta^2\phi\|_0.
+\]
+Define $\operatorname{curl}\boldsymbol v=\partial_1v_2-\partial_2v_1$. The constructed load satisfies
+$\div\boldsymbol f_\Omega=\operatorname{curl}\boldsymbol f_\Omega=-G$.
+Taking divergence and curl of the SGE equation gives, in distributions,
+\[
+(1-\iota^2\Delta)\Delta q_\iota=G,\qquad
+(1-\iota^2\Delta)\Delta\operatorname{curl}\boldsymbol u_\iota=G.
+\]
+Testing both identities with the same $\phi$ yields
+\[
+\kappa\leq C_\phi\|q_\iota\|_0,\qquad
+\kappa\leq C_\phi\|\operatorname{curl}\boldsymbol u_\iota\|_0
+\leq\sqrt2\,C_\phi|\boldsymbol u_\iota|_1.
+\]
+Thus, using $q_\iota\in H_0^1(\Omega)$ and Poincar\'e's inequality,
+\[
+|q_\iota|_1,\ \|q_\iota\|_2,\
+\|\boldsymbol u_\iota\|_2,\ \|\boldsymbol u_\iota\|_3\geq c_0>0
+\]
+uniformly for $\lambda\geq0$ and $0<\iota<1$ with $\mu=1$. For $\iota_\ast\leq\iota<1$, this implies
+\[
+T_2,Y_\iota\gtrsim\iota\geq\sqrt{\iota_\ast}\sqrt\iota,\qquad
+T_3,Z_\iota\gtrsim\iota^2\geq\iota_\ast^{3/2}\sqrt\iota.
+\]
+The error terms already have lower bounds throughout $0<\iota<1$: the trace inequalities above and the uniform upper bounds imply
+\[
+\|h\|_{0,\partial\Omega}^2
+\lesssim T_1(\iota^{-1/2}+1),\qquad
+\|h\|_{0,\partial\Omega}^2
+\lesssim X_\iota(\iota^{-1/2}+1).
+\]
+Hence $T_1,X_\iota\gtrsim\sqrt\iota$. Combining the two intervals and multiplying the three $q_\iota$ bounds by $\alpha$ proves the theorem for every $0<\iota<1$, including $\lambda=0$. All constants in this unit-$\mu$ case depend only on $\Omega$.
+
+Finally, apply the material scaling identities from the proof of Corollary~\ref{cor:convex-regularity} to this same load, at $\widehat\lambda=\lambda/\mu$. The three displacement quantities acquire the factor $\mu^{-1}$, while the pressure quantities are unchanged and
+$\widehat\lambda/(\widehat\lambda+2)=\alpha$.
+This proves the stated bounds for all $\mu>0$.
+\end{proof}
+
+On the unit square, the construction reduces to
+\[
+\psi=x^2(1-x)^2y^2(1-y)^2.
+\]
+Here $h=2t^2(1-t)^2$ on each edge with coordinate $t\in(0,1)$, and
+$\|h\|_{0,\partial\Omega}^2=8/315$.
+The solenoidal field used here already appears, up to scaling, in~\cite[Example~6.2, p.~2257]{ChenHuangHuang2023}, where $\boldsymbol u_0=\tfrac12R\nabla\psi$, $\mu=1$, and the load is independent of $\lambda$ and $\iota$. That experiment observes half-order finite element convergence with respect to the mesh size $h$ when $\iota\ll h$. The additional gradient component in our construction produces a nonzero classical pressure trace for $\lambda>0$, while Theorem~\ref{thm:polygon-sharpness} establishes matching continuous bounds in $\iota$ for all six terms on every fixed convex polygon.
+
+
+
+\begin{corollary}\label{cor:compatible-data}
+Let $\boldsymbol u$ and $\boldsymbol u_0$ be the weak solutions of~\eqref{eq:straingradproblem} and~\eqref{eq:elasticity} for $\boldsymbol f\in L^2(\Omega;\mathbb R^d)$. Suppose $\boldsymbol u_0\in H_0^2(\Omega;\mathbb R^d)$ and $\Delta\boldsymbol f\in H^{-1}(\Omega;\mathbb R^d)$. Set $p=\lambda\div\boldsymbol u$, $p_0=\lambda\div\boldsymbol u_0$, $\boldsymbol e=\boldsymbol u-\boldsymbol u_0$ and $r=p-p_0$. Then
+\begin{equation}\label{eq:compatible-data}
+|\boldsymbol e|_1+\iota|\boldsymbol e|_2+\|r\|_0+\iota|r|_1
+\lesssim\iota^2\|\Delta\boldsymbol f\|_{-1},
+\end{equation}
+with a constant uniform for $\lambda\geq0$, $\mu\in[\mu_0,\mu_1]$ and $0<\iota<1$. In particular, the sufficient conditions $\boldsymbol u_0\in H^3\cap H_0^2$ and $p_0\in H^2$ give
+\[
+|\boldsymbol e|_1+\iota|\boldsymbol e|_2+\|r\|_0+\iota|r|_1
+\lesssim\iota^2\big(\mu\|\boldsymbol u_0\|_3+\|p_0\|_2\big).
+\]
+Neither estimate requires Assumptions~\ref{RegularityAssumption1}, \ref{RegularityAssumption2} or the classical estimate~\eqref{eq:u0regularity}.
+\end{corollary}
+\begin{proof}
+Let $V=H_0^2(\Omega;\mathbb R^d)$, $Q=H_0^1(\Omega)\cap L_0^2(\Omega)$, and define
+\[
+\|\boldsymbol v\|_V^2=|\boldsymbol v|_1^2+\iota^2|\boldsymbol v|_2^2,
+\qquad\|q\|_Q^2=\|q\|_0^2+\iota^2|q|_1^2.
+\]
+Use the bilinear forms
+\begin{align*}
+a_\iota(\boldsymbol w,\boldsymbol v)&=2\mu\big((\boldsymbol\varepsilon(\boldsymbol w),\boldsymbol\varepsilon(\boldsymbol v))+\iota^2(\nabla\boldsymbol\varepsilon(\boldsymbol w),\nabla\boldsymbol\varepsilon(\boldsymbol v))\big),\\
+b_\iota(\boldsymbol v,q)&=(\div\boldsymbol v,q)+\iota^2(\nabla\div\boldsymbol v,\nabla q).
+\end{align*}
+The divergence right inverse in~\cite[Theorem~1.1]{CostabelMcIntosh2010} can be chosen to satisfy both $\|\mathcal Bq\|_1\lesssim\|q\|_0$ and $\|\mathcal Bq\|_2\lesssim\|q\|_1$ for the same $\mathcal B$. To make this choice explicit, fix a bounded right inverse $\mathcal B_0:L_0^2\to H_0^1$ and let $E_0$ denote zero extension. Identifying scalar functions and vector fields with top-degree and $(d-1)$-forms, respectively, the construction in~\cite[Theorem~4.6 and proof of Corollary~4.7(b)]{CostabelMcIntosh2010} gives
+\[
+\mathcal Bq=\big(T_dE_0q+L_{d-1}E_0\mathcal B_0q\big)|_\Omega,
+\qquad\div\mathcal Bq=q.
+\]
+The fixed operator $T_d$ has order $-1$, while $L_{d-1}$ is smoothing; both preserve support in $\overline\Omega$. Hence this single choice maps $L_0^2$ to $H_0^1$ and $Q$ to $V$ with the two stated bounds. Testing with $\mathcal Bq$ gives the uniform inf-sup estimate
+\[
+\|q\|_Q\lesssim\sup_{\boldsymbol v\in V\setminus\{0\}}\frac{b_\iota(\boldsymbol v,q)}{\|\boldsymbol v\|_V}.
+\]
+Here $\boldsymbol e\in V$, $r\in Q$ and $r=\lambda\div\boldsymbol e$. The classical elasticity equation gives
+\[
+\langle\Delta\boldsymbol f,\boldsymbol v\rangle
+=-2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol u_0),\nabla\boldsymbol\varepsilon(\boldsymbol v))
+-\lambda(\nabla\div\boldsymbol u_0,\nabla\div\boldsymbol v).
+\]
+This identity holds first for $\boldsymbol v\in C_c^\infty$ by distributional integration by parts, and then for every $\boldsymbol v\in V$ by density, since both sides are continuous on $V$. Subtracting the weak equations therefore yields
+\[
+a_\iota(\boldsymbol e,\boldsymbol v)+b_\iota(\boldsymbol v,r)
+=\iota^2\langle\Delta\boldsymbol f,\boldsymbol v\rangle=:R_\iota(\boldsymbol v).
+\]
+Thus $|R_\iota(\boldsymbol v)|\lesssim\delta\|\boldsymbol v\|_V$, where $\delta=\iota^2\|\Delta\boldsymbol f\|_{-1}$. Taking $\boldsymbol v=\boldsymbol e$ and using Korn's inequalities yields
+\[
+\mu\|\boldsymbol e\|_V^2+\lambda\|\div\boldsymbol e\|_Q^2\lesssim\delta\|\boldsymbol e\|_V,
+\]
+so $\|\boldsymbol e\|_V\lesssim\delta$. The inf-sup estimate gives $\|r\|_Q\lesssim\delta+\mu\|\boldsymbol e\|_V\lesssim\delta$, uniformly for the stated parameter ranges, including $\lambda=0$.
+For the smoother sufficient conditions, the distributional identity
+\[
+\Delta\boldsymbol f=-\div\big(2\mu\Delta\boldsymbol\varepsilon(\boldsymbol u_0)+(\Delta p_0)\boldsymbol I\big)
+\]
+gives $\|\Delta\boldsymbol f\|_{-1}\lesssim\mu\|\boldsymbol u_0\|_3+\|p_0\|_2$.
+\end{proof}
+
+\begin{remark}
+Estimate~\eqref{eq:compatible-data} controls displacement and pressure differences. The term $\iota\|\boldsymbol u\|_2$ in~\eqref{eq:straingradregularity} is generally only $O(\iota)$, even for compatible data, since $\|\boldsymbol u-\boldsymbol u_0\|_2=O(\iota)$ while $\boldsymbol u_0$ need not vanish.
+\end{remark}
+
+\begin{proposition}\label{prop:compatible-leading}
+Fix $\lambda$, $\mu$ and $\boldsymbol f\in L^2(\Omega;\mathbb R^d)$, and let $\boldsymbol u$ and $\boldsymbol u_0$ be the weak solutions of~\eqref{eq:straingradproblem} and~\eqref{eq:elasticity}. Set $\boldsymbol e=\boldsymbol u-\boldsymbol u_0$ and $r=\lambda\div\boldsymbol e$. Then
+\[
+|\boldsymbol e|_1=O(\iota^2)
+\quad\Longleftrightarrow\quad
+\boldsymbol u_0\in H_0^2(\Omega;\mathbb R^d)
+\ \text{and}\ \Delta\boldsymbol f\in H^{-1}(\Omega;\mathbb R^d).
+\]
+When these conditions hold and $\boldsymbol u_0\neq0$, let $\boldsymbol U\in H_0^1(\Omega;\mathbb R^d)$ be the weak solution of
+\[
+-\div\boldsymbol\sigma(\boldsymbol U)=\Delta\boldsymbol f.
+\]
+Then $\boldsymbol U\neq0$ and, as $\iota\to0$,
+\begin{equation}\label{eq:compatible-leading-error}
+\frac{\boldsymbol e}{\iota^2}\longrightarrow\boldsymbol U\quad\text{strongly in }H^1,
+\qquad
+\frac{r}{\iota^2}\longrightarrow\lambda\div\boldsymbol U\quad\text{strongly in }L^2.
+\end{equation}
+The four-term error formed from the displacement and pressure differences satisfies
+\begin{equation}\label{eq:compatible-leading-coefficient}
+\lim_{\iota\to0}
+\frac{|\boldsymbol e|_1+\iota|\boldsymbol e|_2+\|r\|_0+\iota|r|_1}{\iota^2}
+=|\boldsymbol U|_1+\lambda\|\div\boldsymbol U\|_0>0.
+\end{equation}
+In particular, $|\boldsymbol e|_1=\Theta(\iota^2)$. The pressure error satisfies $\|r\|_0=\Theta(\iota^2)$ if and only if $\lambda\div\boldsymbol U\neq0$; otherwise $\|r\|_0=o(\iota^2)$. These conclusions require none of Assumptions~\ref{RegularityAssumption1}, \ref{RegularityAssumption2} or~\eqref{eq:u0regularity}.
+\end{proposition}
+\begin{proof}
+Define
+\begin{align*}
+A(\boldsymbol w,\boldsymbol v)&=2\mu(\boldsymbol\varepsilon(\boldsymbol w),\boldsymbol\varepsilon(\boldsymbol v))+\lambda(\div\boldsymbol w,\div\boldsymbol v),\\
+C(\boldsymbol w,\boldsymbol v)&=2\mu(\nabla\boldsymbol\varepsilon(\boldsymbol w),\nabla\boldsymbol\varepsilon(\boldsymbol v))+\lambda(\nabla\div\boldsymbol w,\nabla\div\boldsymbol v).
+\end{align*}
+The sufficient direction of the criterion follows from Corollary~\ref{cor:compatible-data}. Conversely, suppose $|\boldsymbol e|_1=O(\iota^2)$ and write $\boldsymbol E_\iota=\boldsymbol e/\iota^2$. Then $\boldsymbol E_\iota$ is bounded in $H_0^1$ and $\boldsymbol u\to\boldsymbol u_0$ strongly in $H^1$. Subtracting the weak equations gives
+\[
+A(\boldsymbol E_\iota,\boldsymbol v)+C(\boldsymbol u,\boldsymbol v)=0
+\qquad\forall\boldsymbol v\in H_0^2(\Omega;\mathbb R^d).
+\]
+Taking $\boldsymbol v=\boldsymbol u$ shows that $C(\boldsymbol u,\boldsymbol u)=-A(\boldsymbol E_\iota,\boldsymbol u)$ is bounded for fixed material parameters. Korn's inequality bounds $\boldsymbol u$ in $H_0^2$, and its weak limit is $\boldsymbol u_0\in H_0^2$. Along a subsequence, take $\boldsymbol E_\iota\rightharpoonup\boldsymbol U_\ast$ in $H_0^1$. For every $\boldsymbol v\in C_c^\infty(\Omega;\mathbb R^d)$, passage to the limit gives
+\[
+A(\boldsymbol U_\ast,\boldsymbol v)=-C(\boldsymbol u_0,\boldsymbol v)
+=\langle\Delta\boldsymbol f,\boldsymbol v\rangle.
+\]
+The left side is continuous on $H_0^1$, so $\Delta\boldsymbol f\in H^{-1}$. This proves necessity.
+
+Now assume the equivalent conditions and $\boldsymbol u_0\neq0$. The hypothesis $\Delta\boldsymbol f\in H^{-1}$ defines $\boldsymbol U$ uniquely. The residual identity from Corollary~\ref{cor:compatible-data} gives
+\[
+A(\boldsymbol E_\iota,\boldsymbol v)+\iota^2C(\boldsymbol E_\iota,\boldsymbol v)
+=\langle\Delta\boldsymbol f,\boldsymbol v\rangle
+\qquad\forall\boldsymbol v\in H_0^2(\Omega;\mathbb R^d).
+\]
+Here $\langle\Delta\boldsymbol f,\boldsymbol v\rangle=-C(\boldsymbol u_0,\boldsymbol v)$ by the density argument above. Testing with $\boldsymbol E_\iota$ bounds $\boldsymbol E_\iota$ in $H_0^1$ and $\iota^2C(\boldsymbol E_\iota,\boldsymbol E_\iota)$. For each fixed $\boldsymbol v\in H_0^2$,
+\[
+|\iota^2C(\boldsymbol E_\iota,\boldsymbol v)|
+\leq\iota\big(\iota^2C(\boldsymbol E_\iota,\boldsymbol E_\iota)\big)^{1/2}
+C(\boldsymbol v,\boldsymbol v)^{1/2}\longrightarrow0.
+\]
+Density of $H_0^2$ in $H_0^1$ and uniqueness identify every weak limit with $\boldsymbol U$. Moreover,
+\[
+A(\boldsymbol E_\iota,\boldsymbol E_\iota)+\iota^2C(\boldsymbol E_\iota,\boldsymbol E_\iota)
+=\langle\Delta\boldsymbol f,\boldsymbol E_\iota\rangle
+\longrightarrow A(\boldsymbol U,\boldsymbol U).
+\]
+Weak lower semicontinuity and Korn's inequality give strong convergence in $H^1$. Since $r=\lambda\div\boldsymbol e$, this proves~\eqref{eq:compatible-leading-error}.
+
+The energy identity gives $\iota^2C(\boldsymbol E_\iota,\boldsymbol E_\iota)\to0$. Korn's inequality then yields $\iota|\boldsymbol E_\iota|_2\to0$. Consequently, for fixed $\lambda$,
+\[
+\frac{\iota|\boldsymbol e|_2}{\iota^2}\longrightarrow0,
+\qquad
+\frac{\iota|r|_1}{\iota^2}\lesssim\lambda\iota|\boldsymbol E_\iota|_2\longrightarrow0.
+\]
+Together with~\eqref{eq:compatible-leading-error}, this proves the equality in~\eqref{eq:compatible-leading-coefficient}. Finally,
+\[
+\langle\Delta\boldsymbol f,\boldsymbol u_0\rangle
+=-C(\boldsymbol u_0,\boldsymbol u_0)=-K_0<0,
+\]
+where $K_0:=2\mu\|\nabla\boldsymbol\varepsilon(\boldsymbol u_0)\|_0^2+\lambda\|\nabla\div\boldsymbol u_0\|_0^2$ is positive by Korn's inequality and $\boldsymbol u_0\neq0$. Thus $\boldsymbol U\neq0$, proving positivity of the limiting coefficient. The sharpness statements follow by taking norms in~\eqref{eq:compatible-leading-error}.
+\end{proof}
+
+\input{SGE-corner-appendix}
 
 \bibliographystyle{abbrv}
 \bibliography{refs}
