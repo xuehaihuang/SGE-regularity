@@ -160,7 +160,7 @@ The role of matching normal-derivative data in the classical limit is also discu
 \boldsymbol u_0\in H_0^2(\Omega;\mathbb R^d)
 \ \text{and}\ \Delta\boldsymbol f\in H^{-1}(\Omega;\mathbb R^d)
 \]
-for fixed Lam\'e parameters. It also determines the strong limits of the scaled displacement and pressure errors and the strictly positive limiting coefficient of the four-term error in~\eqref{eq:compatible-leading-coefficient} for every nonzero compatible solution. The pressure limit itself may vanish.
+for fixed Lam\'e parameters. It also determines the strong limits of the scaled displacement and pressure errors and the strictly positive limiting coefficient of the four-term error in~\eqref{eq:compatible-leading-coefficient} for every nonzero compatible solution. The limit of the rescaled pressure error may vanish.
 
 For later uses, we introduce some notation.
 Given a bounded domain $D\subset \mathbb{R}^{d}$
@@ -823,6 +823,7 @@ Let $\boldsymbol f\in L^2(\Omega;\mathbb R^d)$ and $\lambda\ge0$. Let $\boldsymb
 &\qquad+\lambda\|\div(\boldsymbol u-\boldsymbol u_0)\|_0 + \lambda\iota|\div\boldsymbol u|_1 + \lambda\iota^2\|\div\boldsymbol u\|_2 \lesssim \iota^{1/2}\|\boldsymbol f\|_0.
 \end{aligned}
 \end{equation}
+The hidden constant is uniform for \(\lambda\ge0\), \(\mu\in[\mu_0,\mu_1]\), and \(0<\iota<1\), and may depend on \(\Omega\), \(\mu_0\), \(\mu_1\), and the constants in Assumptions~\ref{RegularityAssumption1} and~\ref{RegularityAssumption2} and estimate~\eqref{eq:u0regularity}.
 \end{theorem}
 \begin{proof}
 We first adapt~\cite[Lemma~3.8]{ChenHuangHuang2023} using estimate~\eqref{eq:fourthorderelasregularityw}, which remains uniform as $\lambda\downarrow0$. Set $\boldsymbol e=\boldsymbol u-\boldsymbol u_0$ and $\boldsymbol F=\div\boldsymbol\sigma(\boldsymbol e)$. Since $\boldsymbol F=\mu\Delta\boldsymbol e+(\lambda+\mu)\nabla\div\boldsymbol e$ and $\gamma(\lambda+\mu)=\mu$, we have
