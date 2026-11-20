@@ -1,0 +1,3576 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=26mm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,enumitem,xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\hypersetup{pdftitle={A convexity criterion and sharp parameter-uniform estimates for clamped strain gradient elasticity on polyhedra},pdfsubject={Revised manuscript, version 3, 20 November 2026}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\setlist[enumerate]{itemsep=3pt,topsep=5pt}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks[1]
+\title{\bfseries A convexity criterion and sharp parameter-uniform estimates for clamped strain gradient elasticity on polyhedra}
+% Author names and affiliations to be supplied by the authors before submission.
+\author{}
+\date{20 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We characterize global regularity for clamped strain gradient elasticity
+on bounded connected polyhedral Lipschitz domains in three dimensions.
+For every fixed pair of Lam\'e parameters and every positive length
+scale, the energy solution belongs to \(H^3\) for every \(L^2\) load
+if and only if the domain is convex.
+On each fixed convex polyhedron we establish an
+\(H^{-1}\times L^2\)-to-\(H^3\times H^2\) shift for the associated
+fourth-order Stokes system with compatible constraint data, together
+with material-uniform fourth-order Lam\'e and classical elasticity
+estimates. The vertex argument retains the mean of the radial angular
+component and absorbs its negative contribution through the divergence
+penalty. A bounded transformation of the test functions then yields
+uniform coercivity throughout the critical complex strip for every
+convex vertex cone. Full mixed angular inversion, edge estimates, and
+a joint velocity--pressure Mellin shift give the global regularity.
+The resulting three weighted displacement quantities are bounded at scale
+\(\mu^{-1}\sqrt{\iota}\), and the three pressure quantities at scale
+\([\lambda/(\lambda+2\mu)]\sqrt{\iota}\), uniformly for
+\(\lambda\ge0\), \(\mu>0\), and \(0<\iota<1\).
+One polynomial load depending only on the polyhedron attains all six
+scales simultaneously; the pressure quantities vanish when \(\lambda=0\).
+A corrected reentrant-edge mode proves necessity with \(L^4\) loads.
+Finally, on arbitrary bounded connected Lipschitz domains, we
+characterize quadratic convergence of the displacement in \(H^1\)
+and identify its nonzero leading coefficient for nonzero compatible
+solutions at fixed material parameters.
+\end{abstract}
+\noindent\textbf{Keywords.} Strain gradient elasticity; convex polyhedra;
+corner and edge singularities; fourth-order Stokes system; incompressible
+limit; parameter-uniform regularity; boundary layers.
+
+\smallskip
+\noindent\textbf{2020 Mathematics Subject Classification.} Primary 35J58;
+secondary 35J48, 35B65, 74B05.
+
+\section{Introduction}
+
+The clamped strain gradient elasticity problem combines two limiting
+mechanisms. As the internal length tends to zero, a fourth-order equation
+approaches the classical second-order elasticity system, while the normal
+derivative boundary condition persists in a boundary layer. As the first
+Lam\'e parameter tends to infinity, the displacement becomes nearly
+incompressible. On a polyhedron, both mechanisms interact with edge and
+vertex singularities. A useful regularity theorem must therefore identify
+the admissible geometry and control its constants throughout the material
+parameter range.
+
+For constant coefficients, the operator studied here is
+\[
+ (I-\iota^2\Delta)\mathcal L_{\lambda,\mu},
+ \qquad
+ \mathcal L_{\lambda,\mu}u=-\mu\Delta u
+                  -(\lambda+\mu)\nabla\operatorname{div}u,
+\]
+with \(u\in H^2_0(\Omega)^3\), \(\lambda\ge0\), \(\mu>0\), and
+\(\iota>0\). We prove that convexity is both sufficient and necessary for
+global \(H^3\) regularity for all \(L^2\) loads among bounded connected
+polyhedral Lipschitz domains. Sufficiency includes every fixed convex
+polyhedron. It imposes no additional bound on a dihedral angle, solid
+angle, or first spherical eigenvalue.
+
+The central issue is the fourth-order vertex system, for which scalar
+regularity cannot simply be applied componentwise. Let \(\Sigma\) be the
+spherical section of a pointed convex vertex cone. After rotation, its
+closure lies in an open hemisphere. For the displacement exponent
+\(s=\tfrac12+x+iy\), \(0\le x\le1\), and normalized penalty
+\(\beta=(\lambda+\mu)/\mu\), we construct a radial test transform
+\(T_{s,\beta}\) such that
+\[
+ \operatorname{Re}a_{\beta,s}(U,T_{s,\beta}U)
+ \ge\frac{47}{192}\|\Delta_SU\|^2
+       +\frac12y^4\|U\|^2.
+\]
+The estimate includes the entire closed complex strip and has a constant
+independent of \(\beta\). Its proof uses a zero-mean hemisphere inequality
+\(\|\Delta_Sv\|^2\ge10\|\nabla_Sv\|^2\), retains the radial mean in the
+general case, and controls the resulting negative term by the
+divergence penalty. In the Stokes limit the divergence constraint removes
+that mean directly. This mechanism is what permits the full convex
+polyhedral class.
+
+Weak angular invertibility alone does not give the asserted Sobolev
+shift. We construct the complete mixed inverse, including a
+parameter-dependent right inverse of angular divergence and recovery of
+the original pressure. We then prove estimates at every axial Fourier
+frequency along an edge. At vertices a simultaneous Mellin shift moves
+velocity and pressure from their energy line to the target line, and
+dyadic annular estimates produce the unweighted global derivatives.
+The argument keeps the correct negative force norms and the compatibility
+of nonzero constraint data. A strong-space perturbation of the global
+fourth-order Stokes inverse treats the nearly incompressible limit.
+
+\paragraph{Previous regularity hypotheses and uniform estimates.}
+The need for a fourth-order clamped shift was explicit in the strain-gradient
+finite element literature. Li, Ming and Wang \cite[Hypothesis~1]{LiMingWang2021}
+postulated an $H^{-1}$-to-$H^3$ estimate for the fourth-order Lam\'e
+operator and observed that its validity on convex polytopes was unclear.
+The convex-polyhedral theorem established here verifies this particular
+hypothesis, and also supplies the dependence on the material parameters.
+Chen, Huang and Huang \cite{CHH2023} developed parameter-robust estimates
+under regularity assumptions and proved a two-dimensional fourth-order
+Stokes shift for zero constraint data. We use that published result in
+exactly this form and extend it to compatible nonzero constraints by a
+separate strong divergence lifting.
+
+Liao, Ming and Xu \cite[Theorem~2.9]{LiaoMingXu2023} previously obtained
+the half-order length-parameter upper bounds and the related higher-norm
+estimates on smooth planar domains, with constants independent of
+$\lambda$ and $\iota$. The present results establish the necessary
+regularity on general convex three-dimensional polyhedra, make the material factors
+$\mu^{-1}$ and $\lambda/(\lambda+2\mu)$ explicit, and prove matching
+\emph{individual} lower bounds for six quantities using one domain-only
+load, simultaneously for the full material and length parameter ranges.
+The solenoidal square example of \cite{CHH2023} motivates this construction;
+its additional gradient component makes the pressure scales nontrivial.
+Liao and Ming \cite{LiaoMing2025} instead investigate a broken Hardy
+inequality and an SGE formulation with natural boundary conditions; that
+boundary-value problem is distinct from the present clamped one.
+
+\paragraph{Implications for robust discretization.}
+Huang, Huang and Tang \cite[Section~2.3, (2.7)--(2.8)]{HuangHuangTang2026}
+use the same six weighted continuous estimates as regularity inputs for
+a nonconforming SGE analysis on polytopal domains. The present results
+verify these inputs on convex three-dimensional polyhedra, with a
+sharper explicit pressure factor. Their separate classical-elasticity
+$s$-regularity condition is stated for $2\le s\le3$; the present
+classical estimate supplies its $s=2$ case, not all higher values of $s$.
+
+Classical elasticity on convex nonsmooth domains has an extensive
+theory. B\u{a}cu\c{t}\u{a} and Bramble \cite{BacutaBramble2003} prove
+material-uniform \(H^2\) estimates on convex planar polygons.
+Kozlov, Maz'ya and Schwab \cite{KozlovMazyaSchwab1992} analyze the
+displacement pencil near a conical vertex; polyhedral elliptic and Stokes
+regularity are developed further in \cite{MazyaRossmann2004,MazyaRossmann2007}.
+We supply the classical estimate needed here with a proof that tracks
+the full material range and the local constraint compatibility.
+Our main contribution concerns the clamped fourth-order system and its
+consequences for SGE, rather than the existence of classical fixed-parameter
+convex-cone regularity.
+
+Choi, Kim and Koh \cite{ChoiKimKoh2025} study the second-order Lam\'e
+system on nonconvex planar polygons with one reentrant corner and
+inhomogeneous Dirichlet data.
+They obtain singular expansions, explicit singular coefficients, and
+convergence of coefficients and regular remainders to the corresponding
+Stokes quantities in the incompressible limit. The present pencil is
+fourth order with clamped conditions, and its critical strip governs
+three-dimensional \(H^3\) regularity. The results below include convex
+polyhedral sufficiency, a converse for every nonconvex polyhedron,
+and matching SGE estimates throughout the length and material parameter
+ranges. Thus the two analyses concern related incompressible limits
+but different operators, boundary conditions, and regularity conclusions.
+
+Our use of the trace extension theorem of Maz'ya, Mitrea and
+Shaposhnikova \cite{MMS2010} is confined to its boundary-jet results;
+we do not invoke its elliptic solvability theorem under small-oscillation
+hypotheses on the normal. Support-preserving divergence inverses are
+taken from Costabel and McIntosh \cite{CostabelMcIntosh2010}.
+The planar fourth-order Lam\'e corner calculation is given in full in
+Appendix~\ref{sec:planar-pencil20}; its conversion to a Sobolev shift uses
+the corner expansion theorem of Costabel and Dauge \cite{CostabelDauge1994}.
+The baseline hemisphere inequalities used here are established in
+Mayboroda and Maz'ya \cite[Lemma~2.3, (2.16), (2.25)]{MayborodaMazya2008};
+the strengthened zero-mean inequality needed for the coupled radial
+test is proved below.
+
+The main statements and their quantifiers appear in Section~\ref{sec:main}.
+Sections~\ref{sec:hemispherical-pencil}--\ref{sec:g-lameuniform}
+establish fourth-order regularity. Section~\ref{sec:est-classical}
+proves the classical material-uniform input.
+Sections~\ref{sec:est-sge} and \ref{sec:est-sharpness}
+give the SGE upper and lower bounds.
+Section~\ref{sec:necessity} proves the converse by a localized edge
+construction. Section~\ref{comp:section} addresses compatible loads and the
+second-order asymptotic coefficient without requiring convexity.
+
+\section{Formulation and main results}\label{sec:main}
+
+\subsection{Spaces, operators, and energy solutions}
+
+A polyhedral Lipschitz domain means a bounded connected open subset of
+\(\mathbb R^3\) with Lipschitz boundary consisting of finitely many
+planar faces. Coplanar subdivisions do not create geometric edges.
+All material coefficients are spatially constant. The space
+\(H^k_0(\Omega)\) is the closure of \(C_c^\infty(\Omega)\) in \(H^k\);
+in particular \(H^2_0\) imposes zero displacement and zero first-order
+traces. We use \(H^{-k}(\Omega)=(H^k_0(\Omega))^*\),
+\(L^2_0(\Omega)=\{q\in L^2:\int_\Omega q=0\}\), and the usual full
+norms \(\|\cdot\|_{H^k}\) and seminorms \(|\cdot|_{H^k}\).
+An omitted domain is \(\Omega\). Vector and tensor norms are componentwise.
+The real spaces are complexified in the transform arguments, with
+inner products linear in the first variable.
+
+Write
+\[
+ \epsilon(u)=\tfrac12(\nabla u+\nabla u^\top),\qquad
+ \sigma_{\lambda,\mu}(u)=2\mu\epsilon(u)
+                      +\lambda(\operatorname{div}u)I,
+\]
+\[
+ P_{\lambda,\mu}=-\Delta\mathcal L_{\lambda,\mu}
+ =\mu\Delta^2+(\lambda+\mu)\nabla\Delta\operatorname{div}.
+\]
+The symmetric forms are
+\begin{align}
+ A_{\lambda,\mu}(u,v)
+ &=2\mu(\epsilon(u),\epsilon(v))
+                  +\lambda(\operatorname{div}u,\operatorname{div}v),\\
+ C_{\lambda,\mu}(u,v)
+ &=2\mu(\nabla\epsilon(u),\nabla\epsilon(v))
+                  +\lambda(\nabla\operatorname{div}u,\nabla\operatorname{div}v).
+\end{align}
+Integration by parts and density give
+\[
+ A_{\lambda,\mu}(u,u)
+ =\mu\|\nabla u\|^2+(\lambda+\mu)\|\operatorname{div}u\|^2
+ \quad(u\in H^1_0),
+\]
+\[
+ C_{\lambda,\mu}(u,u)
+ =\mu\|D^2u\|^2+(\lambda+\mu)\|\nabla\operatorname{div}u\|^2
+ \quad(u\in H^2_0).
+\]
+Consequently the clamped fourth-order problem is coercive on \(H^2_0\).
+For \(f\in L^2(\Omega)^3\), the unique SGE and classical energy solutions
+are defined by
+\begin{align}
+ A_{\lambda,\mu}(u_\iota,v)+\iota^2C_{\lambda,\mu}(u_\iota,v)
+  &=(f,v) &&(v\in H^2_0(\Omega)^3),\label{eq:main-sge}\\
+ A_{\lambda,\mu}(u_0,v)&=(f,v)
+               &&(v\in H^1_0(\Omega)^3).\label{eq:main-classical}
+\end{align}
+These are the weak forms of
+\((I-\iota^2\Delta)\mathcal L_{\lambda,\mu}u_\iota=f\) and
+\(\mathcal L_{\lambda,\mu}u_0=f\).
+We use the pressure convention
+\[
+ p_\iota=\lambda\operatorname{div}u_\iota,\qquad
+ p_0=\lambda\operatorname{div}u_0,\qquad
+ \alpha=\frac{\lambda}{\lambda+2\mu}.
+\]
+The auxiliary mixed pressures used in the regularity proofs are
+normalized differently and are always specified where introduced.
+
+For the fourth-order Stokes system let
+\[
+ -\Delta\chi_\Omega=1,\quad \chi_\Omega\in H^1_0(\Omega),\qquad
+ Q(\Omega)=H^1_0(\Omega)\cap L^2_0(\Omega),\qquad
+ L^2_\chi(\Omega)=\{g\in L^2:(g,\chi_\Omega)=0\}.
+\]
+Its equations are
+\begin{equation}\label{eq:main-stokes}
+ \Delta^2v+\nabla\Delta q=F,\qquad
+ \Delta\operatorname{div}v=g,\qquad
+ (v,q)\in H^2_0(\Omega)^3\times Q(\Omega).
+\end{equation}
+The condition \((g,\chi_\Omega)=0\) follows from
+\(\int_\Omega\operatorname{div}v=0\); it is also sufficient for energy
+solvability. The pressure has zero Dirichlet trace and zero mean,
+but no normal derivative boundary condition.
+
+\subsection{Global shifts and the geometric criterion}
+
+\begin{theorem}[Material-uniform regularity]\label{thm:main-regularity}
+Let \(\Omega\) be a fixed bounded convex polyhedron.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item For \(F\in H^{-1}(\Omega)^3\) and \(g\in L^2_\chi(\Omega)\),
+the solution of \eqref{eq:main-stokes} satisfies
+\begin{equation}\label{eq:main-stokes-shift}
+ \|v\|_{H^3}+\|q\|_{H^2}
+ \le C_\Omega(\|F\|_{H^{-1}}+\|g\|_{L^2}).
+\end{equation}
+\item If \(P_{\lambda,\mu}u=F\in H^{-1}(\Omega)^3\) with \(u\in H^2_0\),
+then
+\begin{equation}\label{eq:main-lame4}
+ \mu\|u\|_{H^3}+(\lambda+\mu)\|\operatorname{div}u\|_{H^2}
+ \le C_\Omega\|F\|_{H^{-1}}.
+\end{equation}
+\item The solution of \eqref{eq:main-classical} satisfies
+\begin{equation}\label{eq:main-lame2}
+ \mu\|u_0\|_{H^2}+(\lambda+\mu)\|\operatorname{div}u_0\|_{H^1}
+ \le C_\Omega\|f\|_{L^2}.
+\end{equation}
+\end{enumerate}
+The constants in \eqref{eq:main-lame4}--\eqref{eq:main-lame2}
+are independent of all \(\lambda\ge0\) and \(\mu>0\).
+\end{theorem}
+
+The three parts are proved in Theorems~\ref{thm:g-stokes},
+\ref{thm:g-lameuniform}, and \ref{thm:est-classical}, respectively.
+Constants throughout may depend on the fixed domain. No uniformity over
+degenerating families of polyhedra is asserted.
+
+\begin{theorem}[Convexity criterion]\label{thm:main-convexity}
+Let \(\Omega\) be a bounded connected polyhedral Lipschitz domain.
+For each fixed \(\lambda\ge0\), \(\mu>0\), and \(\iota>0\), the following
+properties are equivalent:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \(\Omega\) is convex.
+\item For every \(F\in H^{-1}(\Omega)^3\), the clamped energy solution
+of \(P_{\lambda,\mu}u=F\) belongs to \(H^3(\Omega)^3\).
+\item For every \(f\in L^2(\Omega)^3\), the SGE solution
+\(u_\iota\) belongs to \(H^3(\Omega)^3\).
+\item For every \(F\in H^{-1}(\Omega)^3\), the solution of
+\eqref{eq:main-stokes} with \(g=0\) belongs to
+\(H^3(\Omega)^3\times H^2(\Omega)\).
+\item For every \(f\in L^2(\Omega)^3\), the classical solution
+\(u_0\) belongs to \(H^2(\Omega)^3\).
+\end{enumerate}
+On a nonconvex domain, the counterexamples in \textup{(ii)--(iv)}
+can be chosen with \(L^4\) momentum loads. The counterexample loads may
+depend on the fixed material and length parameters.
+\end{theorem}
+
+The sufficiency is contained in Theorem~\ref{thm:main-regularity}.
+Section~\ref{sec:necessity} proves the converse and explains the reduction
+to a reentrant edge. Convexity is a condition for regularity for
+\emph{every} load; a nonconvex domain can of course admit smooth solutions
+for particular loads.
+
+\subsection{Six sharp scales and compatible data}
+
+For the solutions associated with one load \(f\), define
+\[
+ \begin{array}{lll}
+ T_1=|u_\iota-u_0|_{H^1},&
+ T_2=\iota\|u_\iota\|_{H^2},&
+ T_3=\iota^2\|u_\iota\|_{H^3},\\
+ T_4=\|p_\iota-p_0\|_{L^2},&
+ T_5=\iota|p_\iota|_{H^1},&
+ T_6=\iota^2\|p_\iota\|_{H^2}.
+ \end{array}
+\]
+\begin{theorem}[Uniform bounds and simultaneous optimality]
+\label{thm:main-sharp}
+For every fixed bounded convex polyhedron and every \(f\in L^2(\Omega)^3\),
+\begin{align}
+ T_1+T_2+T_3&\le C_\Omega\mu^{-1}\sqrt{\iota}\,\|f\|_{L^2},
+ \label{eq:main-u}\\
+ T_4+T_5+T_6&\le C_\Omega\alpha\sqrt{\iota}\,\|f\|_{L^2},
+ \label{eq:main-p}
+\end{align}
+for all \(\lambda\ge0\), \(\mu>0\), and \(0<\iota<1\).
+There is one nonzero polynomial \(f_\Omega\), depending only on \(\Omega\),
+such that for this same load
+\[
+ c_\Omega\mu^{-1}\sqrt{\iota}\le T_j
+       \le C_\Omega\mu^{-1}\sqrt{\iota}\quad(j=1,2,3),
+\]
+\[
+ c_\Omega\alpha\sqrt{\iota}\le T_j
+       \le C_\Omega\alpha\sqrt{\iota}\quad(j=4,5,6)
+\]
+throughout that entire parameter range.
+When \(\lambda=0\), the three pressure quantities vanish identically.
+\end{theorem}
+
+The upper bounds follow from Proposition~\ref{prop:est-sge-transfer},
+whose regularity inputs have all been proved on this domain class.
+The construction and the six separate lower bounds are given in
+Theorem~\ref{thm:est-sharpness}.
+These are statements about the continuous length parameter \(\iota\),
+not about a discretization parameter.
+
+The compatible-data criterion holds on a larger geometric class.
+\begin{theorem}[Quadratic convergence for compatible data]
+\label{thm:main-compatible}
+Let \(\Omega\subset\mathbb R^d\), \(d\ge2\), be a bounded connected
+Lipschitz domain. Fix \(\lambda\ge0\), \(\mu>0\), and
+\(f\in L^2(\Omega)^d\), and let \(u_\iota,u_0\) be the corresponding
+energy solutions. Then
+\begin{equation}\label{eq:main-compatible}
+ |u_\iota-u_0|_{H^1}=O(\iota^2)\quad(\iota\downarrow0)
+ \quad\Longleftrightarrow\quad
+ u_0\in H^2_0(\Omega)^d,\quad \Delta f\in H^{-1}(\Omega)^d.
+\end{equation}
+Under these conditions,
+\[
+ \iota^{-2}(u_\iota-u_0)\longrightarrow U
+ \quad\hbox{strongly in }H^1(\Omega)^d,
+ \qquad
+ \mathcal L_{\lambda,\mu}U=\Delta f,\quad U\in H^1_0(\Omega)^d.
+\]
+If \(u_0\ne0\), then \(U\ne0\). Moreover,
+\(\iota^{-2}(p_\iota-p_0)\to\lambda\operatorname{div}U\) strongly in
+\(L^2(\Omega)\); this pressure limit may vanish.
+\end{theorem}
+
+Theorem~\ref{comp:criterion} proves this statement and the weighted
+derivative limits. Theorem~\ref{comp:uniform} also provides a
+material-uniform estimate for all data satisfying the compatibility
+conditions, with the pressure factor $\alpha=\lambda/(\lambda+2\mu)$
+retained in \eqref{comp:pressure-material-factor}.
+These conclusions use energy arguments and hold without
+the polyhedral regularity shifts of Theorem~\ref{thm:main-regularity}.
+
+
+
+
+\section{Uniform weak pencils on hemispherical cone sections}
+\label{sec:hemispherical-pencil}
+
+All inner products in this section are linear in their first argument.
+Let $\mathcal H=\{\omega\in\mathbb S^2:\omega_3>0\}$ and
+$M=|\mathcal H|=2\pi$. We write $z=\omega_3$ and, for a scalar function $v$,
+\[
+ N_v=\|v\|_{L^2(\mathcal H)}^2,\qquad
+ A_v=\|\nabla_Sv\|_{L^2(\mathcal H)}^2,\qquad
+ D_v=\|\Delta_Sv\|_{L^2(\mathcal H)}^2,\qquad
+ J_v=M^{-1}\left|\int_{\mathcal H}v\right|^2.
+\]
+The subscript is omitted when no ambiguity can arise. Vector derivatives
+are applied to Cartesian components. All the inequalities below hold for
+complex-valued functions.
+
+\subsection{Two hemisphere inequalities and a mean-zero improvement}
+
+\begin{lemma}[Hemisphere inequalities]\label{lem:hemisphere-basic20}
+For $v\in H_0^1(\mathcal H)$,
+\begin{equation}\label{eq:hemisphere-poincare20}
+ A_v\ge2N_v,\qquad A_v\ge6(N_v-J_v).
+\end{equation}
+For $v\in H_0^2(\mathcal H)$,
+\begin{equation}\label{eq:hemisphere-buckling20}
+ D_v\ge6A_v.
+\end{equation}
+If, in addition, $\int_{\mathcal H}v=0$, then
+\begin{equation}\label{eq:hemisphere-zero-mean20}
+ A_v\ge6N_v,\qquad D_v\ge10A_v.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The first Dirichlet eigenvalue on the hemisphere is $2$, with eigenfunction
+$z$, proving the first inequality in \eqref{eq:hemisphere-poincare20}.
+The remaining baseline inequalities in \eqref{eq:hemisphere-poincare20}
+and \eqref{eq:hemisphere-buckling20} are given by
+Mayboroda--Maz\'ya \cite[Lemma~2.3, especially (2.16) and (2.25)]{MayborodaMazya2008}.
+For clarity about the exact clamped and mean conditions, we reproduce
+their short spectral argument before proving the additional zero-mean
+$D\ge10A$ estimate.
+Decompose in azimuthal modes $e^{im\varphi}$, $m\in\mathbb Z$. The quantities
+$N,A,D$ split orthogonally. In the axisymmetric mode, even reflection across
+the equator is an $H^1$ function on the sphere. Its spherical harmonic
+expansion contains the even Legendre polynomials $P_0,P_2,\ldots$; the first
+nonconstant eigenvalue is $6$. For $|m|\ge1$, odd reflection of the zero
+Dirichlet trace gives degrees $\ell$ satisfying $\ell+|m|$ odd. Hence
+$\ell\ge|m|+1$ and the gradient quotient is at least
+$(|m|+1)(|m|+2)\ge6$. The constant component has squared norm $J$.
+This proves $A\ge6(N-J)$.
+
+If $v\in H_0^2(\mathcal H)$, then $\int_{\mathcal H}\Delta_Sv=0$.
+With $v_{\mathcal H}=M^{-1}\int_{\mathcal H}v$, integration by parts yields
+\[
+ A=-(\Delta_Sv,v-v_{\mathcal H}),\qquad
+ A^2\le D(N-J)\le DA/6.
+\]
+This proves \eqref{eq:hemisphere-buckling20}. The first mean-zero estimate
+is already contained in \eqref{eq:hemisphere-poincare20}.
+
+It remains to show $D\ge10A$ for mean-zero $v\in H_0^2(\mathcal H)$.
+The zero normal derivative permits even $H^2$ reflection. Put
+$\lambda_\ell=\ell(\ell+1)$.
+
+For the axisymmetric mode, the mean-zero condition removes degree zero,
+and, suppressing the common factor $2\pi$, we have
+\[
+ v=\sum_{\substack{\ell\ge2\\\ell\text{ even}}}a_\ell P_\ell(z),
+ \qquad \int_0^1P_\ell(z)^2\,dz=(2\ell+1)^{-1}.
+\]
+Consequently
+\[
+ D-12A=-\frac{36}{5}|a_2|^2+E_0,
+ \qquad
+ E_0=\sum_{\substack{\ell\ge4\\\ell\text{ even}}}
+ \frac{\lambda_\ell(\lambda_\ell-12)}{2\ell+1}|a_\ell|^2.
+\]
+The equator trace $v(0)=0$ and $P_2(0)=-1/2$ imply
+\[
+ \frac{|a_2|^2}{4}\le E_0S_0,
+ \qquad
+ S_0=\sum_{\substack{\ell\ge4\\\ell\text{ even}}}
+ \frac{(2\ell+1)|P_\ell(0)|^2}{\lambda_\ell(\lambda_\ell-12)}.
+\]
+The identity $P_{2n}(0)=(-1)^n\binom{2n}{n}4^{-n}$ gives
+$|P_\ell(0)|^2\le9/64$ for even $\ell\ge4$, while
+$\lambda_\ell-12\ge(2/5)\lambda_\ell$. Therefore
+\[
+ S_0\le\frac{45}{128}\sum_{\ell=4}^\infty
+ \left(\frac1{\ell^2}-\frac1{(\ell+1)^2}\right)
+ =\frac{45}{2048}<\frac5{144}.
+\]
+It follows that $E_0\ge(36/5)|a_2|^2$, so $D\ge12A$ on this mode.
+
+For each mode $|m|=1$, even reflection permits odd degrees. Use
+\[
+ P_\ell^1(z)=-(1-z^2)^{1/2}P_\ell'(z),\qquad
+ \int_0^1|P_\ell^1|^2\,dz=\frac{\lambda_\ell}{2\ell+1},\qquad
+ P_\ell^1(0)=-\ell P_{\ell-1}(0).
+\]
+Writing $v=\sum_{\ell\text{ odd}}a_\ell P_\ell^1$ gives
+\[
+ D-10A=-\frac{32}{3}|a_1|^2+E_1,
+ \qquad
+ E_1=\sum_{\substack{\ell\ge3\\\ell\text{ odd}}}
+ \frac{\lambda_\ell^2(\lambda_\ell-10)}{2\ell+1}|a_\ell|^2.
+\]
+Since $P_1^1(0)=-1$, the zero equator trace yields
+\[
+ |a_1|^2\le E_1S_1,
+ \qquad
+ S_1=\sum_{\substack{\ell\ge3\\\ell\text{ odd}}}
+ \frac{(2\ell+1)|P_{\ell-1}(0)|^2}
+      {(\ell+1)^2(\lambda_\ell-10)}.
+\]
+The term $\ell=3$ equals $7/128$. For odd $\ell\ge5$,
+$|P_{\ell-1}(0)|^2\le9/64$ and
+$\lambda_\ell-10\ge(2/3)\lambda_\ell$. Moreover,
+\[
+ \frac{2\ell+1}{\ell(\ell+1)^3}
+ \le\frac1{\ell^2}-\frac1{(\ell+1)^2},
+\]
+because the ratio of the left side to the right side is $\ell/(\ell+1)$.
+Thus
+\[
+ S_1\le\frac7{128}+\frac{27}{128}
+ \sum_{\ell=5}^\infty
+ \left(\frac1{\ell^2}-\frac1{(\ell+1)^2}\right)
+ =\frac{101}{1600}<\frac3{32}.
+\]
+This gives $E_1\ge(32/3)|a_1|^2$ and proves $D\ge10A$ on these modes.
+
+Finally, for $|m|\ge2$, odd $H^1$ reflection gives $A\ge12N$.
+The inequality $A^2\le DN$ then gives $D\ge12A$.
+Summing the orthogonal components proves \eqref{eq:hemisphere-zero-mean20}.
+The expansions converge in $H^2(\mathbb S^2)$ after even reflection.
+The convergent series $S_0,S_1$ bound the equator trace
+expansions by weighted Cauchy--Schwarz; their finite partial sums
+are uniformly bounded, so the limiting traces are well defined. Alternatively,
+one first argues for smooth clamped functions and then uses $H_0^2$
+density, correcting the mean with a fixed interior smooth function.
+\end{proof}
+
+\subsection{The weak angular operator and a radial test transform}
+
+Let $\Sigma$ be a Lipschitz angular subdomain whose closure is contained in
+an open hemisphere, rotated to $\mathcal H$. Zero extension maps
+$H_0^k(\Sigma)$ to $H_0^k(\mathcal H)$ for $k=1,2$. The hemisphere
+inequalities therefore apply to functions on $\Sigma$. A pointed convex
+polyhedral cone has such a section.
+
+Set
+\[
+ V=H_0^2(\Sigma;\mathbb C^3),\qquad
+ s=\frac12+x+iy,\quad 0\le x\le1,\qquad
+ t=1-\overline s.
+\]
+For $U\in V$, write
+\[
+ R=U\cdot\omega,\qquad W=U-R\omega,\qquad
+ d_sU=\operatorname{div}_S W+(s+2)R=:h.
+\]
+Here $W$ is tangential and $h\in H_0^1(\Sigma)$. Define
+\[
+ L_\zeta=\Delta_S+\zeta(\zeta+1),\qquad
+ C_s(h,k)=(\nabla_Sh,\nabla_Sk)-s(s-1)(h,k).
+\]
+For smooth angular fields, the homogeneous ansatz gives
+\begin{equation}\label{eq:strong-angular-pencil23}
+ \begin{split}
+ &(\Delta^2+\beta\nabla\Delta\operatorname{div})(r^sU)
+       =r^{s-4}\mathfrak A_\beta(s)U,\\
+ &\mathfrak A_\beta(s)U
+       =L_{s-2}L_sU
+        +\beta\bigl(\nabla_S+(s-3)\omega\bigr)L_{s-1}d_sU.
+ \end{split}
+\end{equation}
+Indeed $\Delta(r^sU)=r^{s-2}L_sU$ and
+$\operatorname{div}(r^sU)=r^{s-1}d_sU$, while the gradient of
+$r^{s-3}k$ equals $r^{s-4}(\nabla_Sk+(s-3)k\omega)$.
+Angular integration by parts yields the normalized weak pencil
+\begin{equation}\label{eq:weak-pencil20}
+ a_{\beta,s}(U,V)=(L_sU,L_tV)+\beta C_s(d_sU,d_tV),\qquad\beta>0.
+\end{equation}
+The conjugate coefficient of $L_t$ is $(s-1)(s-2)$, and
+$\overline t+2=3-s$, so the first-order angular factor in
+\eqref{eq:strong-angular-pencil23} pairs with $-d_tV$.
+Consequently
+\[
+ \langle\mathfrak A_\beta(s)U,V\rangle
+ =(L_sU,L_tV)-\beta\langle L_{s-1}d_sU,d_tV\rangle
+ =a_{\beta,s}(U,V)
+\]
+on $V\times V$ by density; the middle pairing is between $H^{-1}$ and
+$H^1_0$.
+Thus \eqref{eq:strong-angular-pencil23} also defines a distributional
+map $V\to V^*$; no additional angular regularity is assumed.
+In particular the form depends analytically on $s$ when represented on the
+fixed spaces $V$ and its antidual.
+
+For a scalar function $R$ put $a=s(s+1)$ and
+\[
+ B_R^0=D_R-2(a+1)A_R+a(a-2)N_R,
+ \qquad B_0=(L_sU,L_tU).
+\]
+The key identity is
+\begin{equation}\label{eq:radial-cross20}
+ (L_sU,L_t(R\omega))=B_R^0+4C_s(h,R).
+\end{equation}
+Here and below scalar norms can be computed on $\Sigma$ or after zero
+extension to $\mathcal H$.
+
+To verify \eqref{eq:radial-cross20}, let $\Delta_{\mathrm{cov}}$ denote the
+connection Laplacian on tangential fields, with the same sign convention
+as $\Delta_S$. The radial and tangential parts of $L_sU$ are
+\[
+ \Delta_SR+(a+2s+2)R-2h,
+ \qquad \Delta_{\mathrm{cov}}W+(a-1)W+2\nabla_SR.
+\]
+Using the Ricci curvature $1$ of $\mathbb S^2$ gives
+\[
+ (\Delta_{\mathrm{cov}}W,\nabla_SR)
+ =-(\operatorname{div}_S W,\Delta_SR+R).
+\]
+Substitute $\operatorname{div}_S W=h-(s+2)R$ and integrate by parts.
+The coefficients of $A_R,N_R$ become $-2(a+1),a(a-2)$, and the
+remaining terms are $4(\nabla_Sh,\nabla_SR)-4s(s-1)(h,R)$.
+This proves the identity for smooth clamped functions and then for $V$
+by density.
+
+Let $\delta=4/\beta$ and introduce the bounded local multiplier
+\begin{equation}\label{eq:test-transform20}
+ T_{s,\beta}U=W+\frac{s+2+\delta}{3-\overline s+\delta}R\omega.
+\end{equation}
+Direct calculation gives
+\[
+ d_tT_{s,\beta}U=h-\frac{2x\delta}{3-\overline s+\delta}R.
+\]
+Since the second slot in \eqref{eq:weak-pencil20} is antilinear,
+\eqref{eq:radial-cross20} and $\beta\delta=4$ cancel the mixed terms
+exactly:
+\begin{equation}\label{eq:exact-transformed20}
+ a_{\beta,s}(U,T_{s,\beta}U)
+ =B_0+\frac{2x}{3-s+\delta}B_R^0+\beta C_s(h,h).
+\end{equation}
+
+\subsection{The radial block with its mean retained}
+
+Put $Y=y^2$, $\alpha=x^2+2x+3/4$, and
+\[
+ C_\alpha(R)=D_R-2(\alpha+1)A_R+\alpha(\alpha-2)N_R,
+ \qquad J=M^{-1}\left|\int_{\mathcal H}R\right|^2.
+\]
+For $0\le x\le1/2$, Lemma~\ref{lem:hemisphere-basic20} implies
+\begin{equation}\label{eq:radial-low20}
+ C_\alpha(R)\ge\frac12(\alpha-2)(\alpha-4)A_R\ge0.
+\end{equation}
+For $1/2<x\le1$, set $\eta=z^2$ and
+\[
+ c=3M^{-1}\int_{\mathcal H}R,\qquad R_0=R-c\eta.
+\]
+Then $R_0\in H_0^2(\mathcal H)$, $\int_{\mathcal H}R_0=0$, and
+$|c|^2M=9J$. It is immaterial that $R_0$ need not be supported in
+$\Sigma$: this decomposition is used only for a scalar comparison estimate.
+Since $2<\alpha\le15/4$, \eqref{eq:hemisphere-zero-mean20} yields
+\begin{equation}\label{eq:radial-zero-mean20}
+ C_\alpha(R_0)\ge(\alpha^2-14\alpha+48)N_{R_0}
+ \ge\frac{153}{16}N_{R_0}.
+\end{equation}
+Elementary integration gives
+\[
+ \Delta_S\eta=2-6\eta,\quad
+ N_\eta=M/5,\quad A_\eta=8M/15,\quad D_\eta=16M/5,
+\]
+\[
+ \|\eta-1/3\|^2=4M/45,\qquad
+ M^{-1}C_\alpha(\eta)=\frac{3\alpha^2-22\alpha+32}{15}\ge-\frac59.
+\]
+The polarized cross term is
+\[
+ C_\alpha(R_0,\eta)=(\alpha-2)(\alpha-12)(R_0,\eta),
+\]
+whose coefficient has absolute value at most $231/16$.
+Completing the square in $\sqrt{N_{R_0}}$ proves
+\begin{equation}\label{eq:radial-mean-loss20}
+ C_\alpha(R)\ge
+ -|c|^2M\left(\frac59+
+ \frac{(231/16)^2(4/45)}{153/16}\right)
+ =-\frac{7629}{340}J\ge-\frac{45}{2}J.
+\end{equation}
+
+Write $d_\delta=5/2-x+\delta$. Expansion of the complex radial term gives
+\begin{align}
+ |3-s+\delta|^2\operatorname{Re}\frac{B_R^0}{3-s+\delta}
+ ={}&d_\delta C_\alpha(R)
+ +Y\bigl((9+2x+2\delta)A_R-[M_0(x)+\delta Q(x)]N_R\bigr)
+ \notag\\
+ &+(13/2+3x+\delta)Y^2N_R,\label{eq:radial-complex20}\\
+ M_0(x)={}&-2x^3+15x^2+(67/2)x+31/4,
+ \qquad Q(x)=6x^2+12x+7/2.\notag
+\end{align}
+The last term is nonnegative. The mean-sensitive bound
+$A_R\ge6(N_R-J)$ shows that the expression multiplying $Y$ is at least
+\[
+ (47/4-19\delta/2)N_R-6(9+2x+2\delta)J.
+\]
+Indeed $6(9+2x)-M_0(x)$ decreases on $[0,1]$ to $47/4$, and
+$12-Q(x)\ge-19/2$. After multiplication by
+$2xY/(d_\delta^2+Y)$, the first term loses at most $2YN_R$ because
+\[
+ 2(\delta+3/2)^2-(19\delta-47/2)
+ =2\delta^2-13\delta+28>0.
+\]
+The mean loss in the $Y$ term is
+\[
+ L_YJ,\qquad L_Y=\frac{12x(9+2x+2\delta)Y}{d_\delta^2+Y}.
+\]
+The constant radial term loses no more than $L_CJ$, where
+$L_C=0$ for $x\le1/2$ and $L_C\le45/(\delta+3/2)$ otherwise.
+With $B=\operatorname{Re}B_0$ and $E_h=\operatorname{Re}C_s(h,h)$,
+\eqref{eq:exact-transformed20} therefore yields
+\begin{equation}\label{eq:before-mean-absorption20}
+ \operatorname{Re}a_{\beta,s}(U,T_{s,\beta}U)
+ \ge B-2YN_R+\beta E_h-(L_C+L_Y)J.
+\end{equation}
+
+\begin{lemma}[Absorption of the radial mean]\label{lem:radial-mean-absorption22}
+For every $U\in V$, $\beta>0$ and $s=\tfrac12+x+iy$ with $0\le x\le1$,
+let $R=U\cdot\omega$ and let $T_{s,\beta}$ be given by
+\eqref{eq:test-transform20}. Then
+\begin{equation}\label{eq:after-mean-absorption20}
+\begin{aligned}
+ \operatorname{Re}a_{\beta,s}(U,T_{s,\beta}U)
+ &\ge \operatorname{Re}(L_sU,L_tU)-2y^2\|R\|^2\\
+ &\ge \operatorname{Re}(L_sU,L_tU)-2y^2\|U\|^2.
+\end{aligned}
+\end{equation}
+\end{lemma}
+\begin{proof}
+By \eqref{eq:before-mean-absorption20}, it suffices to show
+$\beta E_h\ge(L_C+L_Y)J$.
+Since $W$ has zero trace,
+\[
+ \int_{\mathcal H}h=(s+2)\int_{\mathcal H}R,
+ \qquad N_h\ge|s+2|^2J,
+ \qquad E_h\ge(9/4-x^2+Y)N_h.
+\]
+If $1/2<x\le1$, these inequalities give
+\[
+ \beta E_h\ge\delta^{-1}(45+41Y+4Y^2)J.
+\]
+The constant part absorbs $L_CJ$, and the $Y$ part absorbs $L_YJ$ because
+\[
+ L_Y\le\frac{12(11+2\delta)Y}{(\delta+3/2)^2+Y}
+ \le\frac{41Y}{\delta},
+\]
+where the second inequality follows from
+$17\delta^2-9\delta+369/4>0$.
+If $0\le x\le1/2$, then $L_C=0$ and
+\[
+ L_Y\le\frac{6(10+2\delta)Y}{(\delta+2)^2+Y}
+ \le\frac{33Y}{\delta},\qquad
+ \beta E_h\ge\delta^{-1}(50+33Y+4Y^2)J.
+\]
+Here the middle inequality follows from
+$21\delta^2+72\delta+132>0$. These bounds prove the claimed estimate
+for every $\delta>0$.
+\end{proof}
+
+The preceding calculation separates the geometric issue from the material
+parameters. The possible negative part of the radial block is bounded
+only by $J$, the squared hemispherical mean in
+\eqref{eq:radial-mean-loss20}, rather than by the full $L^2$ norm of
+$R$. The exact divergence identity
+$\int_{\mathcal H}h=(s+2)\int_{\mathcal H}R$ then absorbs this loss
+with the penalty term, giving \eqref{eq:after-mean-absorption20}.
+Thus the hemispherical comparison applies to every convex vertex
+cone without an additional vertex-dependent spectral condition.
+The numerical coercivity constants in this argument are not asserted
+to be optimal.
+
+\subsection{Coercivity and the complete weak inverse}
+
+\begin{theorem}[Uniform weak angular inverse]\label{thm:weak-angular20}
+For every $\beta>0$, every $s$ with $1/2\le\operatorname{Re}s\le3/2$,
+and every $U\in V$, the transform \eqref{eq:test-transform20} satisfies
+\begin{equation}\label{eq:weak-angular-coercivity20}
+ \operatorname{Re}a_{\beta,s}(U,T_{s,\beta}U)
+ \ge\frac{47}{192}\|\Delta_SU\|^2+\frac12y^4\|U\|^2.
+\end{equation}
+For $\kappa=(1+y^2)^{1/2}$ equip $V$ with the parameter norm
+\[
+ \|U\|_{V_y}^2=\|\Delta_SU\|^2+
+ \kappa^2\|\nabla_SU\|^2+\kappa^4\|U\|^2.
+\]
+The weak pencil is an isomorphism $V_y\to V_y^*$, and
+\begin{equation}\label{eq:weak-angular-inverse20}
+ \|U\|_{V_y}\le C\|a_{\beta,s}(U,\cdot)\|_{V_y^*},
+\end{equation}
+with $C$ independent of $s$ and $\beta$.
+\end{theorem}
+
+\begin{proof}
+Put $D=\|\Delta_SU\|^2$, $A=\|\nabla_SU\|^2$, $N=\|U\|^2$ and
+\[
+ \underline B=D-\frac72A-\frac{15}{16}N
+   +Y\left(2A-\frac72N\right)+Y^2N.
+\]
+The scalar expansion of $B$ gives
+\[
+ B-\underline B=(1-x^2)\{2A+(3/2-x^2+6Y)N\}\ge0.
+\]
+Applying Lemma~\ref{lem:hemisphere-basic20} componentwise gives
+$D\ge6A$ and $A\ge2N$. The exact decomposition
+\begin{align*}
+ \underline B-2YN={}&\frac{47}{192}D+\frac12Y^2N
+ +\frac{145}{192}(D-6A)
+ +\left(\frac{33}{32}+2Y\right)(A-2N)
+ +\frac12(Y-3/2)^2N
+\end{align*}
+and \eqref{eq:after-mean-absorption20} prove
+\eqref{eq:weak-angular-coercivity20}.
+
+The radial multiplier in $T_{s,\beta}$ has modulus between $1$ and
+$7/3$. Its inverse is bounded, and multiplication by the smooth projection
+$\omega\otimes\omega$ preserves $H_0^2$. The product rule therefore bounds
+$T_{s,\beta}$ and its inverse uniformly in the parameter norms. Moreover,
+$A^2\le DN$ implies $YA\le\sqrt D\sqrt{Y^2N}$, so the right side of
+\eqref{eq:weak-angular-coercivity20} controls $\|U\|_{V_y}^2$.
+
+For each fixed finite $\beta$, the form
+$(U,V)\mapsto a_{\beta,s}(U,T_{s,\beta}V)$ is continuous and coercive on
+$V_y$. Complex Lax--Milgram gives a unique solution for every functional
+$F\circ T_{s,\beta}$. Since $T_{s,\beta}$ is onto, this is exactly the
+original weak equation $a_{\beta,s}(U,V)=F(V)$ for all $V\in V_y$.
+The uniform bound for $T_{s,\beta}$ and the uniform coercivity give
+\eqref{eq:weak-angular-inverse20}. The continuity bound of the form may
+depend on $\beta$; the inverse estimate does not.
+\end{proof}
+
+\begin{corollary}[The constrained Stokes pencil]\label{cor:stokes-kernel20}
+Let $K_s=\ker(d_s:V\to H_0^1(\Sigma))$. The multiplier
+\[
+ T_sU=W+\frac{s+2}{3-\overline s}R\omega
+\]
+maps $K_s$ isomorphically onto $K_t$ and satisfies
+\[
+ \operatorname{Re}(L_sU,L_tT_sU)
+ \ge\frac{47}{192}\|\Delta_SU\|^2+\frac12y^4\|U\|^2,
+ \qquad U\in K_s.
+\]
+Consequently the constrained weak equation on $K_s\times K_t$ has a
+uniform inverse in the inherited parameter norms.
+\end{corollary}
+
+\begin{proof}
+The identity $d_tT_sU=d_sU$ gives the claimed isomorphism. If $d_sU=0$,
+the penalty term in \eqref{eq:weak-pencil20} is zero for every test.
+Let $\delta\downarrow0$ in \eqref{eq:weak-angular-coercivity20}.
+The transforms converge in operator norm to $T_s$, proving the estimate.
+Complex Lax--Milgram on the closed space $K_s$, with the test isomorphism
+$T_s$, proves the last assertion.
+\end{proof}
+
+The corollary concerns the constrained velocity equation. A full mixed
+inverse additionally requires a bounded right inverse of $d_s$ and pressure
+recovery. The passage from weak cone estimates to global Sobolev regularity
+is carried out below using the independent straight-edge estimates
+on annuli; no strong spherical-corner shift is assumed.
+
+
+
+\section{Divergence liftings and the planar mixed input}
+\label{sec:g-prelim}
+
+All Sobolev spaces in this section are over a fixed domain. Negative-order
+spaces are duals of the corresponding spaces with vanishing traces. In complex
+spaces, inner products are linear in the first argument. For a bounded
+connected Lipschitz domain $D$, let $\chi_D\in H^1_0(D)$ solve
+$-\Delta\chi_D=1$, and set
+\[
+ L^2_\chi(D)=\{g\in L^2(D):(g,\chi_D)=0\},\qquad
+ Q(D)=H^1_0(D)\cap L^2_0(D).
+\]
+The distinction between the zero-mean pressure space and the torsion-orthogonal
+constraint data is necessary for the original-pressure formulation considered
+below.
+
+\begin{lemma}[A strong divergence lifting]\label{lem:g-stronglift}
+Let $D$ be a bounded connected Lipschitz domain in $\mathbb R^d$, $d\ge2$. There exists
+a bounded linear operator
+\[
+ \mathcal R_D:H^2(D)\cap H^1_0(D)\cap L^2_0(D)
+ \longrightarrow H^3(D)^d\cap H^2_0(D)^d
+\]
+such that $\operatorname{div}\mathcal R_D h=h$.
+\end{lemma}
+\begin{proof}
+First take real data. The trace $g=\operatorname{Tr}\nabla h$ belongs to
+$H^{1/2}(\partial D)^d$ and is normal to the boundary: $g=\alpha n$ almost
+everywhere. Prescribe the zeroth and first Cartesian boundary jets of a vector
+field $w$ to be zero, and its second jets to be
+\[
+ \operatorname{Tr}(\partial_j\partial_k w_i)
+ =T_{ijk}:=\alpha n_i n_j n_k.
+\]
+For $g\ne0$, this tensor equals $g_i g_j g_k/|g|^2$, with value zero at $g=0$.
+This homogeneous map is globally Lipschitz. Its composition therefore preserves
+$H^{1/2}$ and is bounded by the $H^{1/2}$ norm of $g$. On the subspace of
+normal fields it is linear, since $n$ is fixed and $\alpha=g\cdot n$.
+
+The prescribed jets satisfy every tangential compatibility identity in
+\cite[Proposition 7.7, equation (7.69)]{MMS2010}. For the first jets the only
+nontrivial identity reduces to
+$n_j T_{i\ell k}-n_k T_{i\ell j}=0$. The bounded jet extension and norm
+equivalence in \cite[Propositions 7.3 and 7.6]{MMS2010} thus provide
+\[
+ w\in H^3(D)^d\cap H^2_0(D)^d,
+ \qquad \|w\|_{H^3(D)}\le C_D\|h\|_{H^2(D)}.
+\]
+The traces satisfy
+\[
+ \operatorname{Tr}\operatorname{div}w=0,\qquad
+ \operatorname{Tr}\partial_j\operatorname{div}w
+ =\sum_i T_{iji}=g_j.
+\]
+Consequently $k=h-\operatorname{div}w$ lies in $H^2_0(D)\cap L^2_0(D)$.
+The support-preserving Bogovski\u\i\ lifting
+$\mathcal B_D:H^2_0(D)\cap L^2_0(D)\to H^3_0(D)^d$
+from \cite[Theorem~4.6 and Corollary~4.7(b)]{CostabelMcIntosh2010} gives
+$\mathcal R_Dh=w+\mathcal B_Dk$.
+On a general Lipschitz domain the smoothing remainder in the homotopy
+is corrected by a fixed lower-order divergence lifting; the same
+construction is written explicitly in Lemma~\ref{comp:bogovskii}.
+All operations are linear on the indicated
+trace subspace and have the asserted norm bound. Complex data are treated by
+complex-linear extension of this real operator. Only the trace and extension
+theorems of \cite{MMS2010} are used; its elliptic solvability theorems with
+coefficient or normal-oscillation hypotheses are not invoked.
+\end{proof}
+
+\begin{lemma}[Mixed energy solvability]\label{lem:g-energy}
+Let $D$ be bounded, connected and Lipschitz. For $F\in H^{-2}(D)^d$ and
+$g\in H^{-1}(D)$ with $\langle g,\chi_D\rangle=0$, the problem
+\[
+ \Delta^2u+\nabla\Delta p=F,\qquad
+ \Delta\operatorname{div}u=g,
+ \qquad (u,p)\in H^2_0(D)^d\times Q(D)
+\]
+has a unique energy solution, and
+\[
+ \|u\|_{H^2(D)}+\|p\|_{H^1(D)}
+ \le C_D\bigl(\|F\|_{H^{-2}(D)}+\|g\|_{H^{-1}(D)}\bigr).
+\]
+\end{lemma}
+\begin{proof}
+Solve $\Delta h=g$ in $H^1_0(D)$. Symmetry of the Dirichlet inverse yields
+$\int_D h=-\langle g,\chi_D\rangle=0$. A support-preserving Bogovski\u\i\
+operator maps $H^1_0(D)\cap L^2_0(D)$ boundedly into $H^2_0(D)^d$, so one can
+lift $h$ and then solve the coercive $\Delta^2$ form on the kernel of
+divergence. The residual is a bounded functional of
+$\operatorname{div}v\in Q(D)$. The Riesz map for the gradient inner product
+on $Q(D)$ recovers $p$, giving
+\[
+ (\Delta u,\Delta v)+(\nabla p,\nabla\operatorname{div}v)
+ =\langle F,v\rangle\quad(v\in H^2_0(D)^d).
+\]
+The same lifting gives the displayed estimate. For uniqueness, the constraint
+implies $\operatorname{div}u=0$ when $g=0$; testing the momentum equation by
+$u$ gives $u=0$. Hence $\nabla\Delta p=0$, so $p$ is a multiple of
+$\chi_D$. The mean-zero condition forces that multiple to vanish.
+\end{proof}
+
+\begin{lemma}[The full planar fourth-order Stokes shift]\label{lem:g-planarstokes}
+On every bounded convex polygon $D$, the energy solution satisfies
+\[
+ \|u\|_{H^3(D)}+\|p\|_{H^2(D)}
+ \le C_D\bigl(\|F\|_{H^{-1}(D)}+\|g\|_{L^2(D)}\bigr),
+ \qquad g\in L^2_\chi(D).
+\]
+The scalar clamped biharmonic inverse also maps $H^{-1}(D)$ boundedly into
+$H^3(D)\cap H^2_0(D)$.
+\end{lemma}
+\begin{proof}
+The zero-constraint vector assertion is precisely the result of
+\cite[Theorem 3.6]{CHH2023}; its proof uses the triharmonic
+$H^{-2}\to H^4$ shift in their Theorem 3.5. Their Theorem 3.3 and Lemma 3.4,
+with $m=2$ and one derivative of gain, give the scalar assertion.
+
+For general compatible $g$, convex-domain Dirichlet Poisson regularity \cite{Grisvard1985} gives
+$h=\Delta_D^{-1}g\in H^2(D)\cap H^1_0(D)\cap L^2_0(D)$ with
+$\|h\|_{H^2}\le C_D\|g\|_0$. Set $w=\mathcal R_Dh$ using
+Lemma~\ref{lem:g-stronglift}. The pair $(u-w,p)$ satisfies the zero-constraint
+problem with force $F-\Delta^2w\in H^{-1}(D)^2$. Apply the published
+zero-constraint result and add the lifting estimate. Thus the full-data
+statement includes an argument beyond the published zero-constraint theorem.
+\end{proof}
+
+\section{The complete mixed angular inverse}
+\label{sec:g-angular}
+
+Let $\Sigma$ be the spherical section of a fixed pointed convex polyhedral
+cone. It is contained, with its closure, in an open hemisphere. Put
+\[
+ V=H^2_0(\Sigma)^3,\quad Z=H^1_0(\Sigma),\quad
+ s=a+iy,\quad \tfrac12\le a\le\tfrac32,\quad t=1-\overline s,
+ \quad\kappa=(1+y^2)^{1/2}.
+\]
+Use Cartesian components for vector fields and write
+\[
+ U=U_T+U_r\omega,\quad
+ d_sU=\operatorname{div}_S U_T+(s+2)U_r,
+ \quad L_s=\Delta_S+s(s+1),\quad \ell_s=\Delta_S+s(s-1).
+\]
+The parameter norms are
+\[
+ \|U\|_{V_y}^2=\|\Delta_SU\|_0^2+\kappa^2\|\nabla_SU\|_0^2
+                  +\kappa^4\|U\|_0^2,
+ \qquad
+ \|h\|_{Z_y}^2=\|\nabla_Sh\|_0^2+\kappa^2\|h\|_0^2.
+\]
+Their anti-duals carry the corresponding dual norms. We use the angular
+coercivity established above in the following precise form: with
+$N_s=\ker d_s$ and
+\[
+ T_sU=U_T+\frac{s+2}{3-\overline s}U_r\omega,
+\]
+the map $T_s:N_s\to N_t$ and its inverse are uniformly bounded in the
+parameter norms, and
+\[
+ \operatorname{Re}(L_sU,L_tT_sU)\ge c\|U\|_{V_y}^2
+ \quad(U\in N_s).
+\]
+No strong angular regularity on the spherical polygon is assumed.
+
+\begin{lemma}[A parameter divergence lifting]\label{lem:g-paramlift}
+For all $s$ in the closed strip, $d_s:V_y\to Z_y$ has a right inverse
+$R_s$ satisfying
+\[
+ \|R_sh\|_{V_y}\le C_\Sigma\|h\|_{Z_y}.
+\]
+The analogous statement holds for $d_t$.
+\end{lemma}
+\begin{proof}
+A gnomonic chart maps $\Sigma$ smoothly to a bounded convex polygon. At scale
+$\varepsilon\asymp\kappa^{-1}$ choose a bounded-overlap cover by patches
+with uniformly bounded star-shapedness constants after rescaling, and a
+subordinate partition $\{\chi_j\}$ with
+$|\nabla\chi_j|\le C\varepsilon^{-1}$. Such patches can be obtained by
+intersecting the polygon with balls of comparable radius. At its finitely many
+corners their constants depend only on the fixed corner angles. Put
+$h_j=\chi_jh$ and $c_j=\int_{\Sigma_j}h_j$. The zero trace of $h$ on the
+actual boundary and the support of $\chi_j$ at artificial boundaries imply
+$h_j\in H^1_0(\Sigma_j)$.
+
+Choose a smooth interior bump $\varphi_j$ with integral one. Surface dimension
+two gives
+\[
+ \|\varphi_j\|_0\le C\varepsilon^{-1},\quad
+ \|\nabla\varphi_j\|_0\le C\varepsilon^{-2},\quad
+ \|D^2\varphi_j\|_0\le C\varepsilon^{-3},\quad
+ |c_j|\le C\varepsilon\|h_j\|_0.
+\]
+Apply a planar Bogovski\u\i\ operator to the Jacobian-weighted zero-mean
+density $h_j-c_j\varphi_j$, then use the surface Piola transform. The resulting
+tangential field $W_j\in H^2_0(\Sigma_j)^3$ obeys
+\[
+ \operatorname{div}_SW_j=h_j-c_j\varphi_j,
+\]
+\[
+ \|W_j\|_0\le C\varepsilon\|h_j\|_0,\quad
+ \|W_j\|_{H^1}\le C\|h_j\|_0,\quad
+ \|W_j\|_{H^2}\le
+ C\bigl(\|\nabla h_j\|_0+\varepsilon^{-1}\|h_j\|_0\bigr).
+\]
+These follow from the simultaneous $L^2_0\to H^1_0$ and
+$H^1_0\cap L^2_0\to H^2_0$ bounds of the same operator in \cite{CostabelMcIntosh2010};
+smooth chart coefficients add only lower-order terms of the indicated sizes.
+Now set
+\[
+ U_j=W_j+\frac{c_j}{s+2}\varphi_j\omega.
+\]
+Since $|s+2|\asymp\kappa$, the radial summand has norms of orders zero, one
+and two bounded respectively by
+$C\varepsilon\|h_j\|_0$, $C\|h_j\|_0$ and
+$C\varepsilon^{-1}\|h_j\|_0$. Moreover $d_sU_j=h_j$ exactly. Each field is
+in the clamped patch space, so zero extension is valid. Bounded overlap gives
+\[
+ \Big\|\sum_j U_j\Big\|_{V_y}^2
+ \le C\sum_j\bigl(\|\nabla h_j\|_0^2+
+                         \varepsilon^{-2}\|h_j\|_0^2\bigr)
+ \le C\bigl(\|\nabla h\|_0^2+\kappa^2\|h\|_0^2\bigr).
+\]
+Their sum is the required lifting. The reflected parameter obeys
+$|t+2|\asymp\kappa$, proving the second assertion. The liftings are used for
+estimates only and need not depend analytically on $s$.
+\end{proof}
+
+\begin{proposition}[Full angular isomorphism]\label{prop:g-mixedpencil}
+For every $F\in V_y^*$ and $G\in Z_y^*$ there exists a unique $(U,P)\in V\times Z$
+satisfying
+\begin{equation}\label{eq:g-mixed-angular-system}
+\begin{aligned}
+ (L_sU,L_tV)-\langle\ell_sP,d_tV\rangle&=F(V)
+       &&(V\in V),\\
+ \ell_sd_sU&=G.
+\end{aligned}
+\end{equation}
+Throughout the closed strip,
+\begin{equation}\label{eq:g-mixed-angular-estimate}
+ \|U\|_{V_y}+\|P\|_{Z_y}
+ \le C_\Sigma\bigl(\|F\|_{V_y^*}+\|G\|_{Z_y^*}\bigr).
+\end{equation}
+On fixed unweighted angular spaces this operator and its inverse are analytic
+where defined.
+\end{proposition}
+\begin{proof}
+The Dirichlet spectral lower bound on a hemisphere and zero extension give
+$\|\nabla_Sh\|_0^2\ge2\|h\|_0^2$. Since
+$\operatorname{Re}[s(s-1)]\le3/4-y^2$, the operator
+$\ell_s:Z_y\to Z_y^*$ is an isomorphism with uniform inverse bound.
+Let $h_g=\ell_s^{-1}G$ and $U_g=R_sh_g$. On $N_s$ solve
+\[
+ (L_sU_0,L_tT_sW)=F(T_sW)-(L_sU_g,L_tT_sW),\qquad W\in N_s.
+\]
+The transformed form is bounded and coercive in $V_y$. Lax--Milgram yields
+the desired bound for $U=U_0+U_g$. Its momentum residual vanishes on $N_t$.
+For $k\in Z_y$ define
+\[
+ \langle Q,k\rangle=(L_sU,L_tR_tk)-F(R_tk).
+\]
+This is independent of the representative with divergence $k$, and the
+parameter lifting gives $\|Q\|_{Z_y^*}\le C(\|U\|_{V_y}+\|F\|_{V_y^*})$.
+Taking $P=\ell_s^{-1}Q$ proves existence and the estimate. The same
+decomposition proves uniqueness.
+
+The original pressure has degree $s-1$: if $p=r^{s-1}P$, then
+$\Delta p=r^{s-3}\ell_sP$. Pairing its gradient against an angular test
+gives $-\langle\ell_sP,d_tV\rangle$, which verifies the displayed pencil.
+All coefficients of the resulting map
+$V\times Z\to V^*\times Z^*$ are polynomial in $s$, because conjugation
+in the second slot removes the conjugation in $t$. Analytic bounded-operator
+inversion proves the last assertion. No angular mean-zero pressure condition
+is imposed.
+\end{proof}
+
+\section{Straight-edge regularity at every axial frequency}
+\label{sec:g-edges}
+
+\begin{proposition}[The fourth-order Stokes edge estimate]\label{prop:g-edge}
+Let $W_\omega=\{r>0,\ 0<\theta<\omega\}$, $0<\omega<\pi$, and
+$\mathcal W=W_\omega\times\mathbb R$. Suppose an energy pair
+$(u,p)\in H^2_0(\mathcal W)^3\times H^1_0(\mathcal W)$ satisfies
+\[
+ \Delta^2u+\nabla\Delta p=F\in H^{-1}(\mathcal W)^3,
+ \qquad \Delta\operatorname{div}u=G\in L^2(\mathcal W).
+\]
+Then $u\in H^3$, $p\in H^2$, and
+\begin{equation}\label{eq:g-edge-estimate}
+ \|u\|_{H^3}+\|p\|_{H^2}
+ \le C_\omega\bigl(\|F\|_{H^{-1}}+\|G\|_0+
+                              \|u\|_{H^2}+\|p\|_{H^1}\bigr).
+\end{equation}
+The same assertion holds for a half-plane or $\mathbb R^2$ as transverse
+section.
+\end{proposition}
+\begin{proof}
+After Fourier transformation along the edge, write
+\[
+ L_\xi=\Delta_\perp-\xi^2,\qquad
+ D_\xi=(\partial_1,\partial_2,i\xi),\qquad
+ \operatorname{Div}_\xi U=\operatorname{div}_\perp U_\perp+i\xi U_3.
+\]
+The equations become
+\begin{equation}\label{eq:g-edge-fourier-reduction}
+ L_\xi^2U+D_\xi L_\xi p=F,\qquad
+ L_\xi\operatorname{Div}_\xi U=G.
+\end{equation}
+
+\emph{Unit frequency.}
+For $\xi=\sigma\in\{-1,1\}$, the map
+$\operatorname{Div}_\sigma:H^2_0(W_\omega)^3\to H^1_0(W_\omega)$ has a
+bounded right inverse. Indeed cover the wedge by uniformly bounded convex
+polygonal patches of finitely many shapes: one corner patch, ray patches,
+interior squares and finitely many transition patches. Choose a subordinate
+smooth partition with uniformly bounded derivatives. If $h_j=\chi_jh$ and
+$c_j=\int h_j$, lift $h_j-c_j\varphi_j$ by planar Bogovski\u\i\ and put
+$c_j\varphi_j/(i\sigma)$ in the third component. Zero extension and
+bounded-overlap summation give the right inverse. Here each bump has integral
+one and uniformly bounded Sobolev norms. All local means are lifted; no total
+mean is required on the infinite wedge.
+
+The form $\|(\Delta_\perp-1)U\|_0^2$ is coercive in $H^2_0$, while
+$-(\Delta_\perp-1)$ is coercive in $H^1_0$. The preceding right inverse
+therefore gives unit-frequency mixed energy solvability and
+\[
+ \|U\|_{H^2}+\|p\|_{H^1}
+ \le C_\omega\bigl(\|F\|_{H^{-2}}+\|G\|_{H^{-1}}\bigr).
+\]
+Write $U=(v,w)$. The planar principal equations are exactly
+\[
+ \begin{split}
+ \Delta_\perp^2v+\nabla_\perp\Delta_\perp p
+    &=F_\perp+2\Delta_\perp v-v+\nabla_\perp p,\\
+ \Delta_\perp\operatorname{div}_\perp v
+    &=G+\operatorname{div}_\perp v-i\sigma(\Delta_\perp-1)w,\\
+ \Delta_\perp^2w
+    &=F_3+2\Delta_\perp w-w-i\sigma\Delta_\perp p+i\sigma p.
+ \end{split}
+\]
+At energy regularity the first and third right-hand sides belong to $H^{-1}$
+and the second belongs to $L^2$. In particular, the term
+$\Delta_\perp p$ in the scalar equation is a legitimate $H^{-1}$ datum.
+
+On each patch $D_j$, localize $v_j=\chi_jv$ and normalize the pressure by
+\[
+ p_j=\chi_jp-\Bigl(\int_{D_j}\chi_jp\Bigr)\varphi_j.
+\]
+Then $v_j\in H^2_0(D_j)^2$ and $p_j\in Q(D_j)$. Its constraint datum is
+$G_j=\Delta_\perp\operatorname{div}_\perp v_j\in L^2(D_j)$, and it
+automatically satisfies
+\[
+ (G_j,\chi_{D_j})=-\int_{D_j}\operatorname{div}_\perp v_j=0.
+\]
+Momentum commutators have at most three derivatives of $v$ and two of $p$,
+and are bounded in $H^{-1}$ by their energy norms. The compact-bump pressure
+correction contributes only a controlled smooth force. Apply
+Lemma~\ref{lem:g-planarstokes} to $(v_j,p_j)$ and its scalar assertion to
+$\chi_jw$. The localization bound
+\[
+ \sum_j\|\chi_j F\|_{H^{-1}(D_j)}^2
+ \le C\|F\|_{H^{-1}(W_\omega)}^2
+\]
+follows by duality from the bounded map
+$(\phi_j)_j\mapsto\sum_j\chi_j\phi_j$ from the Hilbert sum of
+$H^1_0(D_j)$ to $H^1_0(W_\omega)$. Commutators and mean corrections sum by
+finite overlap. Thus the local estimates, followed by the energy bound, yield
+\begin{equation}\label{eq:g-edge-unit-estimate}
+ \|U\|_{H^3}+\|p\|_{H^2}
+ \le C_\omega\bigl(\|F\|_{H^{-1}}+\|G\|_0\bigr)
+ \qquad(|\xi|=1).
+\end{equation}
+
+\emph{Scaling and low frequencies.}
+For $\tau=|\xi|>0$ set
+\begin{equation}\label{eq:g-edge-fourier-rescaling}
+ \widetilde U(X)=U(X/\tau),\qquad
+ \widetilde p(X)=\tau^{-1}p(X/\tau),\qquad
+ \widetilde F=\tau^{-4}F(X/\tau),\qquad
+ \widetilde G=\tau^{-3}G(X/\tau).
+\end{equation}
+These satisfy the unit-frequency system. Write
+$\|v\|_{k,\tau}^2=\sum_{j=0}^k\tau^{2(k-j)}|v|_j^2$, with
+$|v|_0=\|v\|_0$. The norm $\|\cdot\|_{-1,\tau}$ is dual to
+$(\|\nabla\phi\|_0^2+\tau^2\|\phi\|_0^2)^{1/2}$ on
+$H^1_0(W_\omega)$. All four norms in
+\eqref{eq:g-edge-unit-estimate} scale by $\tau^{-2}$, because the
+transverse dimension is two. Consequently,
+\begin{equation}\label{eq:g-edge-scaled-estimate}
+ \|U\|_{3,\tau}+\|p\|_{2,\tau}
+ \le C_\omega\bigl(\|F\|_{-1,\tau}+\|G\|_0\bigr),\qquad\tau>0.
+\end{equation}
+For $|\xi|\ge1$ these norms are equivalent to those with parameter
+$\kappa=(1+\xi^2)^{1/2}$. For $|\xi|\le1$, repeat the fixed-patch argument
+directly for the already given energy pair; every extra coefficient in the
+three planar equations is bounded, and one keeps the energy remainder.
+This gives the same $\kappa$-norm estimate with that remainder, uniformly down
+to $\xi=0$. Fourier--Plancherel and its dual direct-integral identity then
+give the assertion. No homogeneous negative norm is replaced by an
+inhomogeneous one in this argument. Half-plane and interior patches use
+rectangles instead of a corner patch and the same proof.
+\end{proof}
+
+\section{A joint Mellin shift and the global fourth-order Stokes theorem}
+\label{sec:g-global}
+
+\begin{lemma}[Weighted vertex estimate]\label{lem:g-vertexweights}
+Let $K$ be a pointed convex polyhedral cone, and let an energy pair
+$(v,q)\in H^2_0(K)^3\times H^1_0(K)$ have bounded outer radial support and
+satisfy
+\[
+ \Delta^2v+\nabla\Delta q=F\in H^{-1}(K)^3,\qquad
+ \Delta\operatorname{div}v=G\in L^2(K).
+\]
+Then, with $r=|x|$,
+\[
+ \|r^{-1}D^2v\|_0+\|r^{-2}Dv\|_0+\|r^{-3}v\|_0
+ +\|r^{-1}Dq\|_0+\|r^{-2}q\|_0
+ \le C\bigl(\|F\|_{H^{-1}(K)}+\|G\|_0\bigr).
+\]
+The constant may depend on the fixed cone and the outer support bound.
+\end{lemma}
+\begin{proof}
+Put $\tau=\log r$ and denote the cylinder by
+$\mathcal C=\mathbb R\times\Sigma$. The physical and cylindrical
+Sobolev norms are related by the following explicit equivalences, first
+for smooth compactly supported functions and then by density:
+\begin{align}
+ \|r^{-a}v\|_{H^2(\mathcal C)}^2
+ &\asymp\sum_{j=0}^{2}\int_K
+       r^{2j-2a-3}|D^jv|^2\,dx,\label{eq:g-cylindrical-velocity}\\
+ \|r^{1-a}q\|_{H^1(\mathcal C)}^2
+ &\asymp\sum_{j=0}^{1}\int_K
+       r^{2j-2a-1}|D^jq|^2\,dx.\label{eq:g-cylindrical-pressure}
+\end{align}
+The equivalences follow from $dx=r^3\,d\tau\,d\omega$ and
+$\partial_\tau=r\partial_r$; angular derivatives correspond to
+physical tangential derivatives multiplied by $r$. Sobolev norms on
+$\mathcal C$ include radial and angular derivatives, with clamped
+velocity and zero Dirichlet pressure traces only on the lateral boundary.
+The equivalence constants can be chosen uniformly for
+$a\in[1/2,3/2]$ and depend only on the fixed spherical section.
+Here $H^m_0(\mathcal C)$ denotes closure in the full cylindrical
+$H^m$ norm; the lateral boundary is the only finite boundary.
+
+On the energy line $a_0=1/2$, set
+\[
+ U_0=r^{-1/2}v,\qquad P_0=r^{1/2}q.
+\]
+Hardy's inequality applied to $Dv$ and $q$, together with angular Poincar\'e,
+gives $Dv/r$, $v/r^2$ and $q/r$ in $L^2(K)$. These estimates identify
+$(U_0,P_0)$ as an element of
+$H^2_0(\mathbb R\times\Sigma)^3\times H^1_0(\mathbb R\times\Sigma)$.
+The angular boundary conditions follow by transforming compactly supported
+smooth approximating sequences, rather than by imposing a separate trace at
+the cone vertex.
+
+For a general real line $a$, the original pressure has degree $a-1$ and the
+cylindrical data are
+\begin{equation}\label{eq:g-mellin-data-conversion}
+ F_a=r^{4-a}F,\qquad G_a=r^{3-a}G.
+\end{equation}
+For distributional $F$, the first expression means
+\[
+ \langle F_a,V\rangle
+ =\langle F,\eta(r)r^{1-a}V(\log r,\omega)\rangle,
+\]
+where $\eta$ is an outer cutoff equal to one near the support of $F$. At $a_1=3/2$
+the physical test is $\eta r^{-1/2}V$. Its $H^1(K)$ norm is bounded by the
+cylindrical $H^1$ norm: the factor $r^{-3/2}$ after differentiation exactly
+cancels the Jacobian $dx=r^3\,d\tau\,d\omega$. Hence
+\[
+ F_1\in H^{-1}_{\mathrm{cyl}}\subset H^{-2}_{\mathrm{cyl}},
+ \qquad G_1=r^{3/2}G\in L^2_{\mathrm{cyl}}\subset H^{-1}_{\mathrm{cyl}}.
+\]
+Writing $F_j=F_{a_j}$ and $G_j=G_{a_j}$, both target data have a
+common upper support bound $\tau\le T$, and the energy-line data satisfy
+$F_0=e^\tau F_1$, $G_0=e^\tau G_1$.
+
+Let $\mathcal X=H^2_0(\mathcal C)^3\times H^1_0(\mathcal C)$ and
+$\mathcal X^*=(H^{-2}_{\mathrm{cyl}})^3\times
+H^{-1}_{\mathrm{cyl}}$, with the corresponding product norms.
+Fourier transformation in $\tau$ gives the Hilbert direct-integral
+identities
+\begin{align}
+ \|(U,P)\|_{\mathcal X}^2
+ &\asymp\int_{\mathbb R}
+   \bigl(\|\widehat U(y)\|_{V_y}^2+
+         \|\widehat P(y)\|_{Z_y}^2\bigr)\,dy,
+ \label{eq:g-cylindrical-plancherel}\\
+ \|(\mathcal F,\mathcal G)\|_{\mathcal X^*}^2
+ &\asymp\int_{\mathbb R}
+   \bigl(\|\widehat{\mathcal F}(y)\|_{V_y^*}^2+
+         \|\widehat{\mathcal G}(y)\|_{Z_y^*}^2\bigr)\,dy.
+ \label{eq:g-cylindrical-duality}
+\end{align}
+The angular pressure has zero lateral trace and no angular mean
+normalization. Estimate~\eqref{eq:g-mixed-angular-estimate} therefore
+gives a bounded full inverse on each line $a\in[1/2,3/2]$.
+To justify the data approximation in fixed angular spaces, observe that
+\[
+ \mathcal X^*\hookrightarrow
+ H^{-2}(\mathbb R;V^*)\times H^{-1}(\mathbb R;Z^*).
+\]
+This follows by duality from the continuous inclusions
+$H^2(\mathbb R;V)\hookrightarrow H^2_0(\mathcal C)^3$ and
+$H^1(\mathbb R;Z)\hookrightarrow H^1_0(\mathcal C)$.
+A lower radial cutoff followed by convolution in $\tau$ therefore
+produces smooth, compactly supported $V^*\times Z^*$-valued data.
+The cutoffs are uniformly bounded multipliers on $\mathcal X^*$ and
+converge strongly there as their transition moves to $-\infty$;
+convolution is an approximate identity in the same space.
+Thus we may choose
+\[
+ (F_{1,n},G_{1,n})\in C_c^\infty(\mathbb R;V^*\times Z^*)
+\]
+converging to $(F_1,G_1)$ in $\mathcal X^*$, with supports in
+$\{\tau\le T+1\}$. Angular smoothing is unnecessary.
+Define $(F_{0,n},G_{0,n})=e^\tau(F_{1,n},G_{1,n})$.
+A fixed smooth upper cutoff makes this multiplication bounded on
+$\mathcal X^*$ for these supports, so convergence holds at the energy
+endpoint as well.
+
+For each approximant, the joint bilateral Laplace transform of
+$e^{a_1\tau}(F_{1,n},G_{1,n})$ is entire and decays faster than every power on closed
+vertical strips. The full inverse is analytic and uniformly bounded also in
+the fixed angular spaces: the parameter solution norms dominate their fixed
+norms and the parameter dual norms are bounded by the fixed dual norms.
+Vector-valued Cauchy's theorem thus permits the vertical contour to move from
+$a_0$ to $a_1$, with horizontal sides tending to zero. It yields
+\[
+ (U_{1,n},P_{1,n})=e^{-\tau}(U_{0,n},P_{0,n}).
+\]
+The endpoint pairs converge in the respective full cylindrical spaces. At
+$a_0$ the limit is the actual energy pair by uniqueness of the angular inverse.
+Pass the displayed identity to the limit on bounded $\tau$ intervals only;
+$e^{-\tau}$ is not asserted to be a globally bounded multiplier. Thus the
+newly constructed target-line pair equals
+\[
+ U_1=r^{-3/2}v,\qquad P_1=r^{-1/2}q
+\]
+as a distribution, and belongs to the full target cylindrical space. Its norm
+is equivalent to the five weighted norms in the statement. This proves the
+estimate without assuming target regularity of the original energy solution.
+\end{proof}
+
+\begin{theorem}[Global fourth-order Stokes regularity]\label{thm:g-stokes}
+Let $\Omega\subset\mathbb R^3$ be a fixed bounded convex polyhedron. For
+$F\in H^{-1}(\Omega)^3$ and $g\in L^2_\chi(\Omega)$, its energy solution
+satisfies
+\[
+ \|u\|_{H^3(\Omega)}+\|p\|_{H^2(\Omega)}
+ \le C_\Omega\bigl(\|F\|_{H^{-1}(\Omega)}+\|g\|_{L^2(\Omega)}\bigr).
+\]
+Here $u\in H^2_0(\Omega)^3$ and $p\in H^1_0(\Omega)\cap L^2_0(\Omega)$.
+\end{theorem}
+\begin{proof}
+Near a vertex choose a common smooth radial cutoff and write
+$v=\chi u$, $q=\chi p$. They extend to the infinite tangent cone in their
+energy spaces. The localized momentum force belongs to $H^{-1}$ because its
+commutators have at most three derivatives of $u$ and two of $p$. The localized
+constraint belongs to $L^2$, since
+\[
+ \begin{split}
+ \Delta\operatorname{div}(\chi u)-\chi\Delta\operatorname{div}u
+ ={}&2\nabla\chi\cdot\nabla\operatorname{div}u
+ +(\Delta\chi)\operatorname{div}u+\nabla\chi\cdot\Delta u\\
+ &+2\sum_{i,j}\partial_{ij}\chi\,\partial_i u_j
+ +\nabla\Delta\chi\cdot u.
+ \end{split}
+\]
+Only second derivatives of the energy velocity occur here. The localized
+pressure need not have zero mean. Lemma~\ref{lem:g-vertexweights} applies to
+this pair with bounds by the original data and energy norms.
+
+On fixed nested cone annuli $A\Subset_r A^*$, which are separated from the
+vertex, Proposition~\ref{prop:g-edge}, its flat-face and interior versions,
+and a finite partition give
+\[
+ \|v\|_{H^3(A)}+\|q\|_{H^2(A)}
+ \le C\bigl(\|F\|_{H^{-1}(A^*)}+\|G\|_{L^2(A^*)}
+                  +\|v\|_{H^2(A^*)}+\|q\|_{H^1(A^*)}\bigr).
+\]
+All cutoffs vanish near artificial radial boundaries; no boundary condition
+is imposed there. For $A_h=hA$, set
+\[
+ U(X)=v(hX),\qquad P(X)=h q(hX),\qquad
+ F_h=h^4F(hX),\qquad G_h=h^3G(hX).
+\]
+In dimension three, the $D^3U$, $D^2P$, $F_h$ in $H^{-1}$, and $G_h$ in
+$L^2$ norms each carry the factor $h^{3/2}$, provided the physical force uses
+the dual norm of
+$(\|\nabla\phi\|_0^2+h^{-2}\|\phi\|_0^2)^{1/2}$. Dividing by this factor
+shows that the energy remainders are exactly
+\[
+ h^{-1}\|D^2v\|_0+h^{-2}\|Dv\|_0+h^{-3}\|v\|_0
+ +h^{-1}\|Dq\|_0+h^{-2}\|q\|_0.
+\]
+Their squared sums over bounded-overlap dyadic annuli are controlled by
+Lemma~\ref{lem:g-vertexweights}.
+
+For completeness, the force square sum is bounded by
+\begin{equation}\label{eq:g-force-dyadic-dual}
+ \sum_j\|F\|_{H^{-1}_{1/h_j}(A_{h_j}^*)}^2
+ \le C\|F\|_{H^{-1}(K)}^2.
+\end{equation}
+Indeed the sum of zero extensions maps the Hilbert sum of the weighted
+$H^1_0(A_{h_j}^*)$ test spaces boundedly into $H^1_0(K)$, by finite overlap
+and the bounded outer scale. Take its Hilbert-space adjoint. This treats
+distributional forces and does not sum infinitely many copies of one global
+bound. The $G$ terms sum directly in $L^2$.
+
+We obtain $H^3\times H^2$ near every vertex. A finite cover treats the
+remaining straight edges, faces and interior. This yields the stated global
+estimate with an additional $H^2\times H^1$ remainder, which is removed by
+Lemma~\ref{lem:g-energy}. All third velocity derivatives and second pressure
+derivatives belong to $L^2$ on the annular exhaustion; the omitted vertex is
+a boundary point, so this also gives the required distributional Sobolev
+membership on the domain.
+\end{proof}
+
+\section{Uniform fourth-order Lam\'e regularity}
+\label{sec:g-lameuniform}
+
+\begin{theorem}\label{thm:g-lameuniform}
+On a fixed bounded convex polyhedron $\Omega$, let $u\in H^2_0(\Omega)^3$
+solve
+\[
+ \mu\Delta^2u+(\lambda+\mu)\nabla\Delta\operatorname{div}u=F,
+ \qquad F\in H^{-1}(\Omega)^3.
+\]
+For all $\lambda\ge0$ and $\mu>0$,
+\[
+ \mu\|u\|_{H^3(\Omega)}
+ +(\lambda+\mu)\|\operatorname{div}u\|_{H^2(\Omega)}
+ \le C_\Omega\|F\|_{H^{-1}(\Omega)}.
+\]
+\end{theorem}
+\begin{proof}
+First fix a finite $\beta=(\lambda+\mu)/\mu\ge1$. The angular
+coercivity of Theorem~\ref{thm:weak-angular20} gives its weak inverse on the entire
+closed strip $1/2\le\operatorname{Re}s\le3/2$. The proof of
+Lemma~\ref{lem:g-vertexweights}, with the pressure and constraint components
+omitted and this vector pencil used in the contour integral, therefore gives
+$D^2v/r$, $Dv/r^2$ and $v/r^3$ in $L^2$ for a localized energy solution.
+
+At a straight edge the transverse principal part of
+$\Delta^2+\beta\nabla\Delta\operatorname{div}$ is the planar fourth-order
+Lam\'e operator on the two transverse components and the scalar biharmonic
+operator on the axial component. At unit axial frequency all remaining terms
+have transverse order at most three; they map $H^2$ to $H^{-1}$. The planar
+clamped Lam\'e shift in Corollary~\ref{cor:planar-H320}, together with the scalar part of
+Lemma~\ref{lem:g-planarstokes}, thus gives the edge $H^3$ estimate by the
+same fixed-patch argument as Proposition~\ref{prop:g-edge}. Its unit-frequency
+energy form is
+\[
+ \|L_\xi U\|_0^2+\beta\|D_\xi\operatorname{Div}_\xi U\|_0^2,
+ \qquad |\xi|=1,
+\]
+which controls $H^2$. Exact transverse scaling treats high frequencies;
+bounded-coefficient localization treats low frequencies with an energy
+remainder. The annular argument in Theorem~\ref{thm:g-stokes} now proves
+the $H^{-1}\to H^3\cap H^2_0$ shift for each finite $\beta$.
+
+To obtain a constant uniform as $\beta\to\infty$, set $\gamma=\beta^{-1}$
+and use the fixed strong spaces
+\[
+ \mathcal X=(H^3\cap H^2_0)^3\times(H^2\cap H^1_0\cap L^2_0),\qquad
+ \mathcal Z=H^{-1}(\Omega)^3\times L^2_\chi(\Omega).
+\]
+By Theorem~\ref{thm:g-stokes},
+\[
+ S_0(u,p)=(\Delta^2u+\nabla\Delta p,\ \Delta\operatorname{div}u)
+ :\mathcal X\longrightarrow\mathcal Z
+\]
+is a bounded isomorphism. The map $B(u,p)=(0,\Delta p)$ is bounded into
+$\mathcal Z$, because
+$(\Delta p,\chi_\Omega)=-(p,1)=0$. Hence
+\begin{equation}\label{eq:g-strong-space-perturbation}
+ S_\gamma=S_0-\gamma B
+\end{equation}
+has a uniformly bounded inverse for sufficiently small $\gamma\ge0$. Applied to data $(F/\mu,0)$, its second equation and
+zero traces imply
+\[
+ \Delta(\operatorname{div}u-\gamma p)=0,
+ \qquad \operatorname{div}u-\gamma p\in H^1_0(\Omega),
+\]
+so $p=\beta\operatorname{div}u$. Energy uniqueness identifies this strong
+solution with the given Lam\'e solution. It gives
+$\|u\|_{H^3}+\|\beta\operatorname{div}u\|_{H^2}
+\le C\mu^{-1}\|F\|_{H^{-1}}$ on the large-$\beta$ range.
+
+The remaining $\beta$ values form a compact interval. Each finite-$\beta$
+operator is an isomorphism by the first part of the proof and energy
+solvability. These operators depend continuously on $\beta$ in
+$\mathcal L(H^3\cap H^2_0,H^{-1})$; bounded-operator inversion and compactness
+give a uniform inverse bound on that interval. There $\beta$ itself is bounded,
+so the divergence term is controlled by the $H^3$ norm. Multiplying the two
+range estimates by $\mu$ proves the result. Thus no uniform bound for
+unbounded-$\beta$ localization commutators is assumed.
+\end{proof}
+
+
+
+\section{Uniform classical elasticity on convex polyhedra}
+\label{sec:est-classical}
+
+All Sobolev spaces in this section are complexified when Fourier or Mellin
+transforms are used. Inner products are linear in their first argument.
+Constants may depend on the fixed domain, but not on the material parameters.
+
+\begin{theorem}\label{thm:est-classical}
+Let $\Omega\subset\mathbb R^3$ be a fixed bounded convex polyhedron.
+For $\lambda\ge0$, $\mu>0$ and $f\in L^2(\Omega)^3$, let
+$u_0\in H_0^1(\Omega)^3$ solve
+\[
+ -\mu\Delta u_0-(\lambda+\mu)\nabla\operatorname{div}u_0=f.
+\]
+Then
+\begin{equation}\label{eq:est-classical}
+ \mu\|u_0\|_{H^2(\Omega)}
+ +(\lambda+\mu)\|\operatorname{div}u_0\|_{H^1(\Omega)}
+ \le C_\Omega\|f\|_{L^2(\Omega)}.
+\end{equation}
+\end{theorem}
+
+Set $\beta=(\lambda+\mu)/\mu$, $\varepsilon=\beta^{-1}$,
+$\pi=-\beta\operatorname{div}u_0$ and $F=f/\mu$. The normalized system is
+\begin{equation}\label{eq:est-classical-mixed}
+ -\Delta u+\nabla\pi=F,
+ \qquad \operatorname{div}u+\varepsilon\pi=0,
+ \qquad u\in H_0^1(\Omega)^3,
+ \qquad \pi\in L_0^2(\Omega).
+\end{equation}
+We include $\varepsilon=0$, which is the incompressible Stokes system.
+The usual divergence inf--sup condition and the energy identity give
+\begin{equation}\label{eq:est-classical-energy}
+ \|u\|_{H^1}+\|\pi\|_{L^2}
+ \le C_\Omega\|F\|_{H^{-1}},\qquad 0\le\varepsilon\le1.
+\end{equation}
+Indeed, testing with $u$ controls $\|\nabla u\|$ and
+$\varepsilon^{1/2}\|\pi\|$; the first equation and the inf--sup condition
+then control the unweighted pressure norm. For $\varepsilon>0$ its mean
+vanishes by integration of the constraint. The argument never divides an
+energy bound by $\varepsilon$.
+
+\subsection{A planar estimate with the correct constraint space}
+
+\begin{lemma}\label{lem:est-planar}
+Let $D\subset\mathbb R^2$ be a fixed bounded convex polygon. Suppose
+$0\le\varepsilon\le1$, $U\in H_0^1(D)^2$ and $P\in L^2(D)$ satisfy
+\[
+ -\Delta U+\nabla P=F\in L^2(D)^2,
+ \qquad \operatorname{div}U+\varepsilon P=g\in H_0^1(D).
+\]
+No mean condition is imposed on $P$. Then
+\begin{equation}\label{eq:est-planar}
+ \|U\|_{H^2(D)}+\|P\|_{H^1(D)}
+ \le C_D\bigl(\|F\|_{L^2(D)}+\|g\|_{H^1(D)}+\|P\|_{L^2(D)}\bigr),
+\end{equation}
+uniformly for $0\le\varepsilon\le1$.
+\end{lemma}
+
+\begin{proof}
+Choose $\phi\in C_c^\infty(D)$ with $\int_D\phi=1$, and put
+\[
+ m=\int_D P,\qquad \widetilde P=P-m\phi,
+ \qquad \widetilde g=g-\varepsilon m\phi.
+\]
+The integrated constraint gives $\varepsilon m=\int_Dg$.
+Consequently $\widetilde g\in H_0^1(D)\cap L_0^2(D)$ and
+$\|\widetilde g\|_{H^1}\le C_D\|g\|_{H^1}$.
+The support-preserving Bogovskii operator
+\cite{CostabelMcIntosh2010} provides
+$w\in H_0^2(D)^2$ such that
+\[
+ \operatorname{div}w=\widetilde g,
+ \qquad \|w\|_{H^2}\le C_D\|g\|_{H^1}.
+\]
+For $v=U-w$ one obtains
+\[
+ -\Delta v+\nabla\widetilde P
+ =F+\Delta w-m\nabla\phi=:H,
+ \qquad \operatorname{div}v+\varepsilon\widetilde P=0,
+ \qquad \int_D\widetilde P=0.
+\]
+If $\varepsilon>0$, elimination of $\widetilde P$ gives
+$-\Delta v-\varepsilon^{-1}\nabla\operatorname{div}v=H$.
+The planar uniform elasticity theorem of
+B\u{a}cu\c{t}\u{a}--Bramble \cite[Theorem 3.1]{BacutaBramble2003}
+implies $\|v\|_{H^2}\le C_D\|H\|_{L^2}$.
+The equation and the zero pressure mean then yield
+$\|\widetilde P\|_{H^1}\le C_D\|H\|_{L^2}$.
+At $\varepsilon=0$, the same estimate follows by solving the penalized
+systems for $\varepsilon_n\downarrow0$, using these uniform bounds, and
+identifying their weak limit by Stokes energy uniqueness.
+Finally $|m|\le |D|^{1/2}\|P\|_{L^2}$, which proves
+\eqref{eq:est-planar}.
+\end{proof}
+
+The bump correction is essential to the stated proof: subtracting a
+constant pressure mean would generally destroy the zero trace of the
+constraint datum. No right inverse on arbitrary $H^1(D)$ divergence data
+is used here.
+
+\subsection{Straight edges and all axial frequencies}
+
+Let $W\subset\mathbb R^2$ be a fixed convex wedge. At axial Fourier
+frequency $\sigma\in\{-1,1\}$, set
+\[
+ D_\sigma=(\partial_1,\partial_2,i\sigma),\qquad
+ B_\sigma U=\operatorname{div}_\perp U_\perp+i\sigma U_3.
+\]
+Consider
+\begin{equation}\label{eq:est-edge-unit}
+ - (\Delta_\perp-1)U+D_\sigma P=F,
+ \qquad B_\sigma U+\varepsilon P=G.
+\end{equation}
+The map $B_\sigma:H_0^1(W)^3\to L^2(W)$ has a bounded right inverse.
+To see this, cover $W$ by fixed-size convex polygonal patches with bounded
+overlap and finitely many shapes, and use a subordinate partition
+$\chi_j$. For $h_j=\chi_jh$, put $c_j=\int h_j$ and choose a unit-integral
+interior bump $\phi_j$. Lift $h_j-c_j\phi_j$ by the ordinary planar
+Bogovskii operator and lift $c_j\phi_j$ by the axial component
+$c_j\phi_j/(i\sigma)$. Zero extension and summation give
+\[
+ B_\sigma R_\sigma h=h,
+ \qquad \|R_\sigma h\|_{H^1(W)}\le C_W\|h\|_{L^2(W)}.
+\]
+In particular no total integral of $h$ on the unbounded wedge is required.
+The velocity form associated with $-\Delta_\perp+1$ is coercive on
+$H_0^1(W)^3$. Its pressure Schur complement is coercive on the whole
+$L^2(W)$ space. Adding $\varepsilon I$ preserves this property, so
+\begin{equation}\label{eq:est-edge-energy}
+ \|U\|_{H^1(W)}+\|P\|_{L^2(W)}
+ \le C_W\bigl(\|F\|_{H^{-1}(W)}+\|G\|_{L^2(W)}\bigr)
+\end{equation}
+uniformly for $0\le\varepsilon\le1$.
+
+Write $U=(v,w)$. Its planar equations have right sides
+$F_\perp-v$ and $G-i\sigma w$; the latter belongs to $H_0^1(W)$ whenever
+$G\in H_0^1(W)$. After a patch cutoff, the additional constraint term is
+$\nabla\chi_j\cdot v$, which also has zero trace. Thus
+Lemma~\ref{lem:est-planar} applies to the planar components.
+The axial equation is the scalar Poisson equation
+$-\Delta_\perp w=F_3-w-i\sigma P$.
+Convex-polygon Poisson regularity, bounded overlap, and
+\eqref{eq:est-edge-energy} give
+\begin{equation}\label{eq:est-edge-strong-unit}
+ \|U\|_{H^2(W)}+\|P\|_{H^1(W)}
+ \le C_W\bigl(\|F\|_{L^2(W)}+\|G\|_{H^1(W)}\bigr).
+\end{equation}
+
+For any nonzero axial frequency $\xi$, write $\tau=|\xi|$ and $X=\tau x$.
+The substitutions
+\[
+ \widetilde U(X)=U(X/\tau),\quad
+ \widetilde P(X)=\tau^{-1}P(X/\tau),\quad
+ \widetilde F(X)=\tau^{-2}F(X/\tau),\quad
+ \widetilde G(X)=\tau^{-1}G(X/\tau)
+\]
+reduce the problem to \eqref{eq:est-edge-unit}, without changing
+$\varepsilon$. With
+$\|v\|_{k,\tau}^2=\sum_{j=0}^k\tau^{2(k-j)}|v|_{H^j}^2$,
+the common scaling factor in \eqref{eq:est-edge-strong-unit} cancels,
+giving
+\[
+ \|U\|_{2,\tau}+\|P\|_{1,\tau}
+ \le C_W(\|F\|_{L^2}+\|G\|_{1,\tau}).
+\]
+Use this bound for $|\xi|\ge1$. For $|\xi|\le1$, the unscaled patch
+argument retains the energy remainder
+$\|U\|_{H^1}+\|P\|_{L^2}$, and all frequency coefficients are bounded.
+Plancherel's theorem therefore proves the three-dimensional edge estimate
+\begin{equation}\label{eq:est-classical-edge}
+ \|u\|_{H^2(W\times\mathbb R)}+\|p\|_{H^1(W\times\mathbb R)}
+ \le C_W\bigl(\|F\|_{L^2}+\|G\|_{H^1}
+                   +\|u\|_{H^1}+\|p\|_{L^2}\bigr),
+\end{equation}
+for $G\in H_0^1$. The half-space and interior estimates follow by the
+same argument.
+
+\subsection{A uniform classical vertex pencil}
+
+The spherical section $\Sigma$ of a genuine convex vertex cone has closure
+in an open hemisphere $H$. Zero extension maps $H_0^1(\Sigma)$ into
+$H_0^1(H)$. We use the hemisphere inequalities
+\begin{equation}\label{eq:est-hemisphere}
+ \|\nabla_Sv\|^2\ge2\|v\|^2,
+ \qquad
+ \|\nabla_Sv\|^2\ge6\left(\|v\|^2-
+                 |H|^{-1}\left|\int_Hv\right|^2\right).
+\end{equation}
+The second is the hemisphere variance inequality in
+\cite[Lemma 2.3, equation (2.25)]{MayborodaMazya2008}, extended from
+$H_0^2$ to $H_0^1$ by density. It can also be obtained by separating the
+azimuthal mean, whose Neumann variance gap is $6$, from the remaining
+modes, whose first Dirichlet eigenvalue is at least $6$.
+
+Set
+\[
+ s=-\tfrac12+x+iy,\quad 0\le x\le1,\quad
+ t=-1-\overline s,\quad Y=y^2,\quad \kappa=(1+y^2)^{1/2}.
+\]
+For $U\in H_0^1(\Sigma)^3$, write
+$R=U\cdot\omega$, $W=U-R\omega$, and
+$d_sU=\operatorname{div}_SW+(s+2)R=:h$.
+The normalized Lam\'e pencil is
+\[
+ b_{\beta,s}(U,V)
+ = (\nabla_SU,\nabla_SV)-s(s+1)(U,V)
+       +\beta(d_sU,d_tV).
+\]
+Put $A=\|\nabla_SU\|^2$, $N=\|U\|^2$, and use subscripts $R$ for
+the corresponding scalar norms. Integration by parts gives
+\[
+ b_{0,s}(U,R\omega)
+ =A_R-(s+1)(s+2)N_R+2(h,R).
+\]
+For $\delta=2/\beta$, define
+\[
+ T_{s,\beta}U=W+
+       \frac{s+2+\delta}{1-\overline s+\delta}R\omega.
+\]
+Both $T_{s,\beta}$ and its inverse are uniformly bounded on the parameter
+space $V_y=H_0^1(\Sigma)^3$ with norm
+$\|U\|_{V_y}^2=A+\kappa^2N$. Indeed, the radial denominator has real
+part at least $1/2$, its modulus ratio is at most $5$, and the radial
+projection is a fixed smooth multiplier. A direct calculation yields
+\begin{equation}\label{eq:est-classical-cancel}
+ b_{\beta,s}(U,T_{s,\beta}U)
+ =B_0+\frac{2x}{1-s+\delta}B_R^0+\beta\|h\|^2,
+\end{equation}
+where
+$B_0=A-s(s+1)N$ and
+$B_R^0=A_R-(s+1)(s+2)N_R$.
+
+The integral of the tangential divergence vanishes, so
+$\int_Hh=(s+2)\int_HR$, after zero extension. Consequently
+\eqref{eq:est-hemisphere} implies
+\[
+ A_R\ge6N_R-\frac{6}{|s+2|^2}\|h\|^2.
+\]
+Set $d=3/2-x+\delta$ and
+$\alpha=(x+1/2)(x+3/2)\le15/4$. The exact real numerator is
+\[
+ (d^2+Y)\operatorname{Re}\frac{B_R^0}{1-s+\delta}
+ =d(A_R-\alpha N_R)+Y(7/2+x+\delta)N_R.
+\]
+All terms except the mean contribution are nonnegative. Its loss is at
+most $12x\|h\|^2/(d|s+2|^2)$, and
+\[
+ \frac{12x}{\beta d|s+2|^2}
+ \le \frac{12x}{[\beta(3/2-x)+2](x+3/2)^2}
+ \le\frac{96}{125}.
+\]
+Here $x/(x+3/2)^2\le4/25$ and
+$\beta(3/2-x)+2\ge5/2$. Also
+$\operatorname{Re}B_0\ge(5/8)A+YN$. Thus
+\begin{equation}\label{eq:est-classical-coercive}
+ \operatorname{Re}b_{\beta,s}(U,T_{s,\beta}U)
+ \ge\frac58 A+YN+\frac{29}{125}\beta\|d_sU\|^2.
+\end{equation}
+This holds for every $\beta\ge1$, every $0\le x\le1$, and every
+$y\in\mathbb R$. In particular it controls $\|U\|_{V_y}^2$ uniformly.
+
+For completeness, the mixed pencil is
+\begin{equation}\label{eq:est-classical-mixed-pencil}
+ b_{0,s}(U,V)-(P,d_tV)=\mathcal F(V),
+ \qquad d_sU+\varepsilon P=\mathcal G.
+\end{equation}
+The maps $d_s,d_t:V_y\to L^2(\Sigma)$ have uniform right inverses.
+One construction uses a smooth gnomonic chart to a fixed convex polygon,
+patches of diameter $\eta\asymp\kappa^{-1}$, and surface Piola transforms.
+For $h_j=\chi_jh$, let $c_j=\int h_j$ and choose an interior unit-integral
+bump $\phi_j$. A tangential Bogovskii lift of $h_j-c_j\phi_j$ satisfies
+\[
+ \|W_j\|_{L^2}\le C\eta\|h_j\|_{L^2},
+ \qquad \|\nabla_SW_j\|_{L^2}\le C\|h_j\|_{L^2}.
+\]
+Add $c_j\phi_j\omega/(s+2)$. Since
+$|c_j|\le C\eta\|h_j\|$, $\|\phi_j\|\le C\eta^{-1}$,
+$\|\nabla_S\phi_j\|\le C\eta^{-2}$, and
+$|s+2|\asymp\kappa$, the added field has the same parameter norm bound.
+Summing over bounded-overlap patches gives the right inverse of $d_s$.
+The construction for $d_t$ uses $t+2=1-\overline s$, whose modulus is
+also comparable to $\kappa$ throughout the strip.
+
+At $\varepsilon=0$, let $\beta\to\infty$ in the test multiplier.
+The limit $T_s$ maps $\ker d_s$ isomorphically onto $\ker d_t$.
+Equation~\eqref{eq:est-classical-coercive}, with $d_sU=0$, solves the
+kernel problem. The two divergence right inverses lift $\mathcal G$ and
+recover $P$ from the momentum residual. Hence the full mixed inverse obeys
+\begin{equation}\label{eq:est-classical-mixed-inverse}
+ \|U\|_{V_y}+\|P\|_{L^2}
+ \le C_\Sigma(\|\mathcal F\|_{V_y^*}+\|\mathcal G\|_{L^2}).
+\end{equation}
+The perturbation $(U,P)\mapsto(0,\varepsilon P)$ is bounded on precisely
+these weak mixed spaces. A uniform Neumann series handles sufficiently
+small $\varepsilon$. For the remaining compact interval, eliminate
+$P=\varepsilon^{-1}(\mathcal G-d_sU)$ and apply
+\eqref{eq:est-classical-coercive}, with bounded
+$\beta=\varepsilon^{-1}$. This proves
+\eqref{eq:est-classical-mixed-inverse} for all $0\le\varepsilon\le1$.
+The operator family and its inverse are holomorphic in $s$ on the strip.
+No perturbation is asserted on a strong constraint space $H_0^1$.
+
+\subsection{Mellin identification and the global estimate}
+
+For a radial vertex cutoff $\chi$, put $v=\chi u$ and $p=\chi\pi$,
+and extend them by zero to the infinite vertex cone $K$. The localized
+equations have data
+\[
+ F_\chi=\chi F-2\nabla\chi\cdot\nabla u-(\Delta\chi)u+\pi\nabla\chi,
+ \qquad G_\chi=\nabla\chi\cdot u\in H_0^1(K),
+\]
+and
+\begin{equation}\label{eq:est-classical-local-data}
+ \|F_\chi\|_{L^2}+\|G_\chi\|_{H^1}
+ \le C_\chi(\|F\|_{L^2}+\|u\|_{H^1}+\|\pi\|_{L^2}).
+\end{equation}
+The zero trace of $G_\chi$ follows from $u=0$ on the physical faces and
+from the cutoff at artificial boundaries; it does not require $u\in H^2$.
+
+Write $t=\log r$. At the energy line $\operatorname{Re}s=-1/2$,
+\[
+ U_0=r^{1/2}v\in H_0^1(\mathbb R\times\Sigma)^3,
+ \qquad P_0=r^{3/2}p\in L^2(\mathbb R\times\Sigma).
+\]
+Hardy's inequality $\|v/r\|_{L^2}\le2\|\nabla v\|_{L^2}$ proves
+this assertion directly from energy regularity. The target line
+$\operatorname{Re}s=1/2$ has data
+\[
+ F_1=r^{3/2}F_\chi,
+ \qquad G_1=r^{1/2}G_\chi,
+ \qquad
+ \|F_1\|_{L^2_{\rm cyl}}=\|F_\chi\|_{L^2},\quad
+ \|G_1\|_{L^2_{\rm cyl}}=\|G_\chi/r\|_{L^2}
+ \le2\|\nabla G_\chi\|_{L^2}.
+\]
+The energy-line data equal $e^t(F_1,G_1)$ and have a common upper
+support bound in $t$. As in Lemma~\ref{lem:g-vertexweights}, approximate
+$(F_1,G_1)$ by
+$C_c^\infty(\mathbb R;L^2(\Sigma)^3\times L^2(\Sigma))$ data
+with a common upper support bound. The approximation converges in the
+data spaces on both lines. For each approximant,
+holomorphy of the full inverse
+\eqref{eq:est-classical-mixed-inverse} and rapid vertical decay of the
+transformed data justify contour shifting. The line solutions obey
+$(U_{1,n},P_{1,n})=e^{-t}(U_{0,n},P_{0,n})$.
+Both sequences converge by the line-inverse bounds. Passing through the
+multiplier $e^{-t}$ only on bounded $t$ intervals identifies the target
+solution, as a distribution, with
+$(r^{-1/2}v,r^{1/2}p)$. The initial solution is the actual energy solution
+by uniqueness on the energy line. Consequently
+\begin{equation}\label{eq:est-classical-weights}
+ \|Dv/r\|_{L^2}+\|v/r^2\|_{L^2}+\|p/r\|_{L^2}
+ \le C\bigl(\|F_\chi\|_{L^2}+\|G_\chi/r\|_{L^2}\bigr).
+\end{equation}
+This argument constructs the target-space solution before identifying it;
+it never assumes the desired vertex weights for the energy solution.
+
+On fixed nested vertex annuli $A\Subset A^*$, a finite interior/face/edge
+cover and \eqref{eq:est-classical-edge} give a strong local estimate.
+After rescaling an annulus of radius $h$, it reads
+\begin{align*}
+ \|D^2v\|_{L^2(hA)}+\|Dp\|_{L^2(hA)}
+ \le C\bigl(&\|F_\chi\|_{L^2(hA^*)}+\|DG_\chi\|_{L^2(hA^*)}
+       +h^{-1}\|G_\chi\|_{L^2(hA^*)}\\
+ &+h^{-1}\|Dv\|_{L^2(hA^*)}+h^{-2}\|v\|_{L^2(hA^*)}
+       +h^{-1}\|p\|_{L^2(hA^*)}\bigr).
+\end{align*}
+Square and sum over dyadic annuli. Finite overlap,
+\eqref{eq:est-classical-weights}, and Hardy's inequality for $G_\chi$
+control all terms. A finite cover of the remaining faces, edges and
+interior gives
+\[
+ \|u\|_{H^2(\Omega)}+\|\pi\|_{H^1(\Omega)}
+ \le C_\Omega(\|F\|_{L^2}+\|u\|_{H^1}+\|\pi\|_{L^2}).
+\]
+Use \eqref{eq:est-classical-energy} and restore $\mu$ to obtain
+Theorem~\ref{thm:est-classical}.
+
+\section{Parameter-uniform strain-gradient estimates}
+\label{sec:est-sge}
+
+Write $P_\beta=\Delta^2+\beta\nabla\Delta\operatorname{div}$, where
+$\beta\ge1$. The following lemma records the normalized estimate of
+Theorem~\ref{thm:g-lameuniform} and adds the refinement needed to control
+the strain-gradient residual modulo gradient forces.
+
+\begin{lemma}\label{lem:est-fourth-consequences}
+On a fixed bounded convex polyhedron, for every $\beta\ge1$ and
+$P_\beta w=F\in H^{-1}(\Omega)^3$, $w\in H_0^2(\Omega)^3$, one has
+\begin{align}
+ \|w\|_{H^3}+\beta\|\operatorname{div}w\|_{H^2}
+ &\le C\|F\|_{H^{-1}},\label{eq:est-fourth-robust}\\
+ \|w\|_{H^3}
+ &\le C\left(\inf_{q\in L^2(\Omega)}\|F+\nabla q\|_{H^{-1}}
+                     +\beta^{-1}\|F\|_{H^{-1}}\right).
+ \label{eq:est-gradient-robust}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Estimate~\eqref{eq:est-fourth-robust} is
+Theorem~\ref{thm:g-lameuniform} with $\mu=1$ and $\lambda=\beta-1$.
+For the second estimate, use the strong Stokes operator $S_0$ and the
+perturbation $S_\gamma$ from \eqref{eq:g-strong-space-perturbation},
+with $\gamma=\beta^{-1}$. Set $(v,q_0)=S_0^{-1}(F,0)$,
+$e=w-v$, and $\eta=\beta\operatorname{div}w-q_0$.
+The first estimate ensures that $(e,\eta)$ belongs to the strong
+domain of $S_\gamma$, and direct subtraction gives
+\[
+ S_\gamma(e,\eta)=(0,\gamma\Delta q_0).
+\]
+The uniformly bounded strong inverse established in
+Theorem~\ref{thm:g-lameuniform} therefore gives, for some fixed
+$\gamma_0>0$ and $0<\gamma\le\gamma_0$,
+\[
+ \|e\|_{H^3}+\|\eta\|_{H^2}
+ \le C\gamma\|q_0\|_{H^2}
+ \le C\gamma\|F\|_{H^{-1}}.
+\]
+
+For any $q\in L^2(\Omega)$ set
+$c_q=(q,\chi_\Omega)/(1,\chi_\Omega)$ and solve
+$\Delta r=q-c_q$, $r\in H^1_0$.
+Convex-domain Poisson regularity gives $r\in H^2$; moreover,
+$-\int_\Omega r=(q-c_q,\chi_\Omega)=0$.
+Thus $(v,q_0+r)$ is the Stokes solution with force $F+\nabla q$
+and zero constraint, and Theorem~\ref{thm:g-stokes} yields
+\[
+ \|v\|_{H^3}
+ \le C\inf_{q\in L^2(\Omega)}\|F+\nabla q\|_{H^{-1}}.
+\]
+Together with the estimate for $e$, this proves
+\eqref{eq:est-gradient-robust} for $\gamma\le\gamma_0$.
+For $\gamma\ge\gamma_0$, the first estimate gives
+$\|w\|_{H^3}\le C\gamma_0^{-1}\gamma\|F\|_{H^{-1}}$,
+which proves the remaining range.
+\end{proof}
+
+\begin{proposition}\label{prop:est-sge-transfer}
+Let $\Omega\subset\mathbb R^3$ be a fixed bounded convex polyhedron.
+Let $u_\iota\in H_0^2(\Omega)^3$ and $u_0\in H_0^1(\Omega)^3$ solve
+\[
+ (I-\iota^2\Delta)\mathcal L_{\lambda,\mu}u_\iota=f,
+ \qquad \mathcal L_{\lambda,\mu}u_0=f,
+ \qquad
+ \mathcal L_{\lambda,\mu}u=-\mu\Delta u
+                     -(\lambda+\mu)\nabla\operatorname{div}u.
+\]
+Set $p_\iota=\lambda\operatorname{div}u_\iota$ and
+$p_0=\lambda\operatorname{div}u_0$. Then, for all
+$\lambda\ge0$, $\mu>0$ and $0<\iota<1$,
+\begin{align}
+ |u_\iota-u_0|_{H^1}+\iota\|u_\iota\|_{H^2}
+                  +\iota^2\|u_\iota\|_{H^3}
+ &\le C_\Omega\mu^{-1}\sqrt\iota\,\|f\|_{L^2},
+ \label{eq:est-sge-u}\\
+ \|p_\iota-p_0\|_{L^2}+\iota|p_\iota|_{H^1}
+                  +\iota^2\|p_\iota\|_{H^2}
+ &\le C_\Omega\frac{\lambda}{\lambda+2\mu}
+                    \sqrt\iota\,\|f\|_{L^2}.
+ \label{eq:est-sge-p}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+We apply Theorems~\ref{thm:g-stokes}, \ref{thm:g-lameuniform},
+and \ref{thm:est-classical}. First take $\mu=1$, abbreviate
+$u=u_\iota$, and put
+$e=u-u_0$, $\sigma(v)=2\epsilon(v)+\lambda(\operatorname{div}v)I$.
+Fixed-parameter regularity first gives $u\in H^3$: indeed,
+$P_{\lambda+1}u=\iota^{-2}(f-\mathcal L_{\lambda,1}u)\in L^2$,
+because the energy solution already belongs to $H_0^2$.
+The equation also gives
+\begin{equation}\label{eq:est-sge-residual}
+ \iota^2\operatorname{div}\Delta\sigma(u)
+       =\operatorname{div}\sigma(e)=:F_e.
+\end{equation}
+Since
+$F_e=\Delta e+(\lambda+1)\nabla\operatorname{div}e$,
+\eqref{eq:est-gradient-robust} yields
+\begin{equation}\label{eq:est-sge-third}
+ \iota^2\|u\|_{H^3}\le C|e|_{H^1}.
+\end{equation}
+Here the gradient infimum removes the second term of $F_e$, and
+$(\lambda+1)^{-1}\|F_e\|_{H^{-1}}\le C|e|_{H^1}$.
+
+Pair \eqref{eq:est-sge-residual} with $e\in H^2\cap H_0^1$ and
+integrate by parts. The clamped trace of $u$ gives
+\begin{align}\label{eq:est-sge-energy-identity}
+ (\sigma(e),\epsilon(e))
+ +\iota^2(\nabla\sigma(u),\nabla\epsilon(u))
+ ={}&\iota^2(\nabla\sigma(u),\nabla\epsilon(u_0))\\
+ &-\iota^2(\partial_n\sigma(u),\epsilon(u_0))_{\partial\Omega}.
+ \nonumber
+\end{align}
+These boundary integrals are well defined since $u\in H^3$ and
+$u_0\in H^2$. The formula follows facewise, or by Green's formula for
+the $H^1$ components of $\nabla\sigma(u)$.
+The classical bound and the multiplicative trace inequality give
+\[
+ |(\nabla\sigma(u),\nabla\epsilon(u_0))|
+       \le C\|u\|_{H^2}\|f\|_{L^2},
+\]
+\[
+ |(\partial_n\sigma(u),\epsilon(u_0))_{\partial\Omega}|
+       \le C\|u\|_{H^2}^{1/2}\|u\|_{H^3}^{1/2}\|f\|_{L^2}.
+\]
+The factors containing $\lambda$ are placed on the classical quantity
+$\lambda\|\operatorname{div}u_0\|_{H^1}$, which is uniformly bounded.
+Set $x=|e|_{H^1}$, $y=\iota\|u\|_{H^2}$ and
+$z=\iota^2\|u\|_{H^3}$. Korn's inequalities,
+\eqref{eq:est-sge-energy-identity}, and
+\eqref{eq:est-sge-third} imply
+\[
+ x^2+y^2\le C\|f\|_{L^2}
+       \bigl(\iota y+\sqrt\iota\sqrt{yz}\bigr)
+ \le C\sqrt\iota\,\|f\|_{L^2}(x+y),\qquad z\le Cx.
+\]
+This proves the displacement estimate for $\mu=1$.
+
+Let $p=\lambda\operatorname{div}u$, $r=p-p_0$, and take an ordinary
+divergence lift $v\in H_0^1(\Omega)^3$ satisfying
+$\operatorname{div}v=r$ and $\|v\|_{H^1}\le C\|r\|_{L^2}$.
+Equation~\eqref{eq:est-fourth-robust}, applied to
+\eqref{eq:est-sge-residual}, gives
+\begin{equation}\label{eq:est-pressure-second}
+ \iota^2\|p\|_{H^2}
+ \le C\bigl(\sqrt\iota\,\|f\|_{L^2}+\|r\|_{L^2}\bigr).
+\end{equation}
+Testing \eqref{eq:est-sge-residual} with $v$ in the $H^{-1}$--$H_0^1$
+duality and using $p\in H^2\cap H_0^1$ yields
+\begin{equation}\label{eq:est-pressure-identity}
+ \|r\|_{L^2}^2+\iota^2|p|_{H^1}^2
+ =-2(\epsilon(e),\epsilon(v))
+       +2\iota^2(\Delta\epsilon(u),\epsilon(v))
+       -\iota^2(\Delta p,p_0).
+\end{equation}
+Put $a=\sqrt\iota\,\|f\|_{L^2}$ and
+$T=(\|r\|_{L^2}^2+\iota^2|p|_{H^1}^2)^{1/2}$.
+The first two terms are bounded by $CaT$.
+Green's formula, the multiplicative trace inequality,
+$\|p_0\|_{H^1}\le C\|f\|_{L^2}$, and
+\eqref{eq:est-pressure-second} imply
+\begin{align*}
+ \iota^2|(\Delta p,p_0)|
+ &\le C\iota^2\|f\|_{L^2}
+          \bigl(|p|_{H^1}+|p|_{H^1}^{1/2}\|p\|_{H^2}^{1/2}\bigr)\\
+ &\le C\bigl(aT+a\sqrt{T(T+a)}\bigr)
+ \le C(aT+a^2).
+\end{align*}
+Thus $T^2\le C(aT+a^2)$, so $T\le Ca$ and
+$\iota^2\|p\|_{H^2}\le Ca$.
+
+Define
+\[
+ D=\|\operatorname{div}(u-u_0)\|_{L^2}
+       +\iota|\operatorname{div}u|_{H^1}
+       +\iota^2\|\operatorname{div}u\|_{H^2}.
+\]
+The displacement estimate controls $D$, and the pressure estimate
+controls $\lambda D$. Hence
+$(\lambda+2)D\le C\sqrt\iota\,\|f\|_{L^2}$.
+Multiplication by $\lambda/(\lambda+2)$ proves
+\eqref{eq:est-sge-p} for $\mu=1$, including $\lambda=0$.
+
+For arbitrary $\mu>0$, put $\widehat\lambda=\lambda/\mu$.
+Uniqueness for the same load gives
+\[
+ u_{\iota;\lambda,\mu}=\mu^{-1}u_{\iota;\widehat\lambda,1},
+ \qquad p_{\iota;\lambda,\mu}=p_{\iota;\widehat\lambda,1},
+\]
+and the same identities for the classical solutions. These identities
+give the stated powers of $\mu$ and the factor
+$\widehat\lambda/(\widehat\lambda+2)=\lambda/(\lambda+2\mu)$.
+\end{proof}
+
+\section{Simultaneous sharpness for one fixed load}
+\label{sec:est-sharpness}
+
+\begin{theorem}\label{thm:est-sharpness}
+Let $\Omega\subset\mathbb R^3$ be a fixed bounded convex polyhedron.
+There is a nonzero polynomial load $f_\Omega$, independent of
+$\lambda,\mu,\iota$, for which all six individual quantities in
+\eqref{eq:est-sge-u}--\eqref{eq:est-sge-p} attain their comparison scales. More precisely, with
+\[
+\begin{array}{lll}
+ T_1=|u_\iota-u_0|_{H^1},&T_2=\iota\|u_\iota\|_{H^2},
+       &T_3=\iota^2\|u_\iota\|_{H^3},\\
+ T_4=\|p_\iota-p_0\|_{L^2},&T_5=\iota|p_\iota|_{H^1},
+       &T_6=\iota^2\|p_\iota\|_{H^2},
+\end{array}
+\]
+there are $c_\Omega,C_\Omega>0$ such that, for every
+$\lambda\ge0$, $\mu>0$ and $0<\iota<1$,
+\[
+ c_\Omega\mu^{-1}\sqrt\iota\le T_j
+       \le C_\Omega\mu^{-1}\sqrt\iota\quad(j=1,2,3),
+\]
+\[
+ c_\Omega\alpha\sqrt\iota\le T_j
+       \le C_\Omega\alpha\sqrt\iota\quad(j=4,5,6),
+ \qquad \alpha=\frac{\lambda}{\lambda+2\mu}.
+\]
+At $\lambda=0$, all three pressure quantities and their comparison
+scales are zero.
+\end{theorem}
+
+\begin{proof}
+Use the genuine maximal planar faces of $\Omega$, merging coplanar
+subdivisions. For each face $F$, let $\ell_F$ be its unit affine distance,
+positive in $\Omega$. Fix $a=e_3$ and define
+\begin{equation}\label{eq:est-fixed-load}
+ \psi=\prod_F\ell_F^2,
+ \qquad w=\nabla\psi\times a,
+ \qquad z=\nabla\psi,
+ \qquad f_\Omega=-\Delta w-\nabla\Delta\psi.
+\end{equation}
+These are polynomials depending only on the fixed domain. Since
+$\psi=\nabla\psi=0$ on $\partial\Omega$, one has
+$\psi\in H_0^2$, $w,z\in H_0^1{}^3$, and
+$\operatorname{div}w=0$. Direct substitution shows that the exact
+classical solution is
+\begin{equation}\label{eq:est-fixed-classical}
+ u_0=\mu^{-1}w+(\lambda+2\mu)^{-1}z,
+ \qquad p_0=\alpha\Delta\psi.
+\end{equation}
+
+In the relative interior of a face $F$, with outward normal $n_F$,
+\[
+ D^2\psi=h_F n_F\otimes n_F,
+ \qquad h_F=2\prod_{E\ne F}\ell_E^2>0.
+\]
+Writing $h=h_F$ facewise gives
+\[
+ \operatorname{Tr}\Delta\psi=h,
+ \qquad \partial_nz=hn,
+ \qquad \partial_nw=h(n\times a).
+\]
+Thus
+\[
+ B_p=\|h\|_{L^2(\partial\Omega)}>0,
+ \qquad
+ B_w^2=\sum_F|n_F\times a|^2\|h_F\|_{L^2(F)}^2>0.
+\]
+For the second inequality, boundedness of the polyhedron implies that
+its face normals span $\mathbb R^3$, so they cannot all be parallel to
+$a$. The two terms of
+\[
+ \partial_nu_0=h\bigl(\mu^{-1}(n\times a)
+                      +(\lambda+2\mu)^{-1}n\bigr)
+\]
+are orthogonal on each face. Also
+$(f_\Omega,w)=\|\nabla w\|_{L^2}^2>0$, so the fixed load is nonzero.
+
+We first set $\mu=1$. Then $\|u_0\|_{H^2}\le M_u$ and
+$\|\partial_nu_0\|_{L^2(\partial\Omega)}\ge B_w$, with $M_u,B_w$
+independent of $\lambda$. Introduce the pressure surrogate
+\[
+ q_\iota=(\lambda+2)\operatorname{div}u_\iota,
+ \qquad q_0=\Delta\psi,
+\]
+and set
+\[
+ x=|u_\iota-u_0|_{H^1},\quad y=\iota\|u_\iota\|_{H^2},
+ \quad z_*=\iota^2\|u_\iota\|_{H^3},
+\]
+\[
+ X=\|q_\iota-q_0\|_{L^2},\quad
+ Y=\iota|q_\iota|_{H^1},\quad
+ Z=\iota^2\|q_\iota\|_{H^2}.
+\]
+The upper bounds give
+\begin{equation}\label{eq:est-sharp-upper}
+ x+y+z_*+X+Y+Z\le C_\Omega\sqrt\iota.
+\end{equation}
+For the surrogate quantities, this follows by combining unweighted
+divergence continuity with the $\lambda$-weighted estimates. It involves
+no division by $\lambda$. The clamped condition implies
+$q_\iota\in H_0^1$, whereas $\operatorname{Tr}q_0=h$ and
+$\|q_0\|_{H^1}=M_q$ are fixed.
+
+The multiplicative trace inequality applied to
+$\nabla(u_\iota-u_0)$ and to $q_\iota-q_0$ yields
+\begin{equation}\label{eq:est-trace-lower}
+ B_w^2\le Cx(\iota^{-1}y+M_u),
+ \qquad B_p^2\le CX(\iota^{-1}Y+M_q).
+\end{equation}
+Inserting the upper bounds for $y,Y$ gives
+$x,X\ge c\sqrt\iota$ throughout $0<\iota<1$.
+Inserting the upper bounds for $x,X$ instead yields
+\[
+ y,Y\ge c\sqrt\iota-C\iota.
+\]
+Thus $y,Y\ge c'\sqrt\iota$ below a fixed threshold independent of
+$\lambda$.
+
+We use the shifted interpolation inequality
+\begin{equation}\label{eq:est-shifted-interpolation}
+ \|v\|_{H^{m+1}}^2
+ \le C\bigl(\|v-w_0\|_{H^m}\|v\|_{H^{m+2}}
+                      +\|w_0\|_{H^{m+1}}^2\bigr),\qquad m=0,1.
+\end{equation}
+To prove it, take a common Sobolev extension operator on the Lipschitz
+domain \cite{Stein1970}. For $V=Ev$, $W=Ew_0$, the Fourier inner
+product gives
+\[
+ \|V\|_{H^{m+1}}^2
+ \le\|V\|_{H^{m+2}}\|V-W\|_{H^m}
+                  +\|V\|_{H^{m+1}}\|W\|_{H^{m+1}}.
+\]
+Young's inequality and the extension bounds give
+\eqref{eq:est-shifted-interpolation}.
+With $(m,v,w_0)=(1,u_\iota,u_0)$ and then
+$(0,q_\iota,q_0)$, the lower bounds for $y,Y$ imply
+\[
+ c\iota^{-1}\le C\sqrt\iota\,\|u_\iota\|_{H^3}+CM_u^2,
+ \qquad
+ c\iota^{-1}\le C\sqrt\iota\,\|q_\iota\|_{H^2}+CM_q^2.
+\]
+Hence $z_*,Z\ge c\sqrt\iota$ for
+$0<\iota<\iota_*$, with one common parameter-independent
+$\iota_*>0$.
+
+To cover the rest of the interval, choose
+$\phi_n\in C_c^\infty(\Omega)$ with $\phi_n\to\psi$ in $H^2$, and
+put $v_n=\nabla\phi_n\times a$. Then
+\[
+ (f_\Omega,v_n)\longrightarrow\|\nabla w\|_{L^2}^2>0,
+ \qquad
+ (\Delta^2\psi,\phi_n)\longrightarrow\|\Delta\psi\|_{L^2}^2>0.
+\]
+Fix one sufficiently large $n$, and write $\phi=\phi_n$, $v=v_n$.
+The vector $v$ is compactly supported and divergence free. Testing the
+SGE equation against it eliminates every $\lambda$ term and gives
+\[
+ 0<|(f_\Omega,v)|
+ =|(u_\iota,\iota^2\Delta^2v-\Delta v)|
+ \le C_v\|u_\iota\|_{L^2},\qquad 0<\iota<1.
+\]
+Moreover $\operatorname{div}f_\Omega=-\Delta^2\psi$, so
+\[
+ (I-\iota^2\Delta)\Delta q_\iota=\Delta^2\psi
+\]
+in distributions. Testing with the fixed $\phi$ gives
+\[
+ 0<|(\Delta^2\psi,\phi)|
+ \le(\|\Delta\phi\|_{L^2}+\|\Delta^2\phi\|_{L^2})
+                  \|q_\iota\|_{L^2}.
+\]
+Since $q_\iota\in H_0^1$, Poincar\'e's inequality now yields
+\[
+ \|u_\iota\|_{H^2},\ \|u_\iota\|_{H^3},\
+ |q_\iota|_{H^1},\ \|q_\iota\|_{H^2}\ge c_\Omega>0
+\]
+uniformly for every $\lambda\ge0$ and $0<\iota<1$.
+For $\iota_*\le\iota<1$ it follows that
+\[
+ y,Y\ge c\iota\ge c\sqrt{\iota_*}\sqrt\iota,
+ \qquad
+ z_*,Z\ge c\iota^2\ge c\iota_*^{3/2}\sqrt\iota.
+\]
+Together with \eqref{eq:est-trace-lower}, this proves all six surrogate
+and displacement lower bounds on the full interval.
+
+Finally $p_\iota=\alpha q_\iota$ and $p_0=\alpha q_0$ when $\mu=1$.
+Multiply the three surrogate bounds by $\alpha=\lambda/(\lambda+2)$.
+This includes $\lambda=0$ exactly. The material scaling used in
+Proposition~\ref{prop:est-sge-transfer}, applied to the same fixed
+$f_\Omega$, gives the factor $\mu^{-1}$ in displacement and replaces
+$\alpha$ by $\lambda/(\lambda+2\mu)$ in pressure.
+\end{proof}
+
+On the unit cube, one may take
+$\psi=\prod_{j=1}^3x_j^2(1-x_j)^2$.
+With $a=e_3$, exact polynomial integration gives
+$B_p^2=6/99225$ and $B_w^2=4/99225$.
+The general proof only uses their strict positivity and applies to every
+fixed bounded convex polyhedron, without an additional vertex-angle or
+spherical-eigenvalue threshold.
+
+
+\subsection{When the half-order displacement rate is active}
+
+We write $a_\iota=\Theta(b_\iota)$ when $c\,b_\iota\le a_\iota
+\le C\,b_\iota$ for all sufficiently small $\iota>0$, with constants
+$c,C>0$ at the stated fixed parameters and load.
+
+\begin{proposition}[A boundary-trace criterion]\label{prop:boundary-active}
+Fix a bounded convex polyhedron, material parameters \(\lambda\ge0,\mu>0\),
+and a load \(f\in L^2(\Omega)^3\). Each of \(T_1,T_2,T_3\) is
+\(\Theta(\sqrt{\iota})\) as \(\iota\downarrow0\) if and only if
+\[
+ \|\partial_nu_0\|_{L^2(\partial\Omega)}>0.
+\]
+If this trace vanishes, all three quantities are \(O(\iota)\).
+The comparison constants in this proposition may depend on the fixed
+parameters and load.
+\end{proposition}
+\begin{proof}
+The classical regularity theorem gives \(u_0\in H^2\cap H^1_0\).
+If \(B=\|\partial_nu_0\|_{L^2(\partial\Omega)}>0\), the clamped
+condition and the multiplicative trace inequality give, with
+\(x=T_1\), \(y=T_2\), \(z=T_3\), and \(M=\|u_0\|_{H^2}\),
+\[
+ B^2\le Cx(\iota^{-1}y+M).
+\]
+The upper bound \(x+y+z\le C\sqrt{\iota}\) first gives
+\(x\ge c\sqrt{\iota}\), and then
+\(y\ge c\sqrt{\iota}-C\iota\).
+For sufficiently small \(\iota\), both have the stated lower bound.
+The shifted interpolation inequality
+\eqref{eq:est-shifted-interpolation}, with \(v=u_\iota\) and \(w_0=u_0\),
+then gives
+\[
+ c\iota^{-1}\le
+ C|u_\iota-u_0|_{H^1}\|u_\iota\|_{H^3}+CM^2
+ \le C\sqrt{\iota}\|u_\iota\|_{H^3}+CM^2.
+\]
+It follows that \(z\ge c\sqrt{\iota}\) for sufficiently small \(\iota\).
+All three upper bounds are already available.
+
+If \(B=0\), the zero displacement and first-order traces imply
+\(u_0\in H^2_0(\Omega)^3\).
+Put \(e=u_\iota-u_0\). Subtract the energy equations and test by
+\(e\in H^2_0\). With the forms from Section~\ref{sec:main},
+\[
+ A_{\lambda,\mu}(e,e)+\iota^2C_{\lambda,\mu}(u_\iota,u_\iota)
+ =\iota^2C_{\lambda,\mu}(u_\iota,u_0).
+\]
+Cauchy--Schwarz in the \(C_{\lambda,\mu}\) inner product and Young's
+inequality show
+\[
+ A_{\lambda,\mu}(e,e)
+ +\frac{\iota^2}{2}C_{\lambda,\mu}(u_\iota,u_\iota)
+ \le\frac{\iota^2}{2}C_{\lambda,\mu}(u_0,u_0).
+\]
+For the fixed parameters this gives \(T_1+T_2=O(\iota)\).
+The bound \(\iota^2\|u_\iota\|_{H^3}
+\le C|u_\iota-u_0|_{H^1}\), obtained from
+\eqref{eq:est-sge-third} by material scaling, gives \(T_3=O(\iota)\).
+These bounds are \(o(\sqrt{\iota})\), proving the converse.
+\end{proof}
+
+
+
+\section{Necessity of convexity}\label{sec:necessity}
+Throughout this section, $\Omega$ is a bounded connected polyhedral
+Lipschitz domain in $\mathbb R^3$.  In particular, its boundary consists of
+finitely many planar faces; coplanar subdivisions are not counted as
+geometric edges.
+
+\begin{lemma}[A nonconvex polyhedron has a reentrant edge]\label{lem:reentrant}
+If $\Omega$ is not convex, it has an edge with interior dihedral angle
+$\omega\in(\pi,2\pi)$.
+\end{lemma}
+\begin{proof}
+Suppose that every interior dihedral angle is at most $\pi$.
+The closed set $K=\overline\Omega$ is locally convex at points in the
+interiors of faces and edges.  At a vertex, the Lipschitz property gives,
+after a rigid coordinate change, a local representation of $\Omega$ as
+the epigraph of a continuous function $f$ on a small convex planar disk.
+Since the boundary has finitely many planar faces, $f$ is piecewise affine.
+The dihedral-angle assumption says that each crease is convex.  On a
+generic line segment avoiding partition vertices and overlapping creases,
+the slope of the restriction of $f$ is nondecreasing across each crease.
+Its restriction is therefore convex.  Approximation of arbitrary segments
+by such segments, together with continuity, proves that $f$ is convex.
+Thus $K$ is locally convex also at vertices.
+
+The Tietze--Nakajima theorem states that a closed connected locally convex
+subset of Euclidean space is convex; see \cite[Theorem 1]{BjorndahlKarshon2010}.
+It applies to $K$.  A Lipschitz domain is the interior of its closure, so
+$\Omega$ is convex, a contradiction.
+\end{proof}
+
+Choose an interior point of a reentrant edge and use $z$ as the coordinate
+along that edge.  In a sufficiently small cylinder, $\Omega$ agrees with
+\[
+ \{(r,\theta,z):0<r<r_*,\quad 0<\theta<\omega,\quad |z|<z_*\}.
+\]
+The functions below vanish before reaching the artificial radial and axial
+boundaries.  Consequently, their zero extensions define functions on
+$\Omega$; no global prism structure is required.
+
+\begin{lemma}[A clamped scalar edge mode]\label{lem:scalar-edge}
+For every $\omega\in(\pi,2\pi)$ there is a nonzero real function
+$w(r,\theta)=r^s\Phi(\theta)$ such that
+\[
+ \Delta_\perp^2w=0,\qquad
+ \Phi(0)=\Phi'(0)=\Phi(\omega)=\Phi'(\omega)=0,\qquad
+ \frac32<s<1+\frac{\pi}{\omega}<2.
+\]
+After a radial cutoff, $w$ belongs to $H^2_0\cap W^{2,4}$ but not to $H^3$.
+\end{lemma}
+\begin{proof}
+Put $f_\omega(t)=\sin(t\omega)-t|\sin\omega|$.  Then
+\[
+ f_\omega(1/2)
+ =\sin(\omega/2)\bigl(1+\cos(\omega/2)\bigr)>0,\qquad
+ f_\omega(\pi/\omega)=-(\pi/\omega)|\sin\omega|<0.
+\]
+There is therefore a root $t\in(1/2,\pi/\omega)$; strict concavity on
+$(0,\pi/\omega)$ also gives its uniqueness among positive roots in that
+interval.  Set $s=1+t$ and
+\[
+ A_t(\theta)=\sin(t\theta)\sin\theta,\qquad
+ B_t(\theta)=t\cos(t\theta)\sin\theta-\sin(t\theta)\cos\theta .
+\]
+Both functions and their first derivatives vanish at zero.  They are
+combinations of the frequencies $s$ and $s-2$, and
+\[
+ A_t(\omega)B_t'(\omega)-A_t'(\omega)B_t(\omega)
+ =\sin^2(t\omega)-t^2\sin^2\omega=0.
+\]
+Thus
+\[
+ \Phi(\theta)=B_t(\omega)A_t(\theta)-A_t(\omega)B_t(\theta)
+\]
+satisfies the four clamped conditions and
+$[\partial_\theta^2+(s-2)^2][\partial_\theta^2+s^2]\Phi=0$.
+It is nonzero: $A_t(\omega)=-t\sin^2\omega\ne0$, and $A_t,B_t$
+are linearly independent, as their Taylor expansions at zero show.
+This also verifies directly that the characteristic root is not spurious.
+The scalar characteristic equation is classical; see
+\cite[(4.3)--(4.5)]{BacutaBramblePasciak2002}.
+
+The estimates $D^kw=O(r^{s-k})$ imply $D^2w\in L^4$ because $s>3/2$.
+On the other hand,
+\[
+ \partial_r^3w=s(s-1)(s-2)r^{s-3}\Phi,\qquad
+ \int_0^\epsilon r^{2s-5}\,dr=\infty ,
+\]
+so $w\notin H^3$.  The clamped traces and an additional cutoff at $r=\epsilon$
+give approximation in $H^2$ with error $O(\epsilon^{s-1})$.
+The cutoff function is therefore in $H^2_0$.  A finite axial tensor product
+does not change these transverse integrability thresholds.
+\end{proof}
+
+\subsection{A correction preserving the integrability of the load}
+Write $x=(x_1,x_2)$ for the transverse Cartesian coordinates.  Set
+\[
+ d=s+2,\qquad c_s=\frac4{s+2},\qquad R_s=\frac{xw}{s+2}.
+\]
+Euler's identity and the product rule give
+\begin{equation}\label{eq:edge-euler}
+ \operatorname{div}_\perp R_s=w,\qquad
+ \Delta_\perp R_s=\frac{x\Delta_\perp w+2\nabla_\perp w}{s+2},\qquad
+ \Delta_\perp^2R_s=c_s\nabla_\perp\Delta_\perp w.
+\end{equation}
+Choose a smooth radial cutoff $\chi$ equal to one near zero and supported
+in $r<r_*$, and define
+\[
+ R=\chi R_s,\qquad
+ h=\operatorname{div}_\perp R
+ =\left(\chi+\frac{r\chi'}{s+2}\right)w.
+\]
+On the truncated sector $D$ these functions satisfy
+\begin{equation}\label{eq:edge-spaces}
+ R\in H^3(D)^2\cap H^2_0(D)^2,\qquad
+ h\in H^2_0(D)\cap W^{2,4}(D),\qquad h\notin H^3(D).
+\end{equation}
+Indeed, $R_s$ is homogeneous of degree $s+1$; its third derivatives are
+square integrable.  All zero and first-order traces vanish on the physical
+rays, and the functions vanish near the artificial boundary.
+The inner-cutoff errors in $H^2$ are $O(\epsilon^s)$ for $R$ and
+$O(\epsilon^{s-1})$ for $h$.  Notice that $H^3_0$ membership of $R$ is
+neither asserted nor needed.  Also $\int_Dh=0$.
+
+The complete radial cutoff errors are
+\[
+ q=\Delta_\perp^2h,\qquad
+ E=\Delta_\perp^2R-c_s\nabla_\perp\Delta_\perp h.
+\]
+By \eqref{eq:edge-euler}, $q$ and $E$ vanish near the edge and are bounded
+smooth functions supported in a fixed annulus.  In what follows the most
+singular remaining integrable factor is
+$\Delta_\perp h=O(r^{s-2})\in L^4(D)$.
+
+\begin{proposition}[Fourth-order Lam\'e and SGE counterexamples]
+\label{prop:edge-lame}
+For each $\lambda\ge0$, $\mu>0$, and $\iota>0$, a nonconvex $\Omega$
+admits loads $F,f\in L^4(\Omega)^3$ whose respective clamped energy solutions
+of $P_{\lambda,\mu}u=F$ and $(\mathcal L_{\lambda,\mu}+\iota^2P_{\lambda,\mu})u=f$
+do not belong to $H^3(\Omega)^3$.
+\end{proposition}
+\begin{proof}
+Put
+\[
+ \beta=\frac{\lambda+\mu}{\mu},\qquad
+ a=\frac{\beta}{\beta+c_s},\qquad
+ b=\beta(1-a)=ac_s .
+\]
+Choose $\eta\in C_c^\infty((-z_*,z_*))$ equal to one on a nonempty
+subinterval, and set
+\begin{equation}\label{eq:edge-Ubeta}
+ U_\beta=(-a\eta'R,\eta h).
+\end{equation}
+Then
+$\operatorname{div}U_\beta=(1-a)\eta'h$ and
+$U_\beta\in H^2_0(\Omega)^3\cap W^{2,4}(\Omega)^3$.
+Where $\eta=1$ and $\chi=1$, its third component is $w$.
+Consequently $U_\beta\notin H^3$.
+
+Let $\mathcal B_\beta=\Delta^2+\beta\nabla\Delta\operatorname{div}$.
+The identity $-ac_s+\beta(1-a)=0$ cancels the nonintegrable
+term $\eta'\nabla_\perp\Delta_\perp h$.  Keeping all radial cutoff
+errors gives the exact formulas
+\begin{equation}\label{eq:edge-force4}
+\begin{aligned}
+ (\mathcal B_\beta U_\beta)_\perp
+ &=-a\eta'E-2a\eta'''\Delta_\perp R-a\eta'''''R
+       +b\eta'''\nabla_\perp h,\\
+ (\mathcal B_\beta U_\beta)_3
+ &=\eta q+(2+b)\eta''\Delta_\perp h+(1+b)\eta''''h .
+\end{aligned}
+\end{equation}
+Every displayed term is in $L^4$.
+Without the transverse correction in \eqref{eq:edge-Ubeta}, axial
+localization would leave $\beta\eta'\nabla_\perp\Delta_\perp w$,
+which need not even belong to $L^2$.
+
+For $\mathcal A_\beta=-\Delta-\beta\nabla\operatorname{div}$ one similarly has
+\begin{equation}\label{eq:edge-force2}
+\begin{aligned}
+ (\mathcal A_\beta U_\beta)_\perp
+ &=a\eta'\Delta_\perp R+a\eta'''R-b\eta'\nabla_\perp h,\\
+ (\mathcal A_\beta U_\beta)_3
+ &=-\eta\Delta_\perp h-(1+b)\eta''h .
+\end{aligned}
+\end{equation}
+These terms also belong to $L^4$.
+Thus the loads
+\[
+ F=\mu\mathcal B_\beta U_\beta,\qquad
+ f=\mu(\mathcal A_\beta+\iota^2\mathcal B_\beta)U_\beta
+\]
+have the asserted integrability.  The identities hold distributionally in
+$\Omega$.  Density of $C_c^\infty(\Omega)^3$ in $H^2_0(\Omega)^3$
+extends them to the energy formulation.  Coercivity and uniqueness identify
+$U_\beta$ with the corresponding energy solutions.
+\end{proof}
+
+\begin{proposition}[A zero-divergence fourth-order Stokes counterexample]
+\label{prop:edge-stokes}
+If $\Omega$ is nonconvex, there are
+\[
+ F\in L^4(\Omega)^3,\quad
+ U\in H^2_0(\Omega)^3\setminus H^3(\Omega)^3,\quad
+ p\in H^2(\Omega)\cap H^1_0(\Omega)\cap L^2_0(\Omega)
+\]
+such that $\Delta^2U+\nabla\Delta p=F$ and $\operatorname{div}U=0$.
+\end{proposition}
+\begin{proof}
+With the same $R,h,\eta$, take
+\[
+ U=(-\eta'R,\eta h),\qquad p=c_s\eta'h .
+\]
+The divergence is zero and $U\notin H^3$.
+The pressure has the stated Sobolev regularity, and its mean is zero
+since $\int\eta'=0$.
+The force $\Delta^2U+\nabla\Delta p$ is given by
+\eqref{eq:edge-force4} with $a=1$, $b=c_s$, hence belongs to $L^4$.
+Energy uniqueness is the one established for the mixed problem.
+\end{proof}
+
+\begin{remark}[Quantifiers and the second-order problem]\label{rem:quantifiers}
+The loads in Proposition~\ref{prop:edge-lame} may depend on the fixed
+material parameters and on $\iota$.
+They disprove regularity for all loads at each fixed parameter choice.
+They do not assert singularity for every load, or the existence of a
+single $L^4$ load producing these counterexamples for all parameters.
+
+The analogous necessity for classical $L^2$-to-$H^2$ elasticity follows
+from an even simpler mode.  Put $\nu_e=\pi/\omega\in(1/2,1)$,
+$k=\chi r^{\nu_e}\sin(\nu_e\theta)$, and $v=\eta k e_3$.
+Then $v\in H^1_0\setminus H^2$, whereas
+\[
+ (\mathcal L_{\lambda,\mu}v)_\perp
+ =-(\lambda+\mu)\eta'\nabla_\perp k,\qquad
+ (\mathcal L_{\lambda,\mu}v)_3
+ =-\mu\eta\Delta_\perp k-(\lambda+2\mu)\eta''k
+\]
+belong to $L^2$.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main-convexity}]
+On convex polyhedra, the fourth-order Lam\'e and Stokes regularity theorems
+give the asserted shifts.  If $u_\iota$ is the SGE energy solution for
+$f\in L^2$, then
+\[
+ P_{\lambda,\mu}u_\iota
+ =\iota^{-2}(f-\mathcal L_{\lambda,\mu}u_\iota)\in L^2,
+\]
+because $u_\iota\in H^2_0$.  The fourth-order shift gives $u_\iota\in H^3$.
+The classical assertion follows from Theorem~\ref{thm:est-classical}.
+Conversely, Lemma~\ref{lem:reentrant}, Remark~\ref{rem:quantifiers},
+and Propositions
+\ref{prop:edge-lame}--\ref{prop:edge-stokes} disprove each asserted
+regularity property on a nonconvex polyhedron, even with the stronger
+loads stated there.  For fixed coefficients, an everywhere-defined
+regularity map is bounded by the closed graph theorem, since convergence
+in its target identifies the same energy solution by uniqueness.
+Parameter-uniform bounds, however, are supplied by the quantitative
+convex-domain theorems, not by this closed graph argument.
+\end{proof}
+
+
+
+\section{Compatible data: an exact quadratic-rate criterion}
+\label{comp:section}
+
+The conclusions of this section hold in every dimension on a bounded
+connected Lipschitz domain $\Omega\subset\mathbb R^d$, $d\ge2$. No convexity or
+polyhedral structure is assumed. Let $f\in L^2(\Omega)^d$, and let
+$u_\iota\in H^2_0(\Omega)^d$ and $u_0\in H^1_0(\Omega)^d$ be the
+strain-gradient and classical elasticity energy solutions, respectively.
+Here $\lambda\ge0$, $\mu>0$, and $0<\iota<1$. Write
+\[
+ \begin{split}
+ A(w,v)&=2\mu(\epsilon(w),\epsilon(v))
+                +\lambda(\operatorname{div}w,\operatorname{div}v),\\
+ C(w,v)&=2\mu(\nabla\epsilon(w),\nabla\epsilon(v))
+                +\lambda(\nabla\operatorname{div}w,
+                          \nabla\operatorname{div}v).
+ \end{split}
+\]
+Their weak equations are
+\[
+ A(u_\iota,v)+\iota^2C(u_\iota,v)=(f,v)
+       \quad(v\in H^2_0(\Omega)^d),\qquad
+ A(u_0,v)=(f,v)\quad(v\in H^1_0(\Omega)^d).
+\]
+Set $p_\iota=\lambda\operatorname{div}u_\iota$ and
+$p_0=\lambda\operatorname{div}u_0$. Sobolev seminorms are denoted by
+$|\cdot|_m$. Korn's inequalities, applied also to the derivatives of a
+clamped field, give
+\[
+ A(v,v)\ge c_\Omega\mu|v|_1^2,
+ \qquad C(v,v)\ge c_\Omega\mu|v|_2^2
+ \quad(v\in H^2_0(\Omega)^d).
+\]
+
+\begin{lemma}[One simultaneous divergence lifting]\label{comp:bogovskii}
+There exists a single linear right inverse $\mathcal B$ of divergence such
+that
+\[
+ \mathcal B:L^2_0(\Omega)\longrightarrow H^1_0(\Omega)^d,
+ \qquad
+ \mathcal B:H^1_0(\Omega)\cap L^2_0(\Omega)
+          \longrightarrow H^2_0(\Omega)^d,
+\]
+with
+\[
+ \|\mathcal Bq\|_{H^1}\le C_\Omega\|q\|_0,
+ \qquad
+ \|\mathcal Bq\|_{H^2}\le C_\Omega\|q\|_{H^1}
+\]
+on the respective domains. In particular, for
+\[
+ V=H^2_0(\Omega)^d,\quad Q=H^1_0(\Omega)\cap L^2_0(\Omega),\qquad
+ \|v\|_{V,\iota}^2=|v|_1^2+\iota^2|v|_2^2,
+ \quad \|q\|_{Q,\iota}^2=\|q\|_0^2+\iota^2|q|_1^2,
+\]
+the form
+\[
+ b_\iota(v,q)=(\operatorname{div}v,q)
+       +\iota^2(\nabla\operatorname{div}v,\nabla q)
+\]
+satisfies
+\begin{equation}\label{comp:infsup}
+ \|q\|_{Q,\iota}
+ \le C_\Omega\sup_{0\ne v\in V}
+          \frac{|b_\iota(v,q)|}{\|v\|_{V,\iota}},
+ \qquad 0<\iota<1.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For clarity, the same lifting must be used for the two bounds. Let
+$\mathcal B_0:L^2_0(\Omega)\to H^1_0(\Omega)^d$ be an ordinary bounded
+divergence right inverse and let $E_0$ denote zero extension. Identify scalar
+densities with top-degree forms and vector fields with $(d-1)$-forms. The
+support-preserving operators of
+\cite[Theorem 4.6 and the proof of Corollary 4.7(b)]{CostabelMcIntosh2010}
+give the fixed choice
+\[
+ \mathcal Bq
+ =\left(T_dE_0q+L_{d-1}E_0\mathcal B_0q\right)\big|_\Omega.
+\]
+Here $T_d$ has order $-1$ and $L_{d-1}$ is smoothing. The homotopy identity
+at top degree is $dT_d=I-L_d$, and its chain relation is
+$dL_{d-1}=L_dd$. Since $d(E_0\mathcal B_0q)=E_0q$, these identities give
+$\operatorname{div}\mathcal Bq=q$.
+
+For $q\in L^2_0$, zero extension belongs to $L^2(\mathbb R^d)$, so this
+formula produces an $H^1$ field supported in $\overline\Omega$, with norm
+bounded by $C\|q\|_0$. Its restriction is in $H^1_0(\Omega)^d$.
+For $q\in Q$, zero extension belongs to $H^1(\mathbb R^d)$, and the same
+formula produces an $H^2$ field supported in $\overline\Omega$, with norm
+bounded by $C\|q\|_{H^1}$. Its restriction is in $H^2_0(\Omega)^d$.
+Thus both bounds hold for one operator, independently of $\iota$ and the
+material parameters.
+
+Taking $v=\mathcal Bq$ gives
+$b_\iota(v,q)=\|q\|_{Q,\iota}^2$ and
+$\|v\|_{V,\iota}\le C_\Omega\|q\|_{Q,\iota}$, proving
+\eqref{comp:infsup}.
+\end{proof}
+
+\begin{theorem}[Uniform quadratic error for compatible data]
+\label{comp:uniform}
+Assume that
+\[
+ u_0\in H^2_0(\Omega)^d,
+ \qquad \Delta f\in H^{-1}(\Omega)^d.
+\]
+For $e_\iota=u_\iota-u_0$ and $r_\iota=p_\iota-p_0$, one has
+\begin{equation}\label{comp:weighted-error}
+ \mu\bigl(|e_\iota|_1+\iota|e_\iota|_2\bigr)
+ +\|r_\iota\|_0+\iota|r_\iota|_1
+ \le C_\Omega\iota^2\|\Delta f\|_{H^{-1}}
+\end{equation}
+for all $\lambda\ge0$, $\mu>0$, and $0<\iota<1$.
+The same constant applies to every triple $(\lambda,\mu,f)$ satisfying
+the stated compatibility conditions.
+More precisely, the pressure error satisfies
+\begin{equation}\label{comp:pressure-material-factor}
+ \|r_\iota\|_0+\iota|r_\iota|_1
+ \le C_\Omega\frac{\lambda}{\lambda+2\mu}\,
+             \iota^2\|\Delta f\|_{H^{-1}}
+\end{equation}
+throughout the same parameter range, including $\lambda=0$.
+In particular, if $\mu\ge\mu_0>0$, then
+\begin{equation}\label{comp:four-error}
+ |e_\iota|_1+\iota|e_\iota|_2
+ +\|r_\iota\|_0+\iota|r_\iota|_1
+ \le C_{\Omega,\mu_0}\iota^2\|\Delta f\|_{H^{-1}},
+\end{equation}
+uniformly in $\lambda$ and $\iota$. If the stronger sufficient conditions
+$u_0\in H^3(\Omega)^d\cap H^2_0(\Omega)^d$ and $p_0\in H^2(\Omega)$
+hold, then the last right-hand side is bounded by
+\[
+ C_{\Omega,\mu_0}\iota^2
+       \bigl(\mu\|u_0\|_{H^3}+\|p_0\|_{H^2}\bigr).
+\]
+\end{theorem}
+\begin{proof}
+The compatible traces imply $e_\iota\in V$, $r_\iota\in Q$, and
+$r_\iota=\lambda\operatorname{div}e_\iota$. Since
+$\mathcal L_{\lambda,\mu}u_0=f$, distributional integration by parts gives
+\begin{equation}\label{comp:delta-identity}
+ \langle\Delta f,v\rangle=-C(u_0,v),\qquad v\in V.
+\end{equation}
+To justify this identity at the stated regularity, first use a compactly
+supported smooth test. Both sides are continuous on $V$, so density extends
+it to every clamped test. Define
+\[
+ a_\iota(w,v)=2\mu\bigl((\epsilon(w),\epsilon(v))
+                  +\iota^2(\nabla\epsilon(w),\nabla\epsilon(v))\bigr).
+\]
+Subtracting the two weak equations and using \eqref{comp:delta-identity}
+yields
+\begin{equation}\label{comp:residual}
+ a_\iota(e_\iota,v)+b_\iota(v,r_\iota)
+ =\iota^2\langle\Delta f,v\rangle=:R_\iota(v),
+ \qquad v\in V.
+\end{equation}
+Put $\delta=\iota^2\|\Delta f\|_{H^{-1}}$. Poincar\'e's inequality gives
+$|R_\iota(v)|\le C_\Omega\delta\|v\|_{V,\iota}$.
+Testing by $e_\iota$ and using the Korn bounds gives
+\[
+ c_\Omega\mu\|e_\iota\|_{V,\iota}^2
+ +\lambda\|\operatorname{div}e_\iota\|_{Q,\iota}^2
+ \le C_\Omega\delta\|e_\iota\|_{V,\iota}.
+\]
+Thus $\mu\|e_\iota\|_{V,\iota}\le C_\Omega\delta$.
+The uniform inf-sup estimate and \eqref{comp:residual} imply
+\[
+ \|r_\iota\|_{Q,\iota}
+ \le C_\Omega\bigl(\delta+\mu\|e_\iota\|_{V,\iota}\bigr)
+ \le C_\Omega\delta.
+\]
+This proves \eqref{comp:weighted-error}; it involves no division by
+$\lambda$, and includes $\lambda=0$.
+For the sharper pressure bound, put
+\[
+ D_\iota=\|\operatorname{div}e_\iota\|_0
+                   +\iota|\operatorname{div}e_\iota|_1.
+\]
+Continuity of divergence and the velocity estimate give
+$\mu D_\iota\le C_\Omega\delta$, whereas
+$r_\iota=\lambda\operatorname{div}e_\iota$ and the pressure estimate give
+$\lambda D_\iota\le C_\Omega\delta$.
+Adding these inequalities, with the first multiplied by two, yields
+$(\lambda+2\mu)D_\iota\le C_\Omega\delta$.
+Multiplication by $\lambda/(\lambda+2\mu)$ proves
+\eqref{comp:pressure-material-factor}, again without dividing by $\lambda$.
+The unweighted formulation for $\mu\ge\mu_0$ follows immediately.
+Under the stronger regularity assumptions,
+\[
+ \Delta f=-\operatorname{div}
+          \bigl(2\mu\Delta\epsilon(u_0)+(\Delta p_0)I\bigr)
+\]
+in distributions, and hence
+$\|\Delta f\|_{H^{-1}}\le
+C(\mu\|u_0\|_{H^3}+\|p_0\|_{H^2})$.
+\end{proof}
+
+\begin{theorem}[An exact criterion and its leading coefficient]
+\label{comp:criterion}
+Fix $\lambda\ge0$, $\mu>0$, and $f\in L^2(\Omega)^d$. Then
+\begin{equation}\label{comp:iff}
+ |u_\iota-u_0|_1=O(\iota^2)\quad\text{as }\iota\downarrow0
+ \quad\Longleftrightarrow\quad
+ u_0\in H^2_0(\Omega)^d\ \text{and}\ \Delta f\in H^{-1}(\Omega)^d.
+\end{equation}
+When these equivalent conditions hold, let $U\in H^1_0(\Omega)^d$ be the
+unique weak solution of
+\[
+ \mathcal L_{\lambda,\mu}U=\Delta f.
+\]
+Then
+\begin{equation}\label{comp:strong-leading}
+ E_\iota:=\frac{u_\iota-u_0}{\iota^2}\longrightarrow U
+       \quad\text{strongly in }H^1(\Omega)^d,
+ \qquad \iota|E_\iota|_2\longrightarrow0,
+\end{equation}
+and
+\begin{equation}\label{comp:pressure-leading}
+ \frac{p_\iota-p_0}{\iota^2}
+ \longrightarrow\lambda\operatorname{div}U
+       \quad\text{strongly in }L^2(\Omega).
+\end{equation}
+If $u_0\ne0$, then $U\ne0$ and
+\begin{equation}\label{comp:four-limit}
+ \lim_{\iota\downarrow0}
+ \frac{|u_\iota-u_0|_1+\iota|u_\iota-u_0|_2
+       +\|p_\iota-p_0\|_0+\iota|p_\iota-p_0|_1}{\iota^2}
+ =|U|_1+\lambda\|\operatorname{div}U\|_0>0.
+\end{equation}
+In particular, the displacement error is $\Theta(\iota^2)$. The pressure
+error is $\Theta(\iota^2)$ if and only if
+$\lambda\operatorname{div}U\ne0$; otherwise it is $o(\iota^2)$.
+The limit statements concern fixed material parameters.
+\end{theorem}
+\begin{proof}
+The sufficient direction of \eqref{comp:iff} follows from
+Theorem~\ref{comp:uniform}. Conversely suppose
+$|u_\iota-u_0|_1=O(\iota^2)$ and put
+$E_\iota=(u_\iota-u_0)/\iota^2$. It is bounded in $H^1_0$ and
+$u_\iota\to u_0$ strongly in $H^1$. Subtracting the weak equations gives
+\[
+ A(E_\iota,v)+C(u_\iota,v)=0,\qquad v\in H^2_0(\Omega)^d.
+\]
+Taking $v=u_\iota$ shows that
+$C(u_\iota,u_\iota)=-A(E_\iota,u_\iota)$ is bounded for the fixed
+coefficients. The coercivity of $C$ therefore bounds $u_\iota$ in
+$H^2_0$. Its weak limit is the already identified $H^1$ limit $u_0$, so
+$u_0\in H^2_0$.
+
+Along a subsequence let $E_\iota\rightharpoonup U^*$ in $H^1_0$. For
+$v\in C_c^\infty(\Omega)^d$, passage to the limit yields
+\[
+ A(U^*,v)=-C(u_0,v)=\langle\Delta f,v\rangle.
+\]
+The left-hand side extends continuously to $H^1_0$, proving
+$\Delta f\in H^{-1}$ and completing necessity.
+
+Now assume the equivalent conditions. Formula \eqref{comp:residual}, or
+equivalently its primal form, gives
+\begin{equation}\label{comp:E-equation}
+ A(E_\iota,v)+\iota^2C(E_\iota,v)
+ =\langle\Delta f,v\rangle,
+ \qquad v\in H^2_0(\Omega)^d.
+\end{equation}
+Testing by $E_\iota$ bounds it in $H^1_0$ and bounds
+$\iota^2 C(E_\iota,E_\iota)$. For every fixed clamped test,
+\[
+ |\iota^2C(E_\iota,v)|
+ \le\iota\bigl(\iota^2C(E_\iota,E_\iota)\bigr)^{1/2}
+                     C(v,v)^{1/2}\longrightarrow0.
+\]
+Density of $H^2_0$ in $H^1_0$ and uniqueness for the classical elasticity
+operator identify every weak accumulation point with $U$. Hence the whole
+family converges weakly to $U$. Its energy identity is
+\[
+ A(E_\iota,E_\iota)+\iota^2C(E_\iota,E_\iota)
+ =\langle\Delta f,E_\iota\rangle\longrightarrow A(U,U).
+\]
+Weak lower semicontinuity and nonnegativity of the second term imply
+$A(E_\iota,E_\iota)\to A(U,U)$ and
+$\iota^2C(E_\iota,E_\iota)\to0$. Equivalence of the $A$ norm with the
+$H^1_0$ norm proves strong convergence; the second Korn bound gives
+$\iota|E_\iota|_2\to0$. This proves \eqref{comp:strong-leading}, and
+$p_\iota-p_0=\lambda\operatorname{div}(u_\iota-u_0)$ proves
+\eqref{comp:pressure-leading}.
+
+The two weighted derivative differences obey
+\[
+ \frac{\iota|u_\iota-u_0|_2}{\iota^2}
+ =\iota|E_\iota|_2\longrightarrow0,
+ \qquad
+ \frac{\iota|p_\iota-p_0|_1}{\iota^2}
+ \le C\lambda\iota|E_\iota|_2\longrightarrow0.
+\]
+Taking norms in the strong limits therefore gives the equality in
+\eqref{comp:four-limit}. If $u_0\ne0$, identity
+\eqref{comp:delta-identity}, tested by $u_0$, gives
+\[
+ \langle\Delta f,u_0\rangle=-C(u_0,u_0)<0.
+\]
+Thus $\Delta f\ne0$ and $U\ne0$, proving positivity of the limit.
+The displacement and pressure rate statements follow directly. If $u_0=0$,
+then $f=0$ and both families are identically zero.
+\end{proof}
+
+\begin{remark}[Differences versus the full strain-gradient solution]
+\label{comp:full-solution}
+The quadratic estimates concern displacement and pressure differences.
+They do not replace the factor $\iota\|u_\iota\|_{H^2}$ by a quadratic
+quantity. Indeed compatible data give
+$\|u_\iota-u_0\|_{H^2}=O(\iota)$ by
+Theorem~\ref{comp:uniform}, and in fact $o(\iota)$ for fixed coefficients by
+\eqref{comp:strong-leading}. Consequently, if $u_0\ne0$,
+\[
+ \iota\|u_\iota\|_{H^2}
+ =\iota\|u_0\|_{H^2}+o(\iota)
+ =\Theta(\iota).
+\]
+The entire section uses only energy solvability, Korn's inequalities and a
+simultaneous divergence lifting. It is independent of the fourth-order
+Stokes shift, the fourth-order Lam\'e shift, and the classical $H^2$
+regularity estimates used elsewhere in the paper.
+\end{remark}
+
+
+\appendix
+
+\section{The planar clamped fourth-order Lam\'e pencil}
+\label{sec:planar-pencil20}
+
+Let $K_\omega=\{r>0,-\omega/2<\theta<\omega/2\}$, where $0<\omega<\pi$.
+The displacement exponent is defined in Cartesian components:
+$u=r^s\Phi(\theta)$. On the rays the clamped conditions are
+$\Phi=\Phi'=0$. The following result supplies the planar part of the edge
+analysis.
+
+\begin{theorem}\label{thm:planar-strip20}
+For $\lambda\ge0$ and $\mu>0$, the clamped corner pencil of
+\[
+ P_{\lambda,\mu}u
+ =\Delta\bigl[\mu\Delta u+(\lambda+\mu)\nabla\operatorname{div}u\bigr]
+\]
+has no spectrum in the closed strip $1\le\operatorname{Re}s\le2$.
+\end{theorem}
+
+\subsection{Normalized shooting determinants}
+
+Set
+\[
+ z=s-1,\quad d=\sin\omega,\quad c=\cos\omega,\quad
+ \rho=\frac{\lambda+\mu}{\lambda+3\mu}\in(0,1),\quad\vartheta=\omega/2,
+\]
+and define the entire functions
+\begin{equation}\label{eq:planar-AN20}
+ A(z)=\sin^2(\omega z)-z^2d^2,
+ \qquad
+ N(z)=zd\bigl[zd\cos(\omega z)-c\sin(\omega z)\bigr].
+\end{equation}
+Reflection in the angle bisector splits the angular system into the
+$(\Phi_1,\Phi_2)=(\text{even},\text{odd})$ and
+$(\text{odd},\text{even})$ branches.
+
+\begin{lemma}\label{lem:planar-det20}
+After normalization by free initial data at the bisector, the characteristic
+determinants of these two branches are
+\begin{equation}\label{eq:planar-det20}
+ D_\tau(z)=-\frac1{16}
+ \frac{A(z)+\tau N(z)}{(1+\tau)z^2(z^2-1)},
+ \qquad \tau=-\rho,\ +\rho,
+\end{equation}
+respectively. The values at $z=0,\pm1$ are their removable limits.
+\end{lemma}
+
+\begin{proof}
+Initially take real $0<z<1$ and real vector fields. Put
+$W=u_1+iu_2$, $\zeta=x_1+ix_2$ and
+$\partial_{\overline\zeta}=(\partial_1+i\partial_2)/2$.
+For $Lu=\mu\Delta u+(\lambda+\mu)\nabla\operatorname{div}u$,
+\[
+ (Lu)_1+i(Lu)_2
+ =\frac{\lambda+3\mu}{2}
+ \bigl(\Delta W+4\rho\partial_{\overline\zeta}^2\overline W\bigr).
+\]
+Let $b=s-2$ and $\ell=s-4$. The identities
+\[
+ \Delta(r^se^{ik\theta})=(s^2-k^2)r^{s-2}e^{ik\theta},
+ \qquad
+ \partial_{\overline\zeta}^2(r^se^{ik\theta})
+ =\frac{(s-k)(s-k-2)}4r^{s-2}e^{i(k+2)\theta}
+\]
+give the general angular solution
+\begin{equation}\label{eq:planar-W20}
+ r^{-s}W=A_1e^{is\theta}+A_2e^{-is\theta}
+   +A_3e^{ib\theta}+A_4e^{-ib\theta}
+   -\frac{\rho z}{2}\overline{A_3}e^{-i\ell\theta},
+ \qquad A_j\in\mathbb C.
+\end{equation}
+Indeed only the frequency $b$ creates an uncancelled conjugate coupling,
+at frequency $-\ell=4-s$. The coefficients of $\Delta^2$ on that correcting
+frequency and of $4\rho\Delta\partial_{\overline\zeta}^2$ on the conjugate
+of the original frequency are $32(s-2)(s-3)$ and
+$16\rho z(s-2)(s-3)$, respectively. This gives the correcting coefficient
+$-\rho z/2$; its conjugate creates no further term because the outer
+Laplacian annihilates that frequency. The eight real solutions are
+independent on $0<z<1$. They exhaust the system, whose leading angular
+coefficient is the invertible matrix
+$\mu I+(\lambda+\mu)e_\theta\otimes e_\theta$.
+
+Taking all $A_j$ real gives the first branch with $\tau=-\rho$.
+Taking them purely imaginary and dividing $W$ by $i$ exchanges the
+components, up to a fixed sign, and gives the second branch with
+$\tau=\rho$. In both cases the coefficient of the correcting frequency
+is $\tau z/2$ times the third coefficient. For a column-valued function $F$
+define
+\[
+ M_\tau(F)=
+ [F(s),F(-s),F(b)+(\tau z/2)F(-\ell),F(-b)].
+\]
+Use the endpoint and initial-data columns
+\[
+ v(k)=\begin{pmatrix}
+ \cos(k\vartheta)\\-k\sin(k\vartheta)\\
+ \sin(k\vartheta)\\k\cos(k\vartheta)
+ \end{pmatrix},
+ \qquad
+ j(k)=\begin{pmatrix}1\\-k^2\\k\\-k^3\end{pmatrix}.
+\]
+The endpoint rows are the two values and angular derivatives at
+$\vartheta$; the initial rows are the four free parity-compatible data.
+Thus the normalized determinant is $\det M_\tau(v)/\det M_\tau(j)$.
+
+Introduce
+\[
+ E(k)=s\sin(s\vartheta)\cos(k\vartheta)
+       -k\cos(s\vartheta)\sin(k\vartheta),
+\]
+\[
+ O(k)=k\sin(s\vartheta)\cos(k\vartheta)
+       -s\cos(s\vartheta)\sin(k\vartheta).
+\]
+Adding and subtracting the first two columns separates their even and odd
+parts. The resulting two-by-two determinants give
+\[
+ \det M_0(v)=4A(z),\qquad
+ \frac{\det M_\tau(v)}{\det M_0(v)}
+ =1+\frac{\tau z}{4}
+ \left(\frac{E(\ell)}{E(b)}-\frac{O(\ell)}{O(b)}\right).
+\]
+Writing $S_0=\sin(\omega z)$, the addition formulas yield
+\[
+ E(b)=S_0+zd,\qquad O(b)=-S_0+zd,
+\]
+\[
+ E(\ell)=2\sin((z-1)\omega)+(z-1)\sin(2\omega),
+\]
+\[
+ O(\ell)=-2\sin((z-1)\omega)+(z-1)\sin(2\omega).
+\]
+Consequently $E(b)O(b)=-A$ and the expression multiplying $\tau$ in the
+ratio is $N/A$. These divisions are valid because strict concavity gives
+$\sin(\omega z)>zd$ for $0<z<1$.
+
+The initial determinant is a Vandermonde determinant up to a fixed row
+permutation and signs. Replacing the frequency $b$ by $-\ell$ multiplies
+it by
+\[
+ \prod_{k\in\{s,-s,-b\}}\frac{-\ell-k}{b-k}=\frac2z.
+\]
+It follows that
+\[
+ \det M_\tau(j)=-64(1+\tau)z^2(z^2-1),
+ \qquad \det M_\tau(v)=4(A+\tau N),
+\]
+which proves \eqref{eq:planar-det20} for real $0<z<1$.
+
+For complex $s$ one returns to the two Cartesian components and complexifies
+their initial data. The angular coefficients are polynomial in $s$, and the
+highest derivative coefficient is invertible and independent of $s$.
+The normalized fundamental matrix is therefore entire in $s$. The identity
+theorem extends \eqref{eq:planar-det20}, with removable values at
+$z=0,\pm1$. This normalization includes the generalized angular solutions
+at coalescing frequencies. The zeros of the unnormalized numerator at these
+integers do not by themselves constitute spectral points.
+
+For reference, the first two removable values in the normalization
+\eqref{eq:planar-det20} are explicitly
+\begin{equation}\label{eq:planar-removable-endpoints}
+ \begin{aligned}
+ D_\tau(0)
+  &=\frac{\omega^2-d^2+\tau d(d-\omega c)}{16(1+\tau)},\\
+ D_\tau(1)
+  &=\frac{d\bigl[2(d-\omega c)+\tau(\omega-dc)\bigr]}{32(1+\tau)}.
+ \end{aligned}
+\end{equation}
+They follow by expanding $A$ and $N$ at $z=0$ and $z=1$,
+respectively, and include the contributions of the coalescent angular
+solutions. Since $D_\tau$ is even, $D_\tau(-1)=D_\tau(1)$. The proof of Theorem~\ref{thm:planar-strip20} below
+establishes the required nonvanishing in the admissible parameter range.
+\end{proof}
+
+\subsection{A strict boundary sign}
+
+\begin{lemma}\label{lem:planar-sign20}
+For $0<\omega<\pi$ and $y>0$,
+\[
+ \operatorname{Im}\frac{N(1+iy)}{A(1+iy)}>0.
+\]
+\end{lemma}
+
+\begin{proof}
+Put
+\[
+ t=\omega y,\quad S=\sinh t,\quad H=\cosh t,\quad
+ a=\frac{\sin\omega}{\omega},\quad
+ g=\frac tS,\quad h=\frac{tH}{S}.
+\]
+Then $0<a,g<1$. Define
+\[
+ l=ag=\frac{yd}{S},\quad q=l^2,\quad r_0=lH=ah,\quad
+ X=\frac{r_0-c}{1-q}.
+\]
+At $z=1+iy$, substitute
+$\sin(\omega z)=dH+icS$, $\cos(\omega z)=cH-idS$, and $zd=d+ilS$
+into \eqref{eq:planar-AN20}. This gives
+\[
+ \operatorname{Re}A=S^2(2d^2-1+q),\qquad
+ \operatorname{Im}A=2dS(cH-l),
+\]
+\[
+ \operatorname{Re}N=lS^2(1+d^2-cr_0),\qquad
+ \operatorname{Im}N=dS(qS^2-1+cr_0).
+\]
+Using $c^2+d^2=1$ and $H^2-S^2=1$, expansion yields the exact identity
+\begin{equation}\label{eq:planar-Im20}
+ \operatorname{Im}(N\overline A)
+ =dS^3(1-q)^2\bigl[(1+q)X^2-cX-1\bigr].
+\end{equation}
+
+Let $c_*=a+a^2-1$. Then $c<c_*$: after division by $1+c>0$, this is
+equivalent to
+\[
+ \omega\tan(\omega/2)+1-\cos\omega>\omega^2,
+\]
+which follows from $\tan u>u+u^3/3$ on $(0,\pi/2)$ and
+$1-\cos\omega\ge\omega^2/2-\omega^4/24$.
+
+For the hyperbolic factors set
+\[
+ p=h-1,\qquad v=1-g^2\in(0,1),\qquad
+ B(v)=\frac{v(3-v)}{3-2v}.
+\]
+Direct differentiation gives
+$tp'=p+v$ and $tv'=2p(1-v)$. Near zero,
+\[
+ p=t^2/3-t^4/45+O(t^6),\qquad
+ v=t^2/3-t^4/15+O(t^6),
+\]
+so $p-B(v)=t^4/135+O(t^6)>0$. At a contact point $p=B(v)$,
+\[
+ t(p-B(v))'
+ =\frac{v^2\{9(1-v)^2+v^2(7-4v)\}}{(3-2v)^3}>0.
+\]
+A first-zero argument proves $p>B(v)>v$ for all $t>0$.
+
+For a real parameter $\gamma\le c_*$ define
+\[
+ X_\gamma=\frac{r_0-\gamma}{1-q},\qquad
+ F(\gamma)=(1+q)X_\gamma^2-\gamma X_\gamma-1.
+\]
+Since
+$(1-q)(X_{c_*}-1)=a(p-av)>0$, we have $X_\gamma>1$.
+Also $c_*<1$, and hence
+\[
+ F'(\gamma)
+ =-\frac{2(1+q)X_\gamma-\gamma}{1-q}-X_\gamma<0.
+\]
+It suffices to prove $F(c_*)>0$.
+
+Put $b=3-2v>1$ and $L=1+av/b$. The estimate $p>B(v)$ gives
+\[
+ b(p-av)-v(1-q)
+ >v(1-a)\{2-a-v(1-a)\}>0,
+\]
+so $X_{c_*}>L>1$. The polynomial $(1+q)X^2-c_*X-1$ increases on
+$X\ge1$. Since $q=a^2(1-v)$, direct expansion gives
+\begin{align*}
+ b^2\{(1+q)L^2-c_*L-1\}
+ ={}&a^2v^2(2-v)+(1-a)\{b^2+3av(b-a)\}\\
+ &+(1-a)a^2v^2\{7-3v-a(1-v)\}>0.
+\end{align*}
+Every term is positive because $b>1>a$ and
+$7-3v-a(1-v)>4$. Thus $F(c_*)>0$ and $F(c)>0$.
+Equation \eqref{eq:planar-Im20} proves
+$\operatorname{Im}(N\overline A)>0$, which also implies $A(1+iy)\ne0$.
+Division by $|A|^2$ completes the proof.
+\end{proof}
+
+\subsection{Exclusion on the whole closed strip}
+
+\begin{proof}[Proof of Theorem~\ref{thm:planar-strip20}]
+First locate the zeros of $A$ in $0\le\operatorname{Re}z\le1$.
+If $A(z)=0$, then $\sin(\omega z)=\pm zd$. For $z=x+iy$ with
+$0<x<1$, strict concavity gives
+\[
+ \sin(\omega x)\cosh(\omega y)>xd,
+\]
+contradicting the real part of either equation. The same strict inequality
+holds for $x=1,y\ne0$. For $x=0,y\ne0$, the imaginary part is impossible
+because $|\sinh(\omega y)|>|y|\omega>|y|d$.
+Thus the only zeros in the closed strip are $0$ and $1$, with
+\[
+ A(z)=(\omega^2-d^2)z^2+O(z^4),\qquad
+ A'(1)=-2d(d-\omega c)<0.
+\]
+Here $d-\omega c>0$ because its derivative is $\omega\sin\omega>0$.
+The quotient $Q=N/A$ extends holomorphically across both points, with
+\begin{equation}\label{eq:planar-Qends20}
+ Q(0)=\frac{d(d-\omega c)}{\omega^2-d^2}>0,
+ \qquad
+ Q(1)=\frac{\omega-dc}{2(d-\omega c)}\in(0,1).
+\end{equation}
+The numerator in $Q(1)$ is positive because its derivative is $2d^2$.
+For the upper bound, $G(\omega)=2d+dc-\omega(1+2c)$ satisfies
+$G(0)=0$ and $G'=2d(\omega-d)>0$.
+The reference determinant has nonzero removable limits
+\[
+ \left.\frac{A(z)}{z^2(z^2-1)}\right|_{z=0}
+ =-(\omega^2-d^2),\qquad
+ \left.\frac{A(z)}{z^2(z^2-1)}\right|_{z=1}
+ =-d(d-\omega c).
+\]
+
+Let $V(x,y)=\operatorname{Im}Q(x+iy)$. Since $Q$ is even and has real
+coefficients, $V=0$ on the real and imaginary axes.
+Lemma~\ref{lem:planar-sign20} gives $V(1,y)>0$ for every $y>0$.
+The inequality $|\sin(\omega z)|\ge\sinh(\omega y)$ and direct estimates
+of the numerator imply the uniform decay
+\[
+ |Q(x+iy)|=O_\omega((1+y^2)e^{-\omega y}),
+ \qquad y\longrightarrow+\infty,\quad 0\le x\le1.
+\]
+On $[0,1]\times[0,T]$, the harmonic minimum principle bounds $V$ below
+by minus the supremum of $|Q|$ on its top edge. Letting $T\to\infty$
+therefore gives $V\ge0$ on the upper half-strip. The strong minimum
+principle and the strict right-boundary sign imply $V>0$ in its interior.
+Conjugation gives the opposite sign below the real axis.
+
+The Hopf boundary lemma on the bottom edge gives
+$V_y(x,0)>0$ for $0<x<1$. The Cauchy--Riemann equations yield
+$Q'(x)=V_y(x,0)>0$. On the left edge, the Hopf lemma gives
+$V_x(0,y)>0$ and consequently
+\[
+ \frac{d}{dy}Q(iy)=-V_x(0,y)<0,\qquad y>0.
+\]
+Together with $Q(iy)\to0$ and \eqref{eq:planar-Qends20}, these facts show
+that every finite real value of $Q$ on the real segment $[0,1]$ and on the
+imaginary axis lies in $(0,1)$. Elsewhere in the closed strip $Q$ is nonreal.
+For either $\tau=\pm\rho$, $|\tau|<1$, so $1+\tau Q$ cannot vanish at
+any of these points. Lemma~\ref{lem:planar-det20} and the nonzero reference
+determinant now exclude all characteristic roots. In particular, no
+eigenvector, and hence no associated logarithmic chain, can start at an
+integer exponent on the strip.
+\end{proof}
+
+\subsection{The planar Sobolev shift and compact parameter sets}
+
+\begin{corollary}\label{cor:planar-H320}
+Let $D\subset\mathbb R^2$ be a fixed bounded convex polygon. For every
+$F\in H^{-1}(D;\mathbb R^2)$, the unique clamped energy solution of
+$P_{\lambda,\mu}u=F$ belongs to $H^3(D;\mathbb R^2)$.
+For $0\le\lambda\le\Lambda<\infty$ and
+$0<\mu_0\le\mu\le\mu_1$, it satisfies
+\[
+ \|u\|_{H^3(D)}
+ \le C(D,\Lambda,\mu_0,\mu_1)\|F\|_{H^{-1}(D)}.
+\]
+The standard scalar clamped biharmonic shift
+\cite{BacutaBramblePasciak2002} gives the same
+$H^{-1}$-to-$H^3$ regularity on $D$.
+\end{corollary}
+
+\begin{proof}
+For clarity about the indices in the planar corner theorem, the
+correspondence used below is
+\[
+ \begin{array}{c|c|c|c}
+ &\text{corner exponent}&\text{energy line}&\text{target line}\\\hline
+ \text{this paper}&s&\operatorname{Re}s=1&\operatorname{Re}s=2\\
+ \text{Costabel--Dauge}&\zeta=s-2&\operatorname{Re}\zeta=-1&
+                 \operatorname{Re}\zeta=0
+ \end{array}
+\]
+The symbol of $P_{\lambda,\mu}$ is
+$|\xi|^2[\mu|\xi|^2I+(\lambda+\mu)\xi\otimes\xi]$, with eigenvalues
+$\mu|\xi|^4$ and $(\lambda+2\mu)|\xi|^4$. The system is strongly elliptic,
+and its complete Dirichlet conditions complement the symbol on open sides.
+Removing redundant collinear vertices makes every angle lie in $(0,\pi)$.
+
+Apply the corner expansion theorem for elliptic systems in
+\cite[Theorem~1.1(ii) and Sections~1.c, 2.a]{CostabelDauge1994}, with
+component orders $m_1=m_2=2$, initial index $s_0=0$ and target index $1$.
+The Mellin parameter $\zeta$ in that theorem enters as $r^{\zeta+2}$;
+its energy and target lines $\operatorname{Re}\zeta=-1,0$ are exactly
+$\operatorname{Re}s=1,2$ here. The integer-index clause applies because
+the angles differ from $\pi$ and $2\pi$. Its $\varepsilon$ loss affects
+only an additional weighted $L^2$ term, not the $H^3$ remainder.
+Theorem~\ref{thm:planar-strip20} removes the intervening homogeneous
+singular terms. Constant coefficients and straight sides make all
+positive-order Taylor corrections vanish. Cutoff polynomial terms are
+in $H^3$; see also \cite[Sections~4.a--b and Remark~4.7(ii)]{CostabelDauge1994}.
+
+For a smooth localizing function $\chi$, multiplication preserves $H_0^2$
+and
+\[
+ P_{\lambda,\mu}(\chi u)=\chi F+[P_{\lambda,\mu},\chi]u,
+ \qquad
+ \|[P_{\lambda,\mu},\chi]u\|_{H^{-1}}
+ \le C_{\chi,\lambda,\mu}\|u\|_{H^2}.
+\]
+The commutator has order at most three, so the estimate uses only energy
+regularity. A finite partition of unity, together with interior and
+open-side elliptic estimates, therefore yields
+\[
+ \|u\|_{H^3}
+ \le C_{\lambda,\mu}\bigl(\|F\|_{H^{-1}}+\|u\|_{H^2}\bigr).
+\]
+Testing the energy equation with $u$ and using
+\[
+ \mu\|D^2u\|^2+(\lambda+\mu)\|\nabla\operatorname{div}u\|^2
+ =\langle F,u\rangle
+\]
+absorbs the $H^2$ remainder. No extra corner condition on $F$ is required.
+
+On the fixed Banach spaces
+$X=H^3(D;\mathbb R^2)\cap H_0^2(D;\mathbb R^2)$ and
+$Y=H^{-1}(D;\mathbb R^2)$, the operator is now an isomorphism at every
+admissible parameter pair. Furthermore,
+\[
+ \|P_{\lambda,\mu}-P_{\lambda',\mu'}\|_{\mathcal L(X,Y)}
+ \le C_D(|\lambda-\lambda'|+|\mu-\mu'|).
+\]
+Continuity of inversion and compactness of the parameter rectangle give
+the uniform bound. For the scalar problem the characteristic determinant
+is the nonzero reference factor $A/[z^2(z^2-1)]$ already treated above;
+the same corner theorem and localization argument apply.
+\end{proof}
+
+
+\begin{thebibliography}{99}
+\bibitem{BacutaBramble2003}
+C. B\u{a}cu\c{t}\u{a} and J. H. Bramble,
+Regularity estimates for solutions of the equations of linear elasticity
+in convex plane polygonal domains,
+\emph{Z. Angew. Math. Phys.} \textbf{54} (2003), 874--878.
+
+\bibitem{BacutaBramblePasciak2002}
+C. B\u{a}cu\c{t}\u{a}, J. H. Bramble, and J. E. Pasciak,
+Shift theorems for the biharmonic Dirichlet problem,
+in \emph{Recent Progress in Computational and Applied PDEs},
+Kluwer Academic/Plenum Publishers, New York, 2002, pp. 1--26.
+\href{https://doi.org/10.1007/978-1-4615-0113-8_1}{doi:10.1007/978-1-4615-0113-8\_1}.
+
+\bibitem{BjorndahlKarshon2010}
+C. Bjorndahl and Y. Karshon,
+Revisiting Tietze--Nakajima: local and global convexity for maps,
+\emph{Canad. J. Math.} \textbf{62} (2010), 975--993.
+\href{https://doi.org/10.4153/CJM-2010-052-5}{doi:10.4153/CJM-2010-052-5}.
+
+\bibitem{CHH2023}
+M. Chen, J. Huang, and X. Huang,
+A robust lower-order mixed finite element method for a strain gradient
+elastic model,
+\emph{SIAM J. Numer. Anal.} \textbf{61} (2023), 2237--2260.
+\href{https://doi.org/10.1137/22M151649X}{doi:10.1137/22M151649X}.
+
+\bibitem{ChoiKimKoh2025}
+H. J. Choi, S. Kim, and Y. Koh,
+Convergence in the incompressible limit of the corner singularities,
+\emph{J. Differential Equations} \textbf{440} (2025), article 113415.
+\href{https://doi.org/10.1016/j.jde.2025.113415}{doi:10.1016/j.jde.2025.113415}.
+
+\bibitem{CostabelDauge1994}
+M. Costabel and M. Dauge,
+Stable asymptotics for elliptic systems on plane domains with corners,
+\emph{Comm. Partial Differential Equations} \textbf{19} (1994), 1677--1726.
+\href{https://doi.org/10.1080/03605309408821068}{doi:10.1080/03605309408821068}.
+
+\bibitem{CostabelMcIntosh2010}
+M. Costabel and A. McIntosh,
+On Bogovski\u{\i} and regularized Poincar\'e integral operators for
+de Rham complexes on Lipschitz domains,
+\emph{Math. Z.} \textbf{265} (2010), 297--320.
+\href{https://doi.org/10.1007/s00209-009-0517-8}{doi:10.1007/s00209-009-0517-8}.
+
+\bibitem{Grisvard1985}
+P. Grisvard, \emph{Elliptic Problems in Nonsmooth Domains},
+Monographs and Studies in Mathematics, vol. 24, Pitman, Boston, 1985.
+
+\bibitem{HuangHuangTang2026}
+J. Huang, X. Huang, and Z. Tang,
+An optimal and robust nonconforming finite element method for the
+strain gradient elasticity,
+arXiv:2505.08461v3, 2026.
+\href{https://arxiv.org/abs/2505.08461v3}{arXiv:2505.08461v3}.
+
+\bibitem{KozlovMazyaSchwab1992}
+V. A. Kozlov, V. G. Maz'ya, and C. Schwab,
+On singularities of solutions of the displacement problem of linear
+elasticity near the vertex of a cone,
+\emph{Arch. Rational Mech. Anal.} \textbf{119} (1992), 197--227.
+\href{https://doi.org/10.1007/BF00381670}{doi:10.1007/BF00381670}.
+
+\bibitem{LiMingWang2021}
+H. Li, P. Ming, and H. Wang,
+$H^2$-Korn's inequality and the nonconforming elements for the
+strain gradient elastic model,
+\emph{J. Sci. Comput.} \textbf{88} (2021), article 78.
+\href{https://doi.org/10.1007/s10915-021-01597-7}{doi:10.1007/s10915-021-01597-7}.
+
+\bibitem{LiaoMingXu2023}
+Y. Liao, P. Ming, and Y. Xu,
+Taylor--Hood like finite elements for nearly incompressible
+strain gradient elasticity problems,
+\emph{J. Sci. Comput.} \textbf{95} (2023), article 4.
+\href{https://doi.org/10.1007/s10915-023-02135-3}{doi:10.1007/s10915-023-02135-3}.
+
+\bibitem{LiaoMing2025}
+Y. Liao and P. Ming,
+A broken Hardy inequality on finite element space and application to
+strain gradient elasticity,
+arXiv:2504.10993v1, 2025.
+\href{https://arxiv.org/abs/2504.10993v1}{arXiv:2504.10993v1}.
+
+\bibitem{MayborodaMazya2008}
+S. Mayboroda and V. Maz'ya,
+Boundedness of the Hessian of a biharmonic function in a convex domain,
+\emph{Comm. Partial Differential Equations} \textbf{33} (2008), 1439--1454.
+\href{https://doi.org/10.1080/03605300801891919}{doi:10.1080/03605300801891919}.
+
+\bibitem{MMS2010}
+V. Maz'ya, M. Mitrea, and T. Shaposhnikova,
+The Dirichlet problem in Lipschitz domains for higher order elliptic
+systems with rough coefficients,
+\emph{J. Anal. Math.} \textbf{110} (2010), 167--239.
+\href{https://doi.org/10.1007/s11854-010-0005-4}{doi:10.1007/s11854-010-0005-4}.
+
+\bibitem{MazyaRossmann2004}
+V. Maz'ya and J. Rossmann,
+Schauder estimates for solutions to boundary value problems for second
+order elliptic systems in polyhedral domains,
+\emph{Appl. Anal.} \textbf{83} (2004), 271--308.
+\href{https://doi.org/10.1080/00036810310001632871}{doi:10.1080/00036810310001632871}.
+
+\bibitem{MazyaRossmann2007}
+V. Maz'ya and J. Rossmann,
+\(L_p\) estimates of solutions to mixed boundary value problems for the
+Stokes system in polyhedral domains,
+\emph{Math. Nachr.} \textbf{280} (2007), 751--793.
+\href{https://doi.org/10.1002/mana.200610513}{doi:10.1002/mana.200610513}.
+
+\bibitem{Stein1970}
+E. M. Stein, \emph{Singular Integrals and Differentiability Properties
+of Functions}, Princeton Mathematical Series, vol. 30,
+Princeton University Press, Princeton, NJ, 1970.
+\end{thebibliography}
+\end{document}

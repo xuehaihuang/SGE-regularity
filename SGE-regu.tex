@@ -59,7 +59,7 @@
 \begin{document}
 
 \title[Clamped strain gradient elasticity on polygons]
-{A convexity criterion and sharp parameter-uniform estimates for clamped strain gradient elasticity on polygons}
+{Clamped Strain-Gradient Elasticity on Polygons: Corner Spectra, Convexity, and Sharp Rates}
 
 % \author{Xuehai Huang}
 % \address{School of Mathematics, Shanghai University of Finance and Economics,
@@ -281,6 +281,8 @@ the material parameter $\iota$ and the Lam\'e coefficient $\lambda$. And $a\eqsi
 % %   Clearly we have \eqref{eq:wellposed1} by Lemma \ref{lm:korn}
 % %   and \eqref{eq:wellposed2} follows from the inf-sup condition \eqref{infsupcondition} immediately.
 
+
+The three-dimensional polyhedral problem is studied separately in the companion manuscript~\cite{PolyhedralRegularity2026}, with edge and vertex arguments for the fourth order Lam\'e and Stokes systems. Its analysis uses the planar corner spectrum and dimension-independent estimates established here; the proofs in the present paper do not depend on that companion work.
 
 The rest of this paper is organized as follows. Section~\ref{sec:assumption} develops the regularity assumptions and the divergence lifting, verifies the assumptions on convex polygons, and proves the geometric characterization of $H^3$ regularity. Section~\ref{sec:regularity} establishes the uniform SGE estimates, their sharpness on every convex polygon, and the second order convergence criterion. Appendix~\ref{app:corner-spectrum} proves spectral exclusion at convex corners and the existence of singular exponents at reentrant corners.
 
@@ -1132,6 +1134,7 @@ The solenoidal field used here already appears, up to scaling, in~\cite[Example~
 
 
 \begin{corollary}\label{cor:compatible-data}
+Let $\Omega\subset\mathbb R^d$, $d\geq2$, be a bounded connected Lipschitz domain.
 Let $\boldsymbol u$ and $\boldsymbol u_0$ be the weak solutions of~\eqref{eq:straingradproblem} and~\eqref{eq:elasticity} for $\boldsymbol f\in L^2(\Omega;\mathbb R^d)$. Suppose $\boldsymbol u_0\in H_0^2(\Omega;\mathbb R^d)$ and $\Delta\boldsymbol f\in H^{-1}(\Omega;\mathbb R^d)$. Set $p=\lambda\div\boldsymbol u$, $p_0=\lambda\div\boldsymbol u_0$, $\boldsymbol e=\boldsymbol u-\boldsymbol u_0$ and $r=p-p_0$. Then
 \begin{equation}\label{eq:compatible-data}
 |\boldsymbol e|_1+\iota|\boldsymbol e|_2+\|r\|_0+\iota|r|_1
@@ -1192,6 +1195,7 @@ Estimate~\eqref{eq:compatible-data} controls displacement and pressure differenc
 \end{remark}
 
 \begin{proposition}\label{prop:compatible-leading}
+Let $\Omega\subset\mathbb R^d$, $d\geq2$, be a bounded connected Lipschitz domain.
 Fix $\lambda$, $\mu$ and $\boldsymbol f\in L^2(\Omega;\mathbb R^d)$, and let $\boldsymbol u$ and $\boldsymbol u_0$ be the weak solutions of~\eqref{eq:straingradproblem} and~\eqref{eq:elasticity}. Set $\boldsymbol e=\boldsymbol u-\boldsymbol u_0$ and $r=\lambda\div\boldsymbol e$. Then
 \[
 |\boldsymbol e|_1=O(\iota^2)
