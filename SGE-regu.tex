@@ -1,3 +1,4 @@
+% Paired manuscript version: 2026-11-20-r2.
 \documentclass[10pt]{amsart}
 
 \usepackage[english]{babel}
@@ -18,6 +19,7 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{placeins}
+\usepackage{needspace}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -117,9 +119,9 @@ for every $\lambda\geq0$, $\mu>0$ and $0<\iota<1$. Theorem~\ref{thm:polygon-shar
 
 The square construction extends the solenoidal example in~\cite[Example~6.2]{ChenHuangHuang2023}, which examines finite element convergence with respect to the mesh size $h$. Our additional gradient component gives the classical pressure a nonzero boundary trace for $\lambda>0$; the product of squared affine edge functions extends the construction to every fixed convex polygon. The resulting bounds concern the six continuous quantities individually as functions of $\iota$ and the material parameters.
 
-Earlier analyses of robust finite element methods on polytopes used an explicit corner regularity hypothesis. Li, Ming and Wang~\cite[Hypothesis~1, equation~(14), p.~6]{LiMingWang2021Korn} assume the $H^{-1}\to H^3$ estimate for the clamped fourth order Lam\'e operator and leave its validity on convex polytopes open. Chen, Huang and Huang~\cite[Remark~3.2, p.~2242]{ChenHuangHuang2023} likewise note that this regularity was not established even on convex polygons. The first arXiv version of Liao, Ming and Xu already stated the parameter-uniform estimate on convex polygons~\cite[Lemma~2.7, equation~(2.18)]{LiaoMingXu2021taylorhood}. Its argument invokes Agmon--Douglis--Nirenberg regularity through an auxiliary estimate and in the bounded-parameter case, without establishing the required regularity at polygonal vertices. The revised analysis uses smooth planar domains~\cite[Lemma~2.6]{LiaoMingXu2023}. Proposition~\ref{prop:convex-lame} supplies the corner regularity for all convex angles, and Theorem~\ref{thm:polygon-regularity} establishes the necessity of convexity.
+Earlier analyses of robust finite element methods on polytopes used an explicit corner regularity hypothesis. Li, Ming and Wang~\cite[Hypothesis~1, equation~(14), p.~6]{LiMingWang2021Korn} assume the $H^{-1}\to H^3$ estimate for the clamped fourth order Lam\'e operator and leave its validity on convex polytopes open. Chen, Huang and Huang~\cite[Remark~3.2, p.~2242]{ChenHuangHuang2023} likewise note that this regularity was not established even on convex polygons. The first arXiv version of Liao, Ming and Xu is formulated on bounded convex polygons and states the parameter-uniform estimate~\cite[Section~2, p.~2, and Lemma~2.7, equation~(2.18), p.~7]{LiaoMingXu2021taylorhood}. Its proof uses the auxiliary $H^4$--$H^3$ estimate of Lemma~2.6 for large parameters and invokes Agmon--Douglis--Nirenberg regularity for $\lambda+\mu\leq2C$~\cite[Lemmas~2.6--2.7 and their proofs, pp.~6--7]{LiaoMingXu2021taylorhood}. No separate estimate at polygonal vertices is included in these arguments. The revised analysis uses smooth planar domains~\cite[Lemma~2.6]{LiaoMingXu2023}. Proposition~\ref{prop:convex-lame} supplies the corner regularity for all convex angles, and Theorem~\ref{thm:polygon-regularity} establishes the necessity of convexity.
 
-In particular, Propositions~\ref{prop:convex-lame} and~\ref{prop:convex-stokes} verify Assumptions~\ref{RegularityAssumption2} and~\ref{RegularityAssumption1}, respectively, on every bounded convex polygon. Together with the classical elasticity estimate~\eqref{eq:u0regularity}, also verified on these domains, this makes Corollary~\ref{cor:convex-regularity} unconditional. For general higher-dimensional polytopal domains, all three regularity conditions remain explicit hypotheses.
+In particular, Propositions~\ref{prop:convex-lame} and~\ref{prop:convex-stokes} verify Assumptions~\ref{RegularityAssumption2} and~\ref{RegularityAssumption1}, respectively, on every bounded convex polygon. Together with the classical elasticity estimate~\eqref{eq:u0regularity}, also verified on these domains, this makes Corollary~\ref{cor:convex-regularity} unconditional. The estimates in general dimensions are conditional in the present paper.
 
 Choi, Kim and Koh~\cite{ChoiKimKoh2025} investigate corner singularities of a second order Lam\'e-type system arising from a penalized Stokes formulation on a nonconvex polygon with a single reentrant corner and inhomogeneous Dirichlet boundary conditions. They derive explicit formulas for the singular coefficients and prove convergence of the suitably normalized singular coefficients and of the regular remainders to their Stokes counterparts in the incompressible limit. Our corner analysis concerns the fourth order Lam\'e operator with clamped boundary conditions. The associated spectrum yields the convexity criterion for global $H^3$ regularity in Theorem~\ref{thm:polygon-regularity} and provides the regularity framework for the sharp parameter-uniform SGE estimates in Corollary~\ref{cor:convex-regularity} and Theorem~\ref{thm:polygon-sharpness}.
 
@@ -282,17 +284,16 @@ the material parameter $\iota$ and the Lam\'e coefficient $\lambda$. And $a\eqsi
 % %   and \eqref{eq:wellposed2} follows from the inf-sup condition \eqref{infsupcondition} immediately.
 
 
-The three-dimensional polyhedral problem is studied separately in the companion manuscript~\cite{PolyhedralRegularity2026}, with edge and vertex arguments for the fourth order Lam\'e and Stokes systems. Its analysis uses the planar corner spectrum and dimension-independent estimates established here; the proofs in the present paper do not depend on that companion work.
-
-The rest of this paper is organized as follows. Section~\ref{sec:assumption} develops the regularity assumptions and the divergence lifting, verifies the assumptions on convex polygons, and proves the geometric characterization of $H^3$ regularity. Section~\ref{sec:regularity} establishes the uniform SGE estimates, their sharpness on every convex polygon, and the second order convergence criterion. Appendix~\ref{app:corner-spectrum} proves spectral exclusion at convex corners and the existence of singular exponents at reentrant corners.
+The rest of this paper is organized as follows. Section~\ref{sec:assumption} develops the regularity framework and divergence liftings, verifies the assumptions on convex polygons, and proves the geometric characterization of $H^3$ regularity. Section~\ref{sec:regularity} establishes the uniform SGE estimates, their sharpness on every convex polygon, and the second order convergence criterion. Appendix~\ref{app:corner-spectrum} proves spectral exclusion at convex corners and the existence of singular exponents at reentrant corners.
 
 
-\section{Regularity assumptions}\label{sec:assumption}
+\section{Divergence lifting and regularity on polygons}\label{sec:assumption}
 
 % In order to derive the robust error estimates for the proposed mixed finite element method in the next section, we require to develop a series of regularity estimates for the underlying (system of) partial differential equations. In fact, these results are interesting themselves.
-This section presents three regularity assumptions and verifies all of them on fixed bounded convex polygons. They remain hypotheses in general dimensions.
+This section presents three regularity assumptions and verifies all of them on fixed bounded convex polygons. They serve as explicit hypotheses for the general-dimensional estimates in this paper.
 
-% \subsection{Assumptions}
+\Needspace{8\baselineskip}
+\subsection{The abstract regularity framework}
 \begin{assumption}\label{RegularityAssumption0}
 Let $f \in L^2(\Omega)$, and $u\in H_0^1(\Omega)$ be the solution of the Poisson equation $-\Delta u=f$. Assume $u\in H^2(\Omega)$ admits the estimate
 \begin{equation}\label{eq:poissonH2regularity}
@@ -397,6 +398,8 @@ Let $\boldsymbol f \in H^{-1}(\Omega; \mathbb{R}^d)$ and $g\in L^2_\chi(\Omega)$
 
 In the results of Section~\ref{sec:regularity} that invoke Assumption~\ref{RegularityAssumption2}, its endpoint $\Lambda$ is chosen to cover the threshold specified in Lemma~\ref{lm:fourthorderelasregularity}.
 
+\subsection{Clamped Lam\'e regularity on convex polygons}
+
 \begin{proposition}\label{prop:convex-lame}
 Let $\Omega\subset\mathbb R^2$ be a fixed bounded convex polygon, $0\leq\Lambda<\infty$, and $0<\mu_0\leq\mu_1$. Assumption~\ref{RegularityAssumption2} holds uniformly for $0\leq\lambda\leq\Lambda$ and $\mu_0\leq\mu\leq\mu_1$: the energy solution satisfies
 \[
@@ -445,6 +448,8 @@ $Y=H^{-1}(\Omega;\mathbb R^2)$, energy uniqueness and the regularity just proved
 \]
 Continuity of inversion and compactness of $[0,\Lambda]\times[\mu_0,\mu_1]$ give the asserted uniform bound.
 \end{proof}
+
+\subsection{Divergence lifting and the Stokes reduction}
 
 Assumption~\ref{RegularityAssumption1}, even restricted to $g=0$, implies Assumption~\ref{RegularityAssumption0}. Indeed, given $G\in L^2(\Omega)$, let $z\in H_0^1(\Omega)$ solve $\Delta z=G$. Fix $\psi\in C_c^\infty(\Omega)$ with $\int_\Omega\psi\dx=1$, and set $c=\int_\Omega z\dx$ and $p=z-c\psi$. Weak Poisson stability gives $|c|\lesssim\|G\|_0$. Then $(\boldsymbol0,p)$ solves~\eqref{eq:fourthorderStokes} with force $\nabla(G-c\Delta\psi)\in H^{-1}(\Omega;\mathbb R^d)$ and $g=0$. Assumption~\ref{RegularityAssumption1} yields
 \[
@@ -497,25 +502,16 @@ The bounded linear trace lifting and norm equivalence in~\cite[Propositions~7.3,
 \operatorname{Tr}\div\boldsymbol w=0,\qquad
 \operatorname{Tr}\partial_j\div\boldsymbol w=\sum_iT_{iji}=g_j.
 \end{equation}
-Thus $q:=h-\div\boldsymbol w\in H_0^2(\Omega)\cap L_0^2(\Omega)$, and $\|q\|_2\lesssim\|h\|_2$. By~\cite[Theorem~1.1]{CostabelMcIntosh2010}, choose $\boldsymbol z\in H_0^3(\Omega;\mathbb R^d)$ linearly in $q$ with $\div\boldsymbol z=q$ and $\|\boldsymbol z\|_3\lesssim\|q\|_2$. Then $\mathcal Rh=\boldsymbol w+\boldsymbol z$ is the required right inverse.
+Thus $q:=h-\div\boldsymbol w\in H_0^2(\Omega)\cap L_0^2(\Omega)$, and $\|q\|_2\lesssim\|h\|_2$. To specify the support-preserving lifting, fix a bounded divergence right inverse $\mathcal B_0:L_0^2\to H_0^1$, and let $E_0$ denote zero extension. The construction in~\cite[Theorem~4.6 and proof of Corollary~4.7(b)]{CostabelMcIntosh2010}, identifying vector fields with $(d-1)$-forms, gives
+\[
+\boldsymbol z=\big(T_dE_0q+L_{d-1}E_0\mathcal B_0q\big)|_\Omega.
+\]
+Indeed $\div E_0\mathcal B_0q=E_0q$ distributionally, since $\mathcal B_0q\in H_0^1$. The operators $T_d$ and $L_{d-1}$ preserve support and have orders $-1$ and $-\infty$, respectively. At integer orders, the supported Sobolev spaces identify with zero extensions of $H_0^m(\Omega)$, so $\boldsymbol z\in H_0^3$, $\div\boldsymbol z=q$ and $\|\boldsymbol z\|_3\lesssim\|q\|_2$. This construction works at every nonnegative integer data order. Then $\mathcal Rh=\boldsymbol w+\boldsymbol z$ is the required right inverse.
 \end{proof}
 
 Lemma~\ref{lem:main} is a consequence of the boundary trace extension theory in~\cite{MazyaMitreaShaposhnikova2010} and the divergence right inverse in~\cite{CostabelMcIntosh2010}; the divergence result itself is not stated in the former reference. Only the trace theory of its Section~7 is used here. Its elliptic solvability result~\cite[Theorem~1.1]{MazyaMitreaShaposhnikova2010} requires both the coefficients and the boundary normal to belong to VMO. The more general small-oscillation condition is given in its Section~1.2, equation~(1.12), and Theorem~8.1. These elliptic results cannot be invoked directly to supply the SGE regularity assumptions on arbitrary polygons.
 
-The same construction gives, for every integer $k\geq1$,
-\[
-\div\big(H^{k+2}(\Omega;\mathbb R^d)\cap H_0^{k+1}(\Omega;\mathbb R^d)\big)
-=H^{k+1}(\Omega)\cap H_0^k(\Omega)\cap L_0^2(\Omega),
-\]
-with a bounded linear right inverse. To see this, write the highest boundary trace of $h$ as $A=\operatorname{Tr}\nabla^kh=\alpha\boldsymbol n^{\otimes k}$; its pure normal form follows from the vanishing lower traces and tangential compatibility. On this cone the map
-\[
-F_k(\alpha\boldsymbol n^{\otimes k})=\alpha\boldsymbol n^{\otimes(k+2)}
-\]
-is well-defined and Lipschitz. Indeed, for $A=\alpha\boldsymbol n^{\otimes k}$, $B=\beta\boldsymbol m^{\otimes k}$ and $t=\boldsymbol n\cdot\boldsymbol m$, the squared differences are $\alpha^2+\beta^2-2\alpha\beta t^{k+2}$ and $\alpha^2+\beta^2-2\alpha\beta t^k$, respectively, and
-\[
-|F_k(A)-F_k(B)|^2\leq\frac{k+2}{k}|A-B|^2.
-\]
-Thus the prescribed order-$(k+1)$ vector traces $F_k(A)$ belong to $H^{1/2}(\partial\Omega)$ and satisfy the tangential compatibility conditions; all lower traces are set to zero. Applying the trace lifting with $m=k+2$ gives $\boldsymbol w\in H^{k+2}\cap H_0^{k+1}$ and $\operatorname{Tr}\nabla^k\div\boldsymbol w=A$. The difference $h-\div\boldsymbol w$ lies in $H_0^{k+1}\cap L_0^2$, so the high-order divergence right inverse completes the construction. Linearity again follows from $F_k(A)=A\otimes\boldsymbol n^{\otimes2}$ on the admissible trace subspace. These higher order identities are further consequences of the two cited theories.
+The construction extends to every integer order; the complete statement and proof are given in Corollary~\ref{cor:higher-divergence} below.
 
 \begin{proposition}\label{prop:homogeneous-stokes}
 On any bounded connected Lipschitz domain $\Omega\subset\mathbb R^d$, $d\geq2$, Assumption~\ref{RegularityAssumption1} holds for all $g\in L^2_\chi(\Omega)$ if and only if it holds for $g=0$.
@@ -531,6 +527,8 @@ Lemma~\ref{lem:main} provides $\boldsymbol w=\mathcal Rh\in H^3(\Omega;\mathbb R
 \]
 Then $(\boldsymbol\phi,p)=(\boldsymbol\phi_0+\boldsymbol w,p)$ solves~\eqref{eq:fourthorderStokes} and satisfies~\eqref{eq:fourthorderStokesregularity1}.
 \end{proof}
+
+\subsection{Convexity criteria for global regularity}
 
 \begin{proposition}\label{prop:convex-stokes}
 Let $\Omega\subset\mathbb R^2$ be a bounded connected polygonal Lipschitz domain. Assumption~\ref{RegularityAssumption1} holds if and only if $\Omega$ is convex.
@@ -598,6 +596,63 @@ Thus, for the fixed value of $\iota$, put
 \in L^4(\Omega;\mathbb R^2).
 \]
 Then $\boldsymbol v$ is the SGE energy solution and disproves~{\rm(iii)}. These counterexample loads may depend on the fixed material parameters and on $\iota$, as permitted when testing regularity for all loads. The final assertion follows from this necessity and Proposition~\ref{prop:convex-lame}.
+\end{proof}
+
+\subsection{Higher-order divergence lifting}
+
+\begin{corollary}[Higher-order divergence lifting]\label{cor:higher-divergence}
+Let $\Omega\subset\mathbb R^d$, $d\geq2$, be a bounded connected Lipschitz domain, and let $k\geq1$ be an integer. Then
+\[
+\div\big(H^{k+2}(\Omega;\mathbb R^d)\cap H_0^{k+1}(\Omega;\mathbb R^d)\big)
+=H^{k+1}(\Omega)\cap H_0^k(\Omega)\cap L_0^2(\Omega).
+\]
+There is a bounded linear right inverse $\mathcal R_k$ such that, for every $h$ in the scalar space above,
+\[
+\begin{gathered}
+\mathcal R_kh\in H^{k+2}(\Omega;\mathbb R^d)\cap H_0^{k+1}(\Omega;\mathbb R^d),\\
+\div(\mathcal R_kh)=h,\qquad
+\|\mathcal R_kh\|_{k+2}\leq C_{\Omega,k}\|h\|_{k+1}.
+\end{gathered}
+\]
+\end{corollary}
+\begin{proof}
+The forward inclusion follows from the zero traces and the divergence theorem. For the reverse inclusion, let $h$ belong to the space on the right. Its Cartesian traces of orders below $k$ vanish. The compatibility relations in~\cite[Proposition~7.7]{MazyaMitreaShaposhnikova2010}, applied with $m=k+1$, imply that every slot of the symmetric tensor
+\[
+A:=\operatorname{Tr}\nabla^kh\in H^{1/2}(\partial\Omega;\operatorname{Sym}^k\mathbb R^d)
+\]
+is normal to the boundary. Hence $A=b\boldsymbol n^{\otimes k}$ almost everywhere. On the cone of pure powers define
+\[
+F_k(b\boldsymbol n^{\otimes k})=b\boldsymbol n^{\otimes(k+2)}.
+\]
+This is well-defined: replacing $\boldsymbol n$ by $-\boldsymbol n$ replaces $b$ by $(-1)^kb$, while $k$ and $k+2$ have the same parity. For $A=b\boldsymbol n^{\otimes k}$, $B=c\boldsymbol m^{\otimes k}$ and $t=\boldsymbol n\cdot\boldsymbol m$,
+\[
+|F_k(A)-F_k(B)|^2=b^2+c^2-2bc\,t^{k+2}
+\leq\frac{k+2}{k}\bigl(b^2+c^2-2bc\,t^k\bigr).
+\]
+If $bc\,t^k\leq0$, the constant $1$ suffices. Otherwise, with $r=|t|$, the ratio of the two squared differences is at most
+$(1-r^{k+2})/(1-r^k)\leq(k+2)/k$; the endpoint follows by continuity. The fractional Sobolev seminorm therefore gives
+$\|F_k(A)\|_{H^{1/2}(\partial\Omega)}\lesssim_k\|A\|_{H^{1/2}(\partial\Omega)}\lesssim\|h\|_{k+1}$.
+
+For each component $w_\ell$, prescribe Cartesian jets $f_\alpha^{(\ell)}=0$ for $|\alpha|\leq k$ and
+$f_\alpha^{(\ell)}=b\boldsymbol n^\alpha n_\ell$ for $|\alpha|=k+1$. All the tangential compatibility relations can now be checked explicitly:
+\[
+(n_i\partial_j-n_j\partial_i)f_\beta^{(\ell)}
+=n_i f_{\beta+e_j}^{(\ell)}-n_j f_{\beta+e_i}^{(\ell)},
+\qquad |\beta|\leq k.
+\]
+For $|\beta|\leq k-1$, both sides vanish. For $|\beta|=k$, the left side is zero and the right side is
+$b\boldsymbol n^\beta n_\ell(n_i n_j-n_j n_i)=0$.
+Thus~\cite[Propositions~7.3, 7.6, 7.7 and Theorem~7.8]{MazyaMitreaShaposhnikova2010}, with $m=k+2$, $p=2$, $a=0$ and $s=1/2$, give a bounded linear lifting
+$\boldsymbol w\in H^{k+2}(\Omega;\mathbb R^d)\cap H_0^{k+1}(\Omega;\mathbb R^d)$.
+The same $p,a,s$ apply to the trace of $h$ above. The choice of $\boldsymbol w$ is linear in $h$, since $F_k(A)=A\otimes\boldsymbol n^{\otimes2}$ on the admissible trace subspace; the Lipschitz argument establishes its boundedness without differentiating the rough normal.
+
+All traces of $\div\boldsymbol w$ below order $k$ vanish, while, for $|\beta|=k$,
+\[
+\operatorname{Tr}\partial^\beta\div\boldsymbol w
+=\sum_i b\boldsymbol n^{\beta+e_i}n_i
+=b\boldsymbol n^\beta=\operatorname{Tr}\partial^\beta h.
+\]
+Consequently, $q:=h-\div\boldsymbol w\in H_0^{k+1}(\Omega)\cap L_0^2(\Omega)$ and $\|q\|_{k+1}\lesssim\|h\|_{k+1}$. The fixed support-preserving right inverse constructed in the proof of Lemma~\ref{lem:main}, now applied at data order $k+1$, gives a bounded linear choice $\boldsymbol z\in H_0^{k+2}(\Omega;\mathbb R^d)$ with $\div\boldsymbol z=q$. Then $\mathcal R_kh=\boldsymbol w+\boldsymbol z$ proves the stated identity and bound.
 \end{proof}
 
 Lemma~\ref{lem:main} resolves the divergence lifting in every dimension. In higher dimensions, verifying Assumption~\ref{RegularityAssumption1} still requires fourth order Stokes regularity with homogeneous constraint. On convex polygons, Propositions~\ref{prop:convex-lame} and~\ref{prop:convex-stokes} verify both regularity assumptions needed below.
@@ -836,7 +891,41 @@ We first adapt~\cite[Lemma~3.8]{ChenHuangHuang2023} using estimate~\eqref{eq:fou
 \[
 \inf_{q\in L^2(\Omega)}\|\boldsymbol F+\nabla q\|_{-1}+\gamma\|\boldsymbol F\|_{-1}\lesssim|\boldsymbol e|_1.
 \]
-The SGE equation gives $\iota^2\div\Delta\boldsymbol\sigma(\boldsymbol u)=\boldsymbol F$, so~\eqref{eq:fourthorderelasregularityw} yields $\iota^2\|\boldsymbol u\|_3\lesssim|\boldsymbol e|_1$ for all $\lambda\ge0$. This replaces the bound in~\cite[equation~(3.19)]{ChenHuangHuang2023}. The energy identity in~\cite[equation~(3.20)]{ChenHuangHuang2023}, followed by the same multiplicative trace and Young inequalities using~\eqref{eq:u0regularity}, gives
+The SGE equation gives $\iota^2\div\Delta\boldsymbol\sigma(\boldsymbol u)=\boldsymbol F$, so~\eqref{eq:fourthorderelasregularityw} yields $\iota^2\|\boldsymbol u\|_3\lesssim|\boldsymbol e|_1$ for all $\lambda\ge0$. This replaces the bound in~\cite[equation~(3.19)]{ChenHuangHuang2023}. For completeness, the energy step corresponding to~\cite[equation~(3.20)]{ChenHuangHuang2023} is
+\begin{align*}
+&(\boldsymbol\sigma(\boldsymbol e),\boldsymbol\varepsilon(\boldsymbol e))
++\iota^2(\nabla\boldsymbol\sigma(\boldsymbol u),\nabla\boldsymbol\varepsilon(\boldsymbol u))\\
+&\qquad=\iota^2(\nabla\boldsymbol\sigma(\boldsymbol u),\nabla\boldsymbol\varepsilon(\boldsymbol u_0))
+-\iota^2\int_{\partial\Omega}\partial_{\boldsymbol n}\boldsymbol\sigma(\boldsymbol u):\boldsymbol\varepsilon(\boldsymbol u_0)\,\dd s.
+\end{align*}
+Indeed, test $\iota^2\div\Delta\boldsymbol\sigma(\boldsymbol u)=\div\boldsymbol\sigma(\boldsymbol e)$ with $\boldsymbol e\in H_0^1$, and then integrate $\Delta\boldsymbol\sigma(\boldsymbol u)$ once by parts. Since $\boldsymbol u\in H^3\cap H_0^2$ and $\boldsymbol u_0\in H^2\cap H_0^1$, the traces are well defined and $\operatorname{Tr}\boldsymbol\varepsilon(\boldsymbol u)=0$.
+Writing $M_f=\|\boldsymbol f\|_0$, estimate~\eqref{eq:u0regularity} bounds the volume term before multiplication by $\iota^2$ by
+\[
+C\|\boldsymbol u\|_2\bigl(\mu\|\boldsymbol u_0\|_2+\lambda\|\div\boldsymbol u_0\|_1\bigr)
+\lesssim \|\boldsymbol u\|_2M_f.
+\]
+For the boundary term, the stress decomposition gives explicitly
+\[
+\begin{aligned}
+\int_{\partial\Omega}\partial_{\boldsymbol n}\boldsymbol\sigma(\boldsymbol u):\boldsymbol\varepsilon(\boldsymbol u_0)\,\dd s
+={}&2\mu\int_{\partial\Omega}\partial_{\boldsymbol n}\boldsymbol\varepsilon(\boldsymbol u):\boldsymbol\varepsilon(\boldsymbol u_0)\,\dd s\\
+&+\lambda\int_{\partial\Omega}\partial_{\boldsymbol n}\div\boldsymbol u\,\div\boldsymbol u_0\,\dd s.
+\end{aligned}
+\]
+The multiplicative trace inequality therefore gives
+\[
+\left|\int_{\partial\Omega}\partial_{\boldsymbol n}\boldsymbol\sigma(\boldsymbol u):\boldsymbol\varepsilon(\boldsymbol u_0)\,\dd s\right|
+\lesssim \|\boldsymbol u\|_2^{1/2}\|\boldsymbol u\|_3^{1/2}
+\bigl(\mu\|\boldsymbol u_0\|_2+\lambda\|\div\boldsymbol u_0\|_1\bigr).
+\]
+In the $\lambda$ term the trace of $\div\boldsymbol u_0$, rather than that of $\boldsymbol\varepsilon(\boldsymbol u_0)$, is used. Thus no pressure estimate for $\boldsymbol u$ is presupposed.
+Set $x=|\boldsymbol e|_1$, $y=\iota\|\boldsymbol u\|_2$ and $z=\iota^2\|\boldsymbol u\|_3$. Korn's inequalities, $z\lesssim x$ proved above, and $0<\iota<1$ imply
+\[
+x^2+y^2\leq C M_f\bigl(\iota y+\sqrt\iota\sqrt{yz}\bigr)
+\leq C\sqrt\iota M_f(x+y)
+\leq\tfrac12(x^2+y^2)+C\iota M_f^2.
+\]
+Absorption gives $x+y+z\lesssim\sqrt\iota M_f$, uniformly also at $\lambda=0$. Consequently,
 \begin{equation}\label{eq:straingradregularity1}
 	|\boldsymbol u-\boldsymbol u_0|_{1} +\iota\|\boldsymbol u\|_2  + \iota^{2}\|\boldsymbol u\|_{3} \lesssim \iota^{1/2}\|\boldsymbol f\|_0.
 	\end{equation}
@@ -1155,7 +1244,8 @@ Let $V=H_0^2(\Omega;\mathbb R^d)$, $Q=H_0^1(\Omega)\cap L_0^2(\Omega)$, and defi
 \]
 Use the bilinear forms
 \begin{align*}
-a_\iota(\boldsymbol w,\boldsymbol v)&=2\mu\big((\boldsymbol\varepsilon(\boldsymbol w),\boldsymbol\varepsilon(\boldsymbol v))+\iota^2(\nabla\boldsymbol\varepsilon(\boldsymbol w),\nabla\boldsymbol\varepsilon(\boldsymbol v))\big),\\
+a_\iota(\boldsymbol w,\boldsymbol v)&=2\mu(\boldsymbol\varepsilon(\boldsymbol w),\boldsymbol\varepsilon(\boldsymbol v))
++2\mu\iota^2(\nabla\boldsymbol\varepsilon(\boldsymbol w),\nabla\boldsymbol\varepsilon(\boldsymbol v)),\\
 b_\iota(\boldsymbol v,q)&=(\div\boldsymbol v,q)+\iota^2(\nabla\div\boldsymbol v,\nabla q).
 \end{align*}
 The divergence right inverse in~\cite[Theorem~1.1]{CostabelMcIntosh2010} can be chosen to satisfy both $\|\mathcal Bq\|_1\lesssim\|q\|_0$ and $\|\mathcal Bq\|_2\lesssim\|q\|_1$ for the same $\mathcal B$. To make this choice explicit, fix a bounded right inverse $\mathcal B_0:L_0^2\to H_0^1$ and let $E_0$ denote zero extension. Identifying scalar functions and vector fields with top-degree and $(d-1)$-forms, respectively, the construction in~\cite[Theorem~4.6 and proof of Corollary~4.7(b)]{CostabelMcIntosh2010} gives

@@ -24,7 +24,7 @@ Reflection about the bisector splits the pencil into the branches in which $(\Ph
 \subsection{Normalization of the characteristic determinants}
 
 \begin{lemma}\label{lem:corner-determinant}
-For the two reflection branches, put $\tau=-\rho$ and $\tau=\rho$, respectively. Their normalized characteristic determinants are nonzero numerical constant multiples of
+For the two reflection branches, put $\tau=-\rho$ and $\tau=\rho$, respectively. With the endpoint and initial-data ordering specified below, their normalized characteristic determinants equal $-D_\tau(z)/16$, where
 \begin{equation}\label{eq:corner-determinant}
 D_\tau(z)=\frac{A(z)+\tau N(z)}{(1+\tau)z^2(z^2-1)},
 \end{equation}
@@ -111,11 +111,24 @@ For the denominator, $\boldsymbol j(k)$ differs from $(1,k,k^2,k^3)^{\mathsf T}$
 \[
 \prod_{\kappa\in\{s,-s,-b\}}\frac{-\ell-\kappa}{b-\kappa}=\frac2z.
 \]
-Thus $\det M_\tau(\boldsymbol j)=(1+\tau)\det M_0(\boldsymbol j)$. Moreover, $\det M_0(\boldsymbol v)$ is a nonzero numerical constant times $E(b)O(b)$, and $\det M_0(\boldsymbol j)$ is a nonzero numerical constant times
+Thus $\det M_\tau(\boldsymbol j)=(1+\tau)\det M_0(\boldsymbol j)$.
+Replacing each pair of columns by its sum and difference, then interchanging the second and third columns, gives
 \[
-sb(s-b)^2(s+b)^2=16z^2(z^2-1).
+\begin{aligned}
+\det M_0(\boldsymbol v)&=-4E(b)O(b)=4A(z),\\
+\det M_0(\boldsymbol j)&=-4sb(s-b)^2(s+b)^2=-64z^2(z^2-1).
+\end{aligned}
 \]
-Combining these identities proves~\eqref{eq:corner-determinant} up to a nonzero numerical factor.
+Consequently,
+\[
+\det M_\tau(\boldsymbol v)=4\bigl(A(z)+\tau N(z)\bigr),\qquad
+\det M_\tau(\boldsymbol j)=-64(1+\tau)z^2(z^2-1),
+\]
+and hence
+\[
+\frac{\det M_\tau(\boldsymbol v)}{\det M_\tau(\boldsymbol j)}
+=-\frac1{16}D_\tau(z).
+\]
 
 The conjugate representation was used only for real $s$. Returning to the two Cartesian components and complexifying their initial data, the normalized fundamental matrix depends holomorphically on complex $s$: the angular coefficients are polynomial in $s$, and the highest derivative coefficient is invertible and independent of $s$. The identity theorem extends the formula to all complex $s$, with removable limits at $z=0,\pm1$. This normalization includes the generalized angular solutions at coalescing frequencies; the zeros of the unnormalized numerator at these integers are not automatically spectral points.
 \end{proof}
